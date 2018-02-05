@@ -27,8 +27,13 @@ Route::get('search', function () {
 	return view('pages.search');
 })->name('search');
 
-Route::get('logout', function() {
-	// TODO: close session
-	return redirect('https://idptest.queensu.ca/idp/profile/Logout');
-})->name('logout');
+Route::prefix('user')->name('user.')->group(function () {
+	Route::get('preferences', function() {
+		return view('pages.user.preferences');
+	})->name('preferences');
 
+	Route::get('logout', function() {
+		// TODO: close session
+		return redirect('https://idptest.queensu.ca/idp/profile/Logout');
+	})->name('logout');
+});
