@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('pages.dashboard');
+})->name('dashboard');
+
+Route::get('inventory', function () {
+    return view('pages.inventory');
+})->name('inventory');
+
+Route::get('reports', function () {
+    return view('pages.reports');
+})->name('reports');
+
