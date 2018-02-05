@@ -23,6 +23,10 @@ Route::get('reports', function () {
     return view('pages.reports');
 })->name('reports');
 
+Route::get('search', function () {
+	return view('pages.search');
+})->name('search');
+
 Route::get('logout', function() {
 	// TODO: close session
 	return redirect('https://idptest.queensu.ca/idp/profile/Logout');
