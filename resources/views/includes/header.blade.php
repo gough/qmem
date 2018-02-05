@@ -28,9 +28,9 @@
 			<div>
 				<ul class="navbar-nav justify-content-end">
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{{ $_SERVER['HTTP_COMMON_NAME'] }}
-						</a>
+						<span class="user nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ $_SERVER['HTTP_COMMON_NAME'] or 'Firstname Lastname' }}
+						</span>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{ route('user.preferences') }}">Preferences</a>
 							<div class="dropdown-divider"></div>

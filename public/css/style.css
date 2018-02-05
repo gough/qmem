@@ -121,6 +121,11 @@ p,
 	margin-top: 0;
 }
 
+/* dropdown with user */
+.nav-link.dropdown-toggle {
+	cursor: pointer;
+}
+
 /**
  * Mod Unit
  */
