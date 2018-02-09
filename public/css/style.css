@@ -52,7 +52,7 @@ p,
 }
 
 #search {
-	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
 
 .card-header {
@@ -121,9 +121,8 @@ p,
 	margin-top: 0;
 }
 
-/* dropdown with user */
-.nav-link.dropdown-toggle {
-	cursor: pointer;
+.title-buttons {
+	margin-top: 1rem;
 }
 
 /**

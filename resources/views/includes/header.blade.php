@@ -5,40 +5,38 @@
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarToggleExternal">
-		<div class="d-md-inline-flex justify-content-between" style="width: 100%">
-			<div>
-				<ul class="navbar-nav justify-content-start">
-					<li class="nav-item {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
-						<a class="nav-link" href="{{ route('dashboard') }}">Dashboard <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item {{ Route::currentRouteNamed('inventory') ? 'active' : '' }}">
-						<a class="nav-link" href="{{ route('inventory') }}">Inventory</a>
-					</li>
-					<li class="nav-item {{ Route::currentRouteNamed('reports') ? 'active' : '' }}">
-						<a class="nav-link" href="{{ route('reports') }}">Reports</a>
-					</li>
-				</ul>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('dashboard') }}">Dashboard <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item {{ Route::currentRouteNamed('assets.index') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('assets.index') }}">Assets</a>
+			</li>
+			<li class="nav-item {{ Route::currentRouteNamed('reports.index') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
+			</li>
+		</ul>
+		<form action="{{ url('search') }}" id="search" class="form-inline">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary my-2 my-sm-0 form-control" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
 			</div>
-			<div>
-				<form method="GET" action="{{ route('search') }}" class="form-inline my-2 my-md-0">
-					<input id="query" class="form-control mr-0 mr-sm-2 mb-2 mb-sm-0" type="text" name="query" placeholder="Search" aria-label="Search" autofocus="autofocus">
-					<button class="btn btn-outline-secondary form-control my-md-0" type="submit">Search</button>
-				</form>
-			</div>
-			<div>
-				<ul class="navbar-nav justify-content-end">
-					<li class="nav-item dropdown">
-						<span class="user nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{{ $_SERVER['HTTP_COMMON_NAME'] or 'Firstname Lastname' }}
-						</span>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{ route('user.preferences') }}">Preferences</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>		
+		</form>
+		<ul class="navbar-nav">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{{ $_SERVER['HTTP_COMMON_NAME'] }}
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{{ route('user.preferences') }}">Preferences</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
+				</div>
+			</li>
+		</ul>
 	</div>
 </nav>
