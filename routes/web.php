@@ -11,29 +11,37 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-})->name('dashboard');
+Route::get('/', function() {
+	return redirect('dashboard');
+})->name('buffer')->middleware('auth');
 
-Route::get('inventory', function () {
-    return view('pages.inventory');
-})->name('inventory');
+Route::get('dashboard', 'DashboardController@index')
+	->name('dashboard')
+	->middleware('auth');
 
-Route::get('reports', function () {
-    return view('pages.reports');
-})->name('reports');
+Route::get('search', 'SearchController@index')
+	->name('search')
+	->middleware('auth');
 
-Route::get('search', function () {
-	return view('pages.search');
-})->name('search');
+Route::prefix('assets')
+	->name('assets.')
+	->middleware('auth')
+	->group(function () {
+	Route::get('', 'AssetsController@index')->name('index');
+	Route::get('new', 'AssetsController@new')->name('new');
+});
 
-Route::prefix('user')->name('user.')->group(function () {
-	Route::get('preferences', function() {
-		return view('pages.user.preferences');
-	})->name('preferences');
+Route::prefix('reports')
+	->name('reports.')
+	->middleware('auth')
+	->group(function () {
+	Route::get('', 'ReportsController@index')->name('index');
+});
 
-	Route::get('logout', function() {
-		// TODO: close session
-		return redirect('https://idptest.queensu.ca/idp/profile/Logout');
-	})->name('logout');
+Route::prefix('user')
+	->name('user.')
+	->middleware('auth')
+	->group(function () {
+	Route::get('preferences', 'UserController@preferences')->name('preferences');
+	Route::get('logout', 'UserController@logout')->name('logout');
 });
