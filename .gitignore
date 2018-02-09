@@ -14,3 +14,4 @@ yarn-error.log
 .DS_Store
 /public/phpinfo.php
 /public/phpmyadmin
+/yarn.lock
