@@ -18,7 +18,7 @@
 		</ul>
 		<form action="{{ url('search') }}" id="search" class="form-inline">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+				<input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" autofocus="autofocus">
 				<div class="input-group-append">
 					<button class="btn btn-outline-secondary my-2 my-sm-0 form-control" type="submit">
 						<i class="fa fa-search"></i>
