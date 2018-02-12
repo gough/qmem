@@ -12,4 +12,8 @@ class AssetsController extends Controller
 
 		return view('pages.assets.index', compact('assets'));
     }
+
+    public function new() {
+    	return view('pages.assets.new');
+    }
 }

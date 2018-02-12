@@ -6,7 +6,7 @@
 				<h1>Assets</h1>
 			</div>
 			<div class="title-buttons pull-right">
-				<button class="btn btn-primary btn-lg">New</button>
+				<a href="{{ route('assets.new') }}" class="btn btn-primary btn-lg">New</a>
 			</div>
 		</div>
 	</div>
