@@ -16,6 +16,12 @@ class Auth
      */
     public function handle($request, Closure $next)
     {
+        // if environment is local, bypass authentication
+        if (env('APP_ENV') == 'local') {
+            return $next($request);
+        }
+
+        // get netid from server variables
         $netid = $_SERVER['HTTP_QUEENSU_NETID'];
         $netidExists = DB::table('users')->where('netid', $netid)->exists();
 
