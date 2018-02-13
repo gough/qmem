@@ -60,6 +60,12 @@ TODO: Write usage
 
 ---
 
+**Problem:** "Whoops, looks like something went wrong."
+
+**Solution:** This can mean a whole load of things. If it happens right after cloning the application, you probably forgot to create a `.env` file. See above in the Getting Started section for more details.
+
+---
+
 If your problem does not have a solution listed above, [create an issue](https://github.com/gough/qmem/issues) using the issue tracker for this repository. 
 
 ## Deployment
