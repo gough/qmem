@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class AssetsTableSeeder extends Seeder
 {
@@ -11,21 +12,26 @@ class AssetsTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         for ($i = 1; $i < 150; $i++) {
+            $random_date = mt_rand(1400000000, 1500000000);
             DB::table('assets')->insert([
-            'name' => str_random(6),
-            'type' => 'capital',
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
+                'name' => $faker->slug,
+                'type' => 'capital',
+                'user' => $faker->firstName . ' ' . $faker->lastName,
+                'created_at' => date("Y-m-d H:i:s", $random_date),
+                'updated_at' => date("Y-m-d H:i:s", $random_date),
             ]);
         }
 
         for ($i = 1; $i < 150; $i++) {
+            $random_date = mt_rand(1400000000, 1500000000);
             DB::table('assets')->insert([
-            'name' => str_random(6),
-            'type' => 'consumable',
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
+                'name' => $faker->slug,
+                'type' => 'consumable',
+                'user' => $faker->firstName . ' ' . $faker->lastName,
+                'created_at' => date("Y-m-d H:i:s", $random_date),
+                'updated_at' => date("Y-m-d H:i:s", $random_date),
             ]);
         }
     }
