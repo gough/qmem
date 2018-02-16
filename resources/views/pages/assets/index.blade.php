@@ -6,7 +6,16 @@
 				<h1>Assets</h1>
 			</div>
 			<div class="title-buttons pull-right">
-				<a href="{{ route('assets.new') }}" class="btn btn-primary btn-lg">New</a>
+				<!--<a href="{{ route('assets.new') }}" class="btn btn-primary btn-lg">New</a>-->
+				<div class="dropdown">
+					<button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						New
+					</button>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Capital Asset</a>
+						<a class="dropdown-item" href="#">Consumable Asset </a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
