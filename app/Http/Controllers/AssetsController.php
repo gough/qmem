@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use \App\Asset;
 
 class AssetsController extends Controller
 {
     public function index() {
-    	$assets = DB::table('assets')->get();
+    	$assets = Asset::paginate(50);
 
 		return view('pages.assets.index', compact('assets'));
     }
