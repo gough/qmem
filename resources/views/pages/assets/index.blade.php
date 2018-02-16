@@ -25,7 +25,7 @@
 				<div class="card-body">
 					<div class="pull-left d-none d-sm-block">
 						<span class="pagination-detail">
-							Showing {{ $assets->firstItem() }} to {{ $assets->lastItem() }} of {{ $assets->total() }} rows
+							Showing {{ number_format($assets->firstItem()) }} to {{ number_format($assets->lastItem()) }} of {{ number_format($assets->total()) }} rows
 						</span>
 					</div>
 					<div class="pull-right d-none d-lg-block">
@@ -61,7 +61,7 @@
 					</table>
 					<div class="pull-left d-none d-sm-block">
 						<span class="pagination-detail">
-							Showing {{ $assets->firstItem() }} to {{ $assets->lastItem() }} of {{ $assets->total() }} rows
+							Showing {{ number_format($assets->firstItem()) }} to {{ number_format($assets->lastItem()) }} of {{ number_format($assets->total()) }} rows
 						</span>
 					</div>
 					<div class="pull-right d-none d-lg-block">
