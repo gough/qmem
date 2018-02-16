@@ -74,24 +74,6 @@
 					<span class="card-title">Recent Activity</span>
 				</div>
 				<div class="card-body">
-					<div class="pull-left d-none d-sm-block">
-						<span class="pagination-detail">Showing 1 to 20 of 10,123 rows</span>
-					</div>
-					<div class="pull-right">
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-end">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1">Previous</a>
-								</li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
 					<table class="table table-bordered table-hover table-responsive-md">
 						<thead class="thead-default">
 							<tr>
@@ -117,28 +99,6 @@
 							@endforeach
 						</tbody>						
 					</table>
-					<div class="pagination">
-						<div class="pull-left col">
-							<span class="pagination-detail align-middle d-none d-sm-block">
-								Showing 1 to 20 of 1234 rows
-							</span>
-						</div>
-						<div class="pull-right col">
-							<nav aria-label="Page navigation">
-								<ul class="pagination justify-content-end">
-									<li class="page-item disabled">
-										<a class="page-link" href="#" tabindex="-1">Previous</a>
-									</li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item">
-										<a class="page-link" href="#">Next</a>
-									</li>
-								</ul>
-							</nav>
-						</div>									
-					</div>
 				</div>
 			</div>
 		</div>
