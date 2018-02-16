@@ -49,7 +49,7 @@
 							@foreach ($assets as $asset)
 							<tr>
 								<td>{{ $asset->created_at }}</td>
-								<td><a href="#">John Smith</a></td>
+								<td><a href="#">{{ $asset->user }}</a></td>
 								<td>Update</td>
 								<td>
 									<i class="fa {{ $asset->type == 'consumable' ? 'fa-tint' : 'fa-cube' }}"></i>
