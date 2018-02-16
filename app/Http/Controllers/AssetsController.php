@@ -13,6 +13,18 @@ class AssetsController extends Controller
 		return view('pages.assets.index', compact('assets'));
     }
 
+    public function capital() {
+        $assets = Asset::where('type', 'capital')->paginate(50);
+
+        return view('pages.assets.capital', compact('assets'));
+    }
+
+    public function consumable() {
+        $assets = Asset::where('type', 'consumable')->paginate(50);
+
+        return view('pages.assets.consumable', compact('assets'));
+    }
+
     public function new() {
     	return view('pages.assets.new');
     }

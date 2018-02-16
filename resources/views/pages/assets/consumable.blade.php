@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
-				<h1>All Assets</h1>
+				<h1>Consumable Assets</h1>
 			</div>
 			<div class="title-buttons pull-right">
 				<div class="dropdown">
@@ -22,17 +22,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					<div class="pull-left d-none d-sm-block">
-						<span class="pagination-detail">
-							Showing {{ number_format($assets->firstItem()) }} to {{ number_format($assets->lastItem()) }} of {{ number_format($assets->total()) }} rows
-						</span>
-					</div>
-					<div class="pull-right d-none d-lg-block">
-						{{ $assets->links('pagination::bootstrap-4') }}
-					</div>
-					<div class="pull-right d-block d-lg-none">
-						{{ $assets->links('pagination::simple-bootstrap-4') }}
-					</div>
+					@include('includes.pagination', ['items' => $assets])
 					<table class="table table-bordered table-hover table-responsive-md">
 						<thead class="thead-default">
 							<tr>
@@ -58,17 +48,7 @@
 							@endforeach
 						</tbody>						
 					</table>
-					<div class="pull-left d-none d-sm-block">
-						<span class="pagination-detail">
-							Showing {{ number_format($assets->firstItem()) }} to {{ number_format($assets->lastItem()) }} of {{ number_format($assets->total()) }} rows
-						</span>
-					</div>
-					<div class="pull-right d-none d-lg-block">
-						{{ $assets->links('pagination::bootstrap-4') }}
-					</div>
-					<div class="pull-right d-block d-lg-none">
-						{{ $assets->links('pagination::simple-bootstrap-4') }}
-					</div>
+					@include('includes.pagination', ['items' => $assets])
 				</div>
 			</div>
 		</div>

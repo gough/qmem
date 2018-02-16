@@ -28,6 +28,8 @@ Route::prefix('assets')
 	->middleware('auth')
 	->group(function () {
 	Route::get('', 'AssetsController@index')->name('index');
+	Route::get('capital', 'AssetsController@capital')->name('capital');
+	Route::get('consumable', 'AssetsController@consumable')->name('consumable');
 	Route::get('new', 'AssetsController@new')->name('new');
 });
 
