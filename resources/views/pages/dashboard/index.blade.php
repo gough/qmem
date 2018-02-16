@@ -9,11 +9,11 @@
 						<i class="fa fa-cube fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">10.1k</span>
+						<span class="card-title">{{ number_format($total_assets) }}</span>
 						<span class="card-desc">Total Assets</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-primary" href="">
+				<a class="card-button-bottom text-primary" href="{{ route('assets.index') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
@@ -25,11 +25,11 @@
 						<i class="fa fa-tint fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">2,222</span>
+						<span class="card-title">{{ number_format($total_consumables) }}</span>
 						<span class="card-desc">Total Consumables</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-success" href="">
+				<a class="card-button-bottom text-success" href="{{ route('assets.index') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
@@ -41,7 +41,7 @@
 						<i class="fa fa-bell-o fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">31</span>
+						<span class="card-title">{{ number_format($total_alerts) }}</span>
 						<span class="card-desc">Total Alerts</span>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 						<i class="fa fa-user-circle-o fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">12</span>
+						<span class="card-title">{{ number_format($total_users) }}</span>
 						<span class="card-desc">Total Users</span>
 					</div>
 				</div>
@@ -104,126 +104,17 @@
 							</tr>
 						</thead>
 						<tbody>
+							@foreach ($recent_assets as $asset)
 							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
+								<td>{{ $asset->updated_at }}</td>
+								<td><a href="#">{{ $asset->user }}</a></td>
 								<td>Update</td>
-								<td><i class="fa fa-cube"></i> <a href="#"> Syringe 4" Blue (1830711520)</a></td>
+								<td>
+									<i class="fa {{ $asset->type == 'consumable' ? 'fa-tint' : 'fa-cube' }}"></i>
+									<a href="#">{{ $asset->name }}</a>
+								</td>
 							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Green (4394212424)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Yellow (7449940328)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Red (6190071664)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Blue (1830711520)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Green (4394212424)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Yellow (7449940328)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Red (6190071664)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Blue (1830711520)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Green (4394212424)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-cube"></i> <a href="#"> Syringe 4" Blue (1830711520)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Green (4394212424)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Yellow (7449940328)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Red (6190071664)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Blue (1830711520)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Green (4394212424)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Yellow (7449940328)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Red (6190071664)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Blue (1830711520)</a></td>
-							</tr>
-							<tr>
-								<td>2017-12-12 12:12:12 PM</td>
-								<td><a href="#">John Smith</a></td>
-								<td>Update</td>
-								<td><i class="fa fa-tint"></i> <a href="#"> Syringe 4" Green (4394212424)</a></td>
-							</tr>
+							@endforeach
 						</tbody>						
 					</table>
 					<div class="pagination">
