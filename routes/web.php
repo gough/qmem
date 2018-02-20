@@ -44,6 +44,7 @@ Route::prefix('user')
 	->name('user.')
 	->middleware('auth')
 	->group(function () {
+	Route::get('', 'UserController@index')->name('index');
 	Route::get('preferences', 'UserController@preferences')->name('preferences');
 	Route::get('logout', 'UserController@logout')->name('logout');
 });

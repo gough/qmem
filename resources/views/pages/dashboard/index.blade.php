@@ -61,8 +61,16 @@
 						<span class="card-desc">Total Users</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-danger" href="">
+
+
+
+
+				<a class="card-button-bottom text-danger" href="{{ route('user.index') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
+
+
+
+					
 				</a>
 			</div>
 		</div>
