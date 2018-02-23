@@ -20,32 +20,32 @@
 		</div>
 		<div class="col-lg-3 col-sm-6">
 			<div class="card border-success">
-				<div class="card-info-top bg-success">
+				<div class="card-info-top bg-info">
 					<div class="pull-left">
-						<i class="fa fa-tint fa-4x align-middle"></i>
+						<i class="fa fa-cube fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">{{ number_format($total_consumables) }}</span>
-						<span class="card-desc">Total Consumables</span>
+						<span class="card-title">{{ number_format($total_capital) }}</span>
+						<span class="card-desc">Total Capital</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-success" href="{{ route('assets.index') }}">
+				<a class="card-button-bottom text-success" href="{{ route('assets.capital') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
 		</div>
 		<div class="col-lg-3 col-sm-6">
-			<div class="card border-warning">
-				<div class="card-info-top bg-warning">
+			<div class="card border-success">
+				<div class="card-info-top bg-success">
 					<div class="pull-left">
-						<i class="fa fa-bell-o fa-4x align-middle"></i>
+						<i class="fa fa-tint fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">{{ number_format($total_alerts) }}</span>
-						<span class="card-desc">Total Alerts</span>
+						<span class="card-title">{{ number_format($total_consumable) }}</span>
+						<span class="card-desc">Total Consumable</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-warning" href="">
+				<a class="card-button-bottom text-success" href="{{ route('assets.consumable') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>

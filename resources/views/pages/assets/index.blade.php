@@ -26,24 +26,22 @@
 					<table class="table table-bordered table-hover table-responsive-md">
 						<thead class="thead-default">
 							<tr>
+								<th>ID</th>
+								<th style="width: 40%">Item</th>
 								<th style="width: 25%">Created At</th>
 								<th style="width: 20%">User</th>
-								<th style="width: 15%">Action</th>
-								<th style="width: 40%">Item</th>
-								<!--<th class="hidden-xs" style="width: 1%" colspan="2">Item</th>
-								<th style="width: 44%">Item</th>-->
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($assets as $asset)
 							<tr>
-								<td>{{ $asset->created_at }}</td>
-								<td><a href="#">{{ $asset->user }}</a></td>
-								<td>Update</td>
+								<td>{{ $asset->id }}</td>
 								<td>
 									<i class="fa {{ $asset->type == 'consumable' ? 'fa-tint' : 'fa-cube' }}"></i>
 									<a href="#">{{ $asset->name }}</a>
 								</td>
+								<td>{{ $asset->created_at }}</td>
+								<td><a href="#">{{ $asset->user }}</a></td>
 							</tr>
 							@endforeach
 						</tbody>						

@@ -13,6 +13,16 @@
 				<div class="card-body">
 					<form>
 						<div class="form-group row">
+							<label for="type" class="col-md-2 col-form-label">Asset Type</label>
+							<div class="col-md-10">
+								<select class="form-control" name="type" id="type">
+									<option value="active">Capital</option>
+									<option value="active">Consumable</option>
+								</select>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group row">
 							<label for="name" class="col-md-2 col-form-label">Asset Name</label>
 							<div class="col-md-10">
 								<input type="text" name="name" id="name" class="form-control" placeholder="Asset Name">
@@ -24,6 +34,7 @@
 								<input type="text" name="serial-number" id="serial-number" class="form-control" placeholder="(automatically generated)" disabled>
 							</div>
 						</div>
+						<hr>
 						<div class="form-group row">
 							<label for="status" class="col-md-2 col-form-label">Status</label>
 							<div class="col-md-10">
@@ -37,6 +48,24 @@
 							<label for="serial-number" class="col-md-2 col-form-label">Serial Number</label>
 							<div class="col-md-10">
 								<input type="text" id="serial-number" class="form-control" placeholder="Serial Number">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="field2" class="col-md-2 col-form-label">Field 2</label>
+							<div class="col-md-10">
+								<input type="text" id="field2" class="form-control" placeholder="Field 2">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="field3" class="col-md-2 col-form-label">Field 3</label>
+							<div class="col-md-10">
+								<input type="text" id="field3" class="form-control" placeholder="Field 3">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="field4" class="col-md-2 col-form-label">Field 4</label>
+							<div class="col-md-10">
+								<input type="text" id="field4" class="form-control" placeholder="Field 4">
 							</div>
 						</div>
 						<hr>
