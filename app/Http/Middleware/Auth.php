@@ -29,6 +29,12 @@ class Auth
         if ($netidExists === False) {
             // if it doesn't, return a forbidden message, indicating as such
             return response('Forbidden', 403)->header('Content-Type', 'text/plain');
+        } else {
+            // if netid exists, make sure all information is up to date
+            DB::table('users')->where('netid', $netid)->update([
+                'name' => $_SERVER['HTTP_COMMON_NAME'],
+                'email' => $_SERVER['HTTP_QUEENSU_MAIL'],
+            ]);
         }
 
         // if it does exist, continue
