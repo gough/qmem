@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'netid' => '15ag36',
             'group' => 'admin',
             'name' => '',
+            'email' => '',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -26,6 +27,7 @@ class UsersTableSeeder extends Seeder
             'netid' => '13sjk',
             'group' => 'admin',
             'name' => '',
+            'email' => '',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -36,6 +38,7 @@ class UsersTableSeeder extends Seeder
                 'netid' => '',
                 'group' => 'user',
                 'name' => $faker->firstName . ' ' . $faker->lastName,
+                'email' => $faker->email,
                 'created_at' => date("Y-m-d H:i:s", $random_date),
                 'updated_at' => date("Y-m-d H:i:s", $random_date),
             ]);

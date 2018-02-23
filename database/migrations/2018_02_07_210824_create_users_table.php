@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('netid');
             $table->string('group');
             $table->string('name');
+            $table->string('email');
             $table->timestamps();
         });
     }
