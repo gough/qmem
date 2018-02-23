@@ -41,7 +41,7 @@ class AuthNetid
                 if (isset($_SERVER['HTTP_QUEENSU_NETID']))
                 {
                     // header is present, lookup user id by searching for netid
-                    $user_id = DB::table('users')->where('netid', $user_netid)->select('id')->get();
+                    $user_id = DB::table('users')->where('netid', $_SERVER['HTTP_QUEENSU_NETID'])->select('id')->get();
 
                     // if user id has been found from netid
                     if ($user_id->count() == 1)
