@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,44 +12,33 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'netid' => '12ab34',
-            'group' => 'admin',
-            'name' => str_random(4) . ' ' . str_random(8),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+        $faker = Faker::create();
 
         DB::table('users')->insert([
             'netid' => '15ag36',
             'group' => 'admin',
-            'name' => str_random(4) . ' ' . str_random(8),
+            'name' => '',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
 
         DB::table('users')->insert([
             'netid' => '13sjk',
-            'group' => 'user',
-            'name' => str_random(4) . ' ' . str_random(8),
+            'group' => 'admin',
+            'name' => '',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
 
-        DB::table('users')->insert([
-            'netid' => str_random(6),
-            'group' => 'user',
-            'name' => str_random(4) . ' ' . str_random(8),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
-
-        DB::table('users')->insert([
-            'netid' => str_random(6),
-            'group' => 'user',
-            'name' => str_random(4) . ' ' . str_random(8),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s"),
-        ]);
+        for ($i = 1; $i < 8; $i++) {
+            $random_date = mt_rand(1400000000, 1500000000);
+            DB::table('users')->insert([
+                'netid' => '',
+                'group' => 'user',
+                'name' => $faker->firstName . ' ' . $faker->lastName,
+                'created_at' => date("Y-m-d H:i:s", $random_date),
+                'updated_at' => date("Y-m-d H:i:s", $random_date),
+            ]);
+        }
     }
 }
