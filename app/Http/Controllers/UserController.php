@@ -11,7 +11,8 @@ class UserController extends Controller
         $users = User::paginate(20);
         return view ('pages.user.index', compact('users'));
     }
-    public function preferences() {
+    public function preferences(Request $request) {
+        dd($request->user());
     	return view('pages.user.preferences');
     }
 
