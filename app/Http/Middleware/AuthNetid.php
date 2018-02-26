@@ -47,7 +47,7 @@ class AuthNetid
                     if ($user_id->count() == 1)
                     {
                         // user found, check that they are active
-                        if (User::find($user_id)->active)
+                        if (User::find($user_id->first()->id)->active)
                         { 
                             // user is active, so authenticate to our application using this id (not netid)
                             Auth::loginUsingId($user_id->first()->id);
