@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
-				<h1>Asset #{{ $asset->id }}</h1>
+				<h1>Consumable #{{ $consumable->id }}</h1>
 			</div>
 		</div>
 	</div>
@@ -11,7 +11,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					{{ $asset }}
+					{{ $consumable }}
 				</div>
 			</div>
 		</div>

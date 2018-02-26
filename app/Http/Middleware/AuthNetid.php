@@ -43,41 +43,49 @@ class AuthNetid
                     // header is present, lookup user id by searching for netid
                     $user_id = DB::table('users')->where('netid', $_SERVER['HTTP_QUEENSU_NETID'])->select('id')->get();
 
-                    // if user id has been found from netid
+                    // if user id has been found from netid and user isn't disabled
                     if ($user_id->count() == 1)
                     {
-                        // user id found, so authenticate to our application using this id (not netid)
-                        Auth::loginUsingId($user_id->first()->id);
-                        $user = Auth::user();
+                        // user found, check that they are active
+                        if (User::find($user_id)->active)
+                        { 
+                            // user is active, so authenticate to our application using this id (not netid)
+                            Auth::loginUsingId($user_id->first()->id);
+                            $user = Auth::user();
 
-                        // check if additional user information is present in server headers
-                        if (isset($_SERVER['HTTP_COMMON_NAME']) && isset($_SERVER['HTTP_QUEENSU_MAIL']))
-                        {
-                            // additional information is available, so check if we need to update our records
-                            // by default we assume nothing has changed
-                            $changed = False;
-
-                            if ($user->name != $_SERVER['HTTP_COMMON_NAME'])
+                            // check if additional user information is present in server headers
+                            if (isset($_SERVER['HTTP_COMMON_NAME']) && isset($_SERVER['HTTP_QUEENSU_MAIL']))
                             {
-                                $user->name = $_SERVER['HTTP_COMMON_NAME'];
-                                $changed = True;
-                            }
+                                // additional information is available, so check if we need to update our records
+                                // by default we assume nothing has changed
+                                $changed = False;
 
-                            if ($user->email != $_SERVER['HTTP_QUEENSU_MAIL'])
-                            {
-                                $user->email = $_SERVER['HTTP_QUEENSU_MAIL'];   
-                                $changed = True;
-                            }
+                                if ($user->name != $_SERVER['HTTP_COMMON_NAME'])
+                                {
+                                    $user->name = $_SERVER['HTTP_COMMON_NAME'];
+                                    $changed = True;
+                                }
 
-                            // if we've changed any information, save it back to the database
-                            if ($changed)
-                            {
-                                $user->save();
-                            }                          
-                        }                    
-                        
-                        // finally, continue to next page
-                        return $next($request);
+                                if ($user->email != $_SERVER['HTTP_QUEENSU_MAIL'])
+                                {
+                                    $user->email = $_SERVER['HTTP_QUEENSU_MAIL'];   
+                                    $changed = True;
+                                }
+
+                                // if we've changed any information, save it back to the database
+                                if ($changed)
+                                {
+                                    $user->save();
+                                }                          
+                            }                    
+                            
+                            // finally, continue to next page
+                            return $next($request);
+                        }
+                        else {
+                            // user is not active (ie. disabled)
+                            return response('Forbidden (user not found)', 403)->header('Content-Type', 'text/plain');
+                        }
                     }
                     else
                     {

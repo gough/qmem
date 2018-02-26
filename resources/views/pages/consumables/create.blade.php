@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
-				<h1>New Asset</h1>
+				<h1>New Consumable</h1>
 			</div>
 		</div>
 	</div>
@@ -11,7 +11,8 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					<form>
+					<form method="POST" action="{{ route('assets.store') }}">
+						{{ csrf_field() }}
 						<div class="form-group row">
 							<label for="type" class="col-md-2 col-form-label">Asset Type</label>
 							<div class="col-md-10">
@@ -47,25 +48,25 @@
 						<div class="form-group row">
 							<label for="serial-number" class="col-md-2 col-form-label">Serial Number</label>
 							<div class="col-md-10">
-								<input type="text" id="serial-number" class="form-control" placeholder="Serial Number">
+								<input type="text" name="serial-number" id="serial-number" class="form-control" placeholder="Serial Number">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="field2" class="col-md-2 col-form-label">Field 2</label>
 							<div class="col-md-10">
-								<input type="text" id="field2" class="form-control" placeholder="Field 2">
+								<input type="text" name="field2" id="field2" class="form-control" placeholder="Field 2">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="field3" class="col-md-2 col-form-label">Field 3</label>
 							<div class="col-md-10">
-								<input type="text" id="field3" class="form-control" placeholder="Field 3">
+								<input type="text" name="field3" id="field3" class="form-control" placeholder="Field 3">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="field4" class="col-md-2 col-form-label">Field 4</label>
 							<div class="col-md-10">
-								<input type="text" id="field4" class="form-control" placeholder="Field 4">
+								<input type="text" name="field4" id="field4" class="form-control" placeholder="Field 4">
 							</div>
 						</div>
 						<hr>

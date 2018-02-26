@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
         $user->group = 'admin';
         $user->name = 'Test User';
         $user->email = 'test.user@example.com';
+        $user->active = True;
         $user->save();
 
         $user = new User;
@@ -30,6 +31,7 @@ class UsersTableSeeder extends Seeder
         $user->group = 'admin';
         $user->name = '';
         $user->email = '';
+        $user->active = True;
         $user->save();
 
         $user = new User;
@@ -37,9 +39,10 @@ class UsersTableSeeder extends Seeder
         $user->group = 'admin';
         $user->name = '';
         $user->email = '';
+        $user->active = True;
         $user->save();
 
-        for ($i = 1; $i < 8; $i++) {
+        for ($i = 1; $i < 7; $i++) {
             $user = new User;
             $user->netid = mt_rand(100000,999999);
             $user->group = 'user';

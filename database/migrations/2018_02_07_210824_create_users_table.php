@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('group');
             $table->string('name');
             $table->string('email');
+            $table->boolean('active')->default(False);
             $table->rememberToken();
             $table->timestamps();
         });

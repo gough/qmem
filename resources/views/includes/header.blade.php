@@ -9,25 +9,14 @@
 			<li class="nav-item {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
 				<a class="nav-link" href="{{ route('dashboard') }}">Dashboard <span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Assets
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{ route('assets.index') }}">All</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{{ route('assets.capital') }}">
-						<i class="fa fa-cube"></i>
-						Capital
-					</a>
-					<a class="dropdown-item" href="{{ route('assets.consumable') }}">
-						<i class="fa fa-tint"></i>
-						Consumable
-					</a>
-				</div>
+			<li class="nav-item {{ Route::currentRouteNamed('assets.index') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('assets.index') }}">Assets <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item {{ Route::currentRouteNamed('consumables.index') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('consumables.index') }}">Consumables <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item {{ Route::currentRouteNamed('reports.index') ? 'active' : '' }}">
-				<a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
+				<a class="nav-link" href="{{ route('reports.index') }}">Reports <span class="sr-only">(current)</a>
 			</li>
 		</ul>
 		<form action="{{ url('search') }}" id="search" class="form-inline">

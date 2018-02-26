@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use \App\User;
 
-class AssetsTableSeeder extends Seeder
+class ConsumablesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,14 @@ class AssetsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        for ($i = 1; $i < 123; $i++) {
+    	$faker = Faker::create();
+        for ($i = 1; $i < 234; $i++) {
             $random_date = mt_rand(1400000000, 1500000000);
-            DB::table('assets')->insert([
+            DB::table('consumables')->insert([
                 'name' => $faker->catchPhrase,
                 'category' => $faker->city,
-                'user_id' => User::where('active', True)->get()->random()->id,
+                'quantity' => mt_rand(0, 100),
+                'user_id' => User::all()->random()->id,
                 'created_at' => date("Y-m-d H:i:s", $random_date),
                 'updated_at' => date("Y-m-d H:i:s", $random_date),
             ]);

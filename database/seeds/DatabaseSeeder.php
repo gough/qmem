@@ -11,9 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // users seeder must be run first so that other seeds can use random user ids
+        $this->call(UsersTableSeeder::class);
+        
         $this->call(AssetsTableSeeder::class);
         $this->call(AssetTypesTableSeeder::class);
+        $this->call(ConsumablesTableSeeder::class);
         $this->call(UserGroupsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
     }
 }
