@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use DB;
 use Auth;
+use \App\User;
 
 //use Illuminate\Support\Facades\Auth;
 
