@@ -56,7 +56,7 @@ TODO: Write usage
 
 **Problem:** SQL [...] Connection refused
 
-**Solution:** This error means that either your database server is not running or the credentials in the `.env` file are incorrect. Check that the server is running and that credentials are correct and try again.
+**Solution:** This error means that either your database server is not running or the credentials in the `.env` file are incorrect. Check that the server is running, that the credentials are correct, and try again.
 
 ---
 
