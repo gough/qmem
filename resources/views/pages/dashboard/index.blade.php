@@ -85,7 +85,7 @@
 							@foreach ($recent_assets as $asset)
 							<tr>
 								<td>{{ $asset->updated_at }}</td>
-								<td>{{ $asset->name }}</td>
+								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
 							</tr>
 							@endforeach
 						</tbody>						
@@ -110,7 +110,7 @@
 							@foreach ($recent_consumables as $consumable)
 							<tr>
 								<td>{{ $consumable->updated_at }}</td>
-								<td>{{ $consumable->name }}</td>
+								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
 							</tr>
 							@endforeach
 						</tbody>						
