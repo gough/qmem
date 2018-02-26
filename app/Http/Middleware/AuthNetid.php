@@ -85,7 +85,7 @@ class AuthNetid
                         }
                         else {
                             // user is not active (ie. disabled)
-                            return response('Forbidden (user not found)', 403)->header('Content-Type', 'text/plain');
+                            return response('Forbidden (user not active)', 403)->header('Content-Type', 'text/plain');
                         }
                     }
                     else
