@@ -14,19 +14,18 @@
 					<form method="POST" action="{{ route('assets.store') }}">
 						{{ csrf_field() }}
 						<div class="form-group row">
-							<label for="type" class="col-md-2 col-form-label">Asset Type</label>
-							<div class="col-md-10">
-								<select class="form-control" name="type" id="type">
-									<option value="active">Capital</option>
-									<option value="active">Consumable</option>
-								</select>
-							</div>
-						</div>
-						<hr>
-						<div class="form-group row">
 							<label for="name" class="col-md-2 col-form-label">Asset Name</label>
 							<div class="col-md-10">
 								<input type="text" name="name" id="name" class="form-control" placeholder="Asset Name">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="category" class="col-md-2 col-form-label">Asset Category</label>
+							<div class="col-md-10">
+								<select class="form-control" name="category" id="category">
+									<option value="one">One</option>
+									<option value="two">Two</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group row">

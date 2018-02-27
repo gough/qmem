@@ -26,21 +26,23 @@ class UsersTableSeeder extends Seeder
         $user->active = True;
         $user->save();
 
-        $user = new User;
-        $user->netid = '15ag36';
-        $user->group = 'admin';
-        $user->name = '';
-        $user->email = '';
-        $user->active = True;
-        $user->save();
+        $netids = [
+            '15ag36', // Adam
+            '14ajn', // Annika
+            '12jeh6', // Josh
+            '13lr31', // Lucy
+            '', // Sahsa
+        ]
 
-        $user = new User;
-        $user->netid = '13sjk';
-        $user->group = 'admin';
-        $user->name = '';
-        $user->email = '';
-        $user->active = True;
-        $user->save();
+        foreach ($netid in $netids) {
+            $user = new User;
+            $user->netid = $netid;
+            $user->group = 'admin';
+            $user->name = '';
+            $user->email = '';
+            $user->active = True;
+            $user->save();
+        }
 
         for ($i = 1; $i < 7; $i++) {
             $user = new User;
