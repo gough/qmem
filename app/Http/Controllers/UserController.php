@@ -22,17 +22,6 @@ class UserController extends Controller
         return view('pages.users.index', compact('users'));
     }
 
-    public function preferences(Request $request)
-    {
-        return view('pages.user.preferences');
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('https://idptest.queensu.ca/idp/profile/Logout');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

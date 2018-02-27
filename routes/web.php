@@ -78,12 +78,18 @@ Route::prefix('reports')
 	Route::get('', 'ReportsController@index')->name('index');
 });
 
+Route::prefix('user')
+	->name('user.')
+	->middleware('auth')
+	->group(function () {
+	Route::get('preferences', 'CurrentUserController@preferences')->name('preferences');
+	Route::get('logout', 'CurrentUserController@logout')->name('logout');
+});
+
 Route::prefix('users')
 	->name('users.')
 	->middleware('auth')
 	->group(function () {
 	Route::get('', 'UserController@index')->name('index');
 	Route::get('{netid}', 'UserController@view')->name('view');
-	Route::get('preferences', 'UserController@preferences')->name('preferences');
-	Route::get('logout', 'UserController@logout')->name('logout');
 });
