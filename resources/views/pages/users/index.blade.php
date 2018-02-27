@@ -6,15 +6,7 @@
                 <h1>All Users</h1>
             </div>
             <div class="title-buttons pull-right">
-                <!--<div class="dropdown">
-                    <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        New
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Capital Asset</a>
-                        <a class="dropdown-item" href="#">Consumable Asset </a>
-                    </div>
-                </div> -->
+                
             </div>
         </div>
     </div>
@@ -39,7 +31,7 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>{{ $user->netid }}</td>
+                                <td><a href="{{ route('user.view', $user->netid) }}">{{ $user->netid }}</a></td>
                                 <td>{{ $user->group }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
