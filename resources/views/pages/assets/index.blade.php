@@ -30,7 +30,7 @@
 						<tbody>
 							@foreach ($assets as $asset)
 							<tr>
-								<td>{{ $asset->id }}</td>
+								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
 								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
 								<td>{{ $asset->category }}</td>
 								<td>

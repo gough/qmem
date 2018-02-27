@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
-				<h1>Consumable #{{ $consumable->id }}</h1>
+				<h1>Consumable: {{ !empty($consumable->name) ? $consumable->name : '#' . $consumable->id }}</h1>
 			</div>
 		</div>
 	</div>

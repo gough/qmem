@@ -31,7 +31,7 @@
 						<tbody>
 							@foreach ($consumables as $consumable)
 							<tr>
-								<td>{{ $consumable->id }}</td>
+								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id }}</a></td>
 								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
 								<td>{{ $consumable->category }}</td>
 								<td>{{ $consumable->quantity }}</td>
