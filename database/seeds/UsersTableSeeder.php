@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
             '14ajn', // Annika
             '12jeh6', // Josh
             '13lr31', // Lucy
-            '', // Sahsa
+            '14ss36', // Sahsa
         ];
 
         foreach ($netids as $netid) {
