@@ -32,9 +32,9 @@ class UsersTableSeeder extends Seeder
             '12jeh6', // Josh
             '13lr31', // Lucy
             '', // Sahsa
-        ]
+        ];
 
-        foreach ($netid in $netids) {
+        foreach ($netids as $netid) {
             $user = new User;
             $user->netid = $netid;
             $user->group = 'admin';
