@@ -16,7 +16,7 @@ class ConsumableController extends Controller
     {
         // GET /consumables
 
-        $consumables = Consumable::orderBy('created_at', 'desc')->paginate(50);
+        $consumables = Consumable::sortable()->paginate(50);
 
         return view('pages.consumables.index', compact('consumables'));
     }

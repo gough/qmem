@@ -16,7 +16,8 @@ class AssetController extends Controller
     {
         // GET /assets
         
-        $assets = Asset::orderBy('created_at', 'desc')->paginate(50);
+        //$assets = Asset::orderBy('created_at', 'desc')->paginate(50);
+        $assets = Asset::sortable()->paginate(50);
 
         return view('pages.assets.index', compact('assets'));
     }

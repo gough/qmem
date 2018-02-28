@@ -4,8 +4,8 @@
 	</span>
 </div>
 <div class="pull-right d-none d-lg-block">
-	{{ $items->links('pagination::bootstrap-4') }}
+	{!! $items->appends(Illuminate\Support\Facades\Input::except('page'))->render('pagination::bootstrap-4') !!}
 </div>
 <div class="pull-right d-block d-lg-none">
-	{{ $items->links('pagination::simple-bootstrap-4') }}
+	{!! $items->appends(Illuminate\Support\Facades\Input::except('page'))->render('pagination::simple-bootstrap-4') !!}
 </div>
