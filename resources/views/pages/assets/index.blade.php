@@ -33,9 +33,7 @@
 								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
 								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
 								<td>{{ $asset->category }}</td>
-								<td>
-									{{ !empty(User::find($asset->user_id)->name) ? User::find($asset->user_id)->name : User::find($asset->user_id)->netid }}
-								</td>
+								<td><a href="{{ route('users.view', $asset->user->netid) }}">{{ $asset->user->name }}</a></td>
 								<td>{{ $asset->created_at }}</td>
 							</tr>
 							@endforeach

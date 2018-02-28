@@ -35,9 +35,7 @@
 								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
 								<td>{{ $consumable->category }}</td>
 								<td>{{ $consumable->quantity }}</td>
-								<td>
-									{{ !empty(User::find($consumable->user_id)->name) ? User::find($consumable->user_id)->name : User::find($consumable->user_id)->netid }}
-								</td>
+								<td><a href="{{ route('users.view', $consumable->user->netid) }}">{{ $consumable->user->name }}</a></td>
 								<td>{{ $consumable->created_at }}</td>
 							</tr>
 							@endforeach

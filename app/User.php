@@ -12,4 +12,14 @@ class User extends Authenticatable
     protected $fillable = [
         'netid', 'group', 'name', 'email'
     ];
+
+    public function assets()
+    {
+    	return $this->hasMany('\App\Asset');
+    }
+
+    public function consumables()
+    {
+    	return $this->hasMany('\App\Consumable');
+    }
 }
