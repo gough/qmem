@@ -26,19 +26,19 @@ class UsersTableSeeder extends Seeder
         $user->active = True;
         $user->save();
 
-        $netids = [
-            '15ag36', // Adam
-            '14ajn', // Annika
-            '12jeh6', // Josh
-            '13lr31', // Lucy
-            '14ss36', // Sahsa
+        $infos = [
+            ['15ag36', 'Adam'], // Adam
+            ['14ajn', 'Annika'], // Annika
+            ['12jeh6', 'Josh'], // Josh
+            ['13lr31', 'Lucy'], // Lucy
+            ['14ss36', 'Sasha'] // Sahsa
         ];
 
-        foreach ($netids as $netid) {
+        foreach ($infos as $info) {
             $user = new User;
-            $user->netid = $netid;
+            $user->netid = $info[0];
             $user->group = 'admin';
-            $user->name = '';
+            $user->name = $info[1];
             $user->email = '';
             $user->active = True;
             $user->save();
@@ -50,6 +50,7 @@ class UsersTableSeeder extends Seeder
             $user->group = 'user';
             $user->name = $faker->firstName . ' ' . $faker->lastName;
             $user->email = $faker->email;
+            $user->active = True;
             $user->save();
         }
     }

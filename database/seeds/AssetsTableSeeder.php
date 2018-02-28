@@ -19,7 +19,7 @@ class AssetsTableSeeder extends Seeder
             DB::table('assets')->insert([
                 'name' => $faker->catchPhrase,
                 'category' => $faker->city,
-                'user_id' => User::where('active', True)->get()->random()->id,
+                'user_id' => User::where('active', True)->where('name', '<>', '')->get()->random()->id,
                 'created_at' => date("Y-m-d H:i:s", $random_date),
                 'updated_at' => date("Y-m-d H:i:s", $random_date),
             ]);
