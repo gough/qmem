@@ -7,6 +7,11 @@ use \App\Asset, \App\Consumable, \App\User;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
     	$recent_assets = Asset::orderBy('updated_at', 'desc')->limit(10)->get();
         $recent_consumables = Consumable::orderBy('updated_at', 'desc')->limit(10)->get();

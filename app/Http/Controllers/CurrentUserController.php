@@ -7,6 +7,11 @@ use Auth;
 
 class CurrentUserController extends Controller
 {
+	public function __construct()
+    {
+    	$this->middleware('auth')->except('logout');
+    }
+
     public function preferences(Request $request)
     {
         return view('pages.user.preferences');

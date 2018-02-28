@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ConsumableController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +59,7 @@ class ConsumableController extends Controller
      */
     public function view($id)
     {
-        // GET /assets/{id}
+        // GET /consumables/{id}
                 
         $consumable = Consumable::findOrFail($id); // TODO: actually load consumable
 
@@ -91,12 +96,12 @@ class ConsumableController extends Controller
     /**
      * Show the form for deleting the specified resource.
      *
-     * @param  \App\Asset  $asset
+     * @param  \App\Consumable  $consumable
      * @return \Illuminate\Http\Response
      */
-    public function delete(Asset $asset)
+    public function delete(Consumable $consumable)
     {
-        // GET /assets/{id}/delete
+        // GET /consumables/{id}/delete
 
       
     }

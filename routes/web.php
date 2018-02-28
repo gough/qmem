@@ -16,24 +16,14 @@ Route::get('/', function() {
 })->name('buffer')->middleware('auth');
 
 Route::get('dashboard', 'DashboardController@index')
-	->name('dashboard')
-	->middleware('auth');
+	->name('dashboard');
 
 Route::get('search', 'SearchController@index')
-	->name('search')
-	->middleware('auth');
+	->name('search');
 
 Route::prefix('assets')
 	->name('assets.')
-	->middleware('auth')
 	->group(function () {
-		
-	// Route::get('', 'AssetsController@index')->name('index');
-	// Route::get('capital', 'AssetsController@capital')->name('capital');
-	// Route::get('consumable', 'AssetsController@consumable')->name('consumable');
-	// Route::get('new', 'AssetsController@new')->name('new');
-
-	// Route::post('', 'AssetsController@store')->name('store');
 
 	Route::get('', 'AssetController@index')->name('index');
 	// no POST view for listing
@@ -53,7 +43,6 @@ Route::prefix('assets')
 
 Route::prefix('consumables')
 	->name('consumables.')
-	->middleware('auth')
 	->group(function () {
 
 	Route::get('', 'ConsumableController@index')->name('index');
@@ -73,14 +62,12 @@ Route::prefix('consumables')
 
 Route::prefix('reports')
 	->name('reports.')
-	->middleware('auth')
 	->group(function () {
 	Route::get('', 'ReportsController@index')->name('index');
 });
 
 Route::prefix('user')
 	->name('user.')
-	->middleware('auth')
 	->group(function () {
 	Route::get('preferences', 'CurrentUserController@preferences')->name('preferences');
 	Route::get('logout', 'CurrentUserController@logout')->name('logout');
@@ -88,7 +75,6 @@ Route::prefix('user')
 
 Route::prefix('users')
 	->name('users.')
-	->middleware('auth')
 	->group(function () {
 	Route::get('', 'UserController@index')->name('index');
 	Route::get('{netid}', 'UserController@view')->name('view');
