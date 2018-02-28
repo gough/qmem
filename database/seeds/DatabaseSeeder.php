@@ -11,12 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // users seeder must be run first so that other seeds can use random user ids
+        // user groups must be created before users can be assigned them
+        $this->call(UserGroupsTableSeeder::class);
+
+        // users must be created before assets can be assigned them
         $this->call(UsersTableSeeder::class);
         
+        // categories must be created before assets can be assigned them
+        $this->call(CategoriesTableSeeder::class);
+
         $this->call(AssetsTableSeeder::class);
-        $this->call(AssetTypesTableSeeder::class);
-        $this->call(ConsumablesTableSeeder::class);
-        $this->call(UserGroupsTableSeeder::class);
+        $this->call(ConsumablesTableSeeder::class);    
     }
 }

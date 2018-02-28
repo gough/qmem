@@ -33,7 +33,7 @@
 							<tr>
 								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id }}</a></td>
 								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
-								<td>{{ $consumable->category }}</td>
+								<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
 								<td>{{ $consumable->quantity }}</td>
 								<td><a href="{{ route('users.view', $consumable->user->netid) }}">{{ $consumable->user->name }}</a></td>
 								<td>{{ $consumable->created_at }}</td>

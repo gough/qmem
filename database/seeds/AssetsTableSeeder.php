@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use \App\User;
+use \App\Category, \App\User;
 
 class AssetsTableSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class AssetsTableSeeder extends Seeder
             $random_date = mt_rand(1400000000, 1500000000);
             DB::table('assets')->insert([
                 'name' => $faker->catchPhrase,
-                'category' => $faker->city,
+                'category_id' => Category::all()->random()->id,
                 'user_id' => User::where('active', True)->where('name', '<>', '')->get()->random()->id,
                 'created_at' => date("Y-m-d H:i:s", $random_date),
                 'updated_at' => date("Y-m-d H:i:s", $random_date),

@@ -32,7 +32,7 @@
 							<tr>
 								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
 								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
-								<td>{{ $asset->category }}</td>
+								<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
 								<td><a href="{{ route('users.view', $asset->user->netid) }}">{{ $asset->user->name }}</a></td>
 								<td>{{ $asset->created_at }}</td>
 							</tr>

@@ -41,6 +41,26 @@ Route::prefix('assets')
 
 });
 
+Route::prefix('categories')
+	->name('categories.')
+	->group(function () {
+
+	Route::get('', 'CategoryController@index')->name('index');
+	// no POST view for listing
+	
+	Route::get('create', 'CategoryController@create')->name('create');
+	Route::post('store', 'CategoryController@store')->name('store');
+
+	Route::get('{id}', 'CategoryController@view')->name('view');
+	
+	Route::get('edit', 'CategoryController@edit')->name('edit');
+	Route::post('update', 'CategoryController@update')->name('update');
+
+	Route::get('delete', 'CategoryController@delete')->name('delete');
+	Route::post('destroy', 'CategoryController@destroy')->name('destroy');
+
+});
+
 Route::prefix('consumables')
 	->name('consumables.')
 	->group(function () {
