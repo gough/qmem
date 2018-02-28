@@ -33,8 +33,8 @@
                                 <td><input type="checkbox"></td>
                                 <td><a href="{{ route('users.view', $user->netid) }}">{{ $user->netid }}</a></td>
                                 <td>{{ $user->group }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td>{!! !empty($user->name) ? $user->name : '<span class="text-muted text-small">(not set)</span>' !!}</td>
+                                <td>{!! !empty($user->email) ? $user->email : '<span class="text-muted text-small">(not set)</span>' !!}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td></td>
                             </tr>
