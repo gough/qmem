@@ -23,7 +23,7 @@
 								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
 								<th>@sortablelink('category', 'Category')</th>
-								<th>@sortablelink('quntity', 'Quantity')</th>
+								<th>@sortablelink('quantity', 'Quantity')</th>
 								<th>@sortablelink('user', 'User')</th>
 								<th>@sortablelink('created_at', 'Created At')</th>
 							</tr>
