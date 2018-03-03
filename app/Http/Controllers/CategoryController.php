@@ -62,8 +62,9 @@ class CategoryController extends Controller
         // GET /categories/{id}
                 
         $category = Category::findOrFail($id);
+        $items = $category->items()->sortable()->paginate(20);
 
-        return view('pages.categories.view', compact('category'));
+        return view('pages.categories.view', compact('category', 'items'));
     }
 
     /**

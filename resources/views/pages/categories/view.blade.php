@@ -11,7 +11,9 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					{{ $category }}
+					@foreach ($items as $item)
+						{{ $item->name }}<br>
+					@endforeach
 				</div>
 			</div>
 		</div>

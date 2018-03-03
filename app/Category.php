@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Category extends Model
 {
+	use Sortable;
+
+    public $sortable = ['id', 'name', 'created_at'];
+
     public function assets()
     {
     	return $this->hasMany('\App\Asset');
@@ -14,5 +19,10 @@ class Category extends Model
     public function consumables()
     {
     	return $this->hasMany('\App\Consumable');
+    }
+
+    public function items()
+    {
+        return $this->assets->merge($this->consumables)->sortByDesc('created_at');
     }
 }
