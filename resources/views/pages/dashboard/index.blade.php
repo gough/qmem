@@ -68,49 +68,34 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<span class="card-title">Recent Asset Activity</span>
+					<span class="card-title">Recent Activity</span>
 				</div>
 				<div class="card-body">
 					<table class="table table-bordered table-hover table-responsive-md">
 						<thead class="thead-default">
 							<tr>
-								<th>Date</th>
+								<th>Created/Updated At</th>
+								<th>Type</th>
+								<th>Action</th>
 								<th>Item</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($recent_assets as $asset)
+							@foreach ($recent_activity as $activity)
 							<tr>
-								<td>{{ $asset->updated_at }}</td>
-								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
-							</tr>
-							@endforeach
-						</tbody>						
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card">
-				<div class="card-header">
-					<span class="card-title">Recent Consumable Activity</span>
-				</div>
-				<div class="card-body">
-					<table class="table table-bordered table-hover table-responsive-md">
-						<thead class="thead-default">
-							<tr>
-								<th>Date</th>
-								<th>Item</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($recent_consumables as $consumable)
-							<tr>
-								<td>{{ $consumable->updated_at }}</td>
-								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
+								<td>{{ $activity->updated_at->format('Y-m-d h:i:s A') }}</td>
+								@if ($activity instanceof App\Asset)
+									<td>Asset</td>
+									<td>Update</td>
+									<td><a href="{{ route('assets.view', $activity->id) }}">{{ $activity->name }}</a></td>
+								@elseif ($activity instanceof App\Consumable)
+									<td>Consumable</td>
+									<td>Create</td>
+									<td><a href="{{ route('consumables.view', $activity->id) }}">{{ $activity->name }}</a></td>
+								@endif
 							</tr>
 							@endforeach
 						</tbody>						
