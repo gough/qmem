@@ -10,13 +10,13 @@
 				<a class="nav-link" href="{{ route('dashboard') }}">Dashboard <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item {{ Route::currentRouteNamed('assets.index') ? 'active' : '' }}">
-				<a class="nav-link" href="{{ route('assets.index') }}">Assets <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="{{ route('assets.index') }}">Assets</a>
 			</li>
 			<li class="nav-item {{ Route::currentRouteNamed('consumables.index') ? 'active' : '' }}">
-				<a class="nav-link" href="{{ route('consumables.index') }}">Consumables <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="{{ route('consumables.index') }}">Consumables</a>
 			</li>
 			<li class="nav-item {{ Route::currentRouteNamed('reports.index') ? 'active' : '' }}">
-				<a class="nav-link" href="{{ route('reports.index') }}">Reports <span class="sr-only">(current)</a>
+				<a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
 			</li>
 		</ul>
 		<form action="{{ url('search') }}" id="search" class="form-inline">
