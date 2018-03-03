@@ -36,7 +36,7 @@
 								<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
 								<td>{{ $consumable->quantity }}</td>
 								<td><a href="{{ route('users.view', $consumable->user->netid) }}">{{ $consumable->user->name }}</a></td>
-								<td>{{ $consumable->created_at }}</td>
+								<td>{{ $consumable->created_at->format('Y-m-d h:i:s A') }}</td>
 							</tr>
 							@endforeach
 						</tbody>						
