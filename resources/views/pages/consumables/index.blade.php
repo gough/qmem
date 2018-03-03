@@ -26,6 +26,7 @@
 								<th>@sortablelink('quantity', 'Quantity')</th>
 								<th>@sortablelink('user', 'User')</th>
 								<th>@sortablelink('created_at', 'Created At')</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -37,6 +38,10 @@
 								<td>{{ $consumable->quantity }}</td>
 								<td><a href="{{ route('users.view', $consumable->user->netid) }}">{{ $consumable->user->name }}</a></td>
 								<td>{{ $consumable->created_at->format('Y-m-d h:i:s A') }}</td>
+								<td>
+									<a href="{{ route('consumables.edit', $consumable->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('consumables.delete', $consumable->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>						

@@ -72,11 +72,13 @@ class ConsumableController extends Controller
      * @param  \App\Consumable  $consumable
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consumable $consumable)
+    public function edit($id)
     {
         // GET /consumables/{id}/edit
         
-        
+        $consumable = Consumable::findOrFail($id);
+
+        return view('pages.consumables.edit', compact('consumable'));
     }
 
     /**
@@ -99,11 +101,13 @@ class ConsumableController extends Controller
      * @param  \App\Consumable  $consumable
      * @return \Illuminate\Http\Response
      */
-    public function delete(Consumable $consumable)
+    public function delete($id)
     {
         // GET /consumables/{id}/delete
 
-      
+        $consumable = Consumable::findOrFail($id);
+
+        return view('pages.consumables.edit', compact('consumable'));
     }
 
     /**

@@ -33,10 +33,10 @@ Route::prefix('assets')
 
 	Route::get('{id}', 'AssetController@view')->name('view');
 	
-	Route::get('edit', 'AssetController@edit')->name('edit');
+	Route::get('{id}/edit', 'AssetController@edit')->name('edit');
 	Route::post('update', 'AssetController@update')->name('update');
 
-	Route::get('delete', 'AssetController@delete')->name('delete');
+	Route::get('{id}/delete', 'AssetController@delete')->name('delete');
 	Route::post('destroy', 'AssetController@destroy')->name('destroy');
 
 });
@@ -73,10 +73,10 @@ Route::prefix('consumables')
 	
 	Route::get('{id}', 'ConsumableController@view')->name('view');
 	
-	Route::get('edit', 'ConsumableController@edit')->name('edit');
+	Route::get('{id}/edit', 'ConsumableController@edit')->name('edit');
 	Route::post('update', 'ConsumableController@update')->name('update');
 
-	Route::get('delete', 'ConsumableController@delete')->name('delete');
+	Route::get('{id}/delete', 'ConsumableController@delete')->name('delete');
 	Route::post('destroy', 'ConsumableController@destroy')->name('destroy');
 });
 

@@ -61,7 +61,7 @@ class AssetController extends Controller
     {
         // GET /assets/{id}
                 
-        $asset = Asset::findOrFail($id); // TODO: actually load asset
+        $asset = Asset::findOrFail($id);
 
         return view('pages.assets.view', compact('asset'));
     }
@@ -72,11 +72,11 @@ class AssetController extends Controller
      * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asset $asset)
+    public function edit($id)
     {
         // GET /assets/{id}/edit
         
-        $asset = ''; // TODO: actually load asset
+        $asset = Asset::findOrFail($id);
 
         return view('pages.assets.edit', compact('asset'));
     }
@@ -101,11 +101,11 @@ class AssetController extends Controller
      * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function delete(Asset $asset)
+    public function delete($id)
     {
         // GET /assets/{id}/delete
 
-        $asset = ''; // TODO: actually load asset
+        $asset = Asset::findOrFail($id);
 
         return view('pages.assets.delete', compact('asset'));        
     }
