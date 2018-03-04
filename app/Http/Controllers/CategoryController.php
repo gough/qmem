@@ -21,7 +21,7 @@ class CategoryController extends Controller
     {
         // GET /categories
         
-        $categories = Category::sortable()->paginate(50);
+        $categories = Category::sortable(['created_at' => 'desc'])->paginate(50);
 
         return view('pages.categories.index', compact('categories'));
     }
@@ -31,11 +31,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function new()
     {
         // GET /categories/new
         
-        return view('pages.categories.create');
+        return view('pages.categories.new');
     }
 
     /**
@@ -62,9 +62,10 @@ class CategoryController extends Controller
         // GET /categories/{id}
                 
         $category = Category::findOrFail($id);
-        $items = $category->items()->sortable()->paginate(20);
+        $assets = $category->assets()->sortable(['created_at' => 'desc'])->get();
+        $consumables = $category->consumables()->sortable(['created_at' => 'desc'])->get();
 
-        return view('pages.categories.view', compact('category', 'items'));
+        return view('pages.categories.view', compact('category', 'assets', 'consumables'));
     }
 
     /**
