@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-class Category extends Model
+class Category extends BaseModel
 {
 	use Sortable;
 
