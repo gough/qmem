@@ -13,6 +13,10 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+        $category = new Category;
+        $category->name = '(uncategorized)';
+        $category->save();
+
         $faker = Faker::create();
         for ($i = 1; $i < 25; $i++) {           
             $category = new Category;
