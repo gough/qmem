@@ -49,7 +49,7 @@ class ConsumableController extends Controller
      */
     public function create(Request $request)
     {
-        // POST /consumables
+        // POST /consumables/create
                 
         $rules = array(
             'name' => 'required|min:2|max:255',
@@ -120,7 +120,7 @@ class ConsumableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // POST /consumables/{id}
+        // POST /consumables/{id}/update
         
         $consumable = Consumable::findOrFail($id);
 
@@ -170,10 +170,10 @@ class ConsumableController extends Controller
      * @param  \App\Consumable  $consumable
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Consumable $consumable)
+    public function destroy($id)
     {
-        // POST /consumables/{id}
+        // POST /consumables/{id}/destroy
         
-        
+        // TODO: actually destory consumable
     }
 }

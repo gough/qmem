@@ -1,9 +1,14 @@
-@extends('layouts.default')
+@extends('layouts.no-fluid')
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
 				<h1>Categories</h1>
+			</div>
+			<div class="title-buttons pull-right">
+				<a class="btn btn-primary btn-lg" href="{{ route('categories.new') }}">
+					New
+				</a>
 			</div>
 		</div>
 	</div>

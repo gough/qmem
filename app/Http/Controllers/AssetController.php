@@ -49,7 +49,7 @@ class AssetController extends Controller
      */
     public function create(Request $request)
     {
-        // POST /assets
+        // POST /assets/create
         
         $rules = array(
             'name' => 'required|min:2|max:255',
@@ -163,9 +163,9 @@ class AssetController extends Controller
      * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asset $asset)
+    public function destroy($id)
     {
-        // POST /assets/{id}
+        // POST /assets/{id}/destroy
         
         // TODO: actually destory asset
     }

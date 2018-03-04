@@ -3,12 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
 
 class Category extends BaseModel
 {
-	use Sortable;
+    use RevisionableTrait;
+    use Sortable;
 
+    protected $revisionCreationsEnabled = true;
+
+    public $fillable = ['name'];
     public $sortable = ['id', 'name', 'created_at'];
 
     public function assets()

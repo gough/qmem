@@ -44,11 +44,29 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        // POST /categories
+        // POST /categories/create
+                
+        $rules = array(
+            'name' => 'required|min:2|max:255',
+        );
+
+        $messages = array(
+            'name.required' => 'name.required',
+            'name.min' => 'name.min',
+            'name.max' => 'name.max',
+        );
         
-        // TODO: actually store category
+        $validator = $request->validate($rules, $messages);
+
+        $category = new Category;
+
+        $category->name = $validator['name'];
+
+        $category->save();
+
+        return redirect()->route('categories.view', $category->id);
     }
 
     /**
@@ -74,11 +92,13 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         // GET /categories/{id}/edit
         
+        $category = Category::findOrFail($id);
 
+        return view('pages.categories.edit', compact('category'));
     }
 
     /**
@@ -88,11 +108,29 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        // POST /categories/{id}
+        // POST /categories/{id}/update
+                
+        $category = Category::findOrFail($id);
+
+        $rules = array(
+            'name' => 'required|min:2|max:255',
+        );
+
+        $messages = array(
+            'name.required' => 'name.required',
+            'name.min' => 'name.min',
+            'name.max' => 'name.max',
+        );
         
-        // TODO: actually update category
+        $validator = $request->validate($rules, $messages);
+
+        $category->update([
+            'name' => $validator['name'],
+        ]);
+
+        return redirect()->route('categories.view', $category->id);
     }
 
     /**
@@ -101,7 +139,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function delete(Category $category)
+    public function delete($id)
     {
         // GET /categories/{id}/delete
 
@@ -114,9 +152,9 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        // POST /categories/{id}
+        // POST /categories/{id}/destroy
         
         // TODO: actually destory category
     }

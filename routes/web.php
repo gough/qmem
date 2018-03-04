@@ -53,11 +53,11 @@ Route::prefix('categories')
 
 	Route::get('{id}', 'CategoryController@view')->name('view');
 	
-	Route::get('edit', 'CategoryController@edit')->name('edit');
-	Route::post('update', 'CategoryController@update')->name('update');
+	Route::get('{id}/edit', 'CategoryController@edit')->name('edit');
+	Route::post('{id}/update', 'CategoryController@update')->name('update');
 
-	Route::get('delete', 'CategoryController@delete')->name('delete');
-	Route::post('destroy', 'CategoryController@destroy')->name('destroy');
+	Route::get('{id}/delete', 'CategoryController@delete')->name('delete');
+	Route::post('{id}/destroy', 'CategoryController@destroy')->name('destroy');
 
 });
 
