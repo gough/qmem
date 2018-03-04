@@ -106,6 +106,8 @@
 									<td><a href="{{ route('assets.view', $revision->revisionable_id) }}">Asset #{{ $revision->revisionable_id }}</a></td>
 								@elseif ($revision->revisionable_type == 'App\Consumable')
 									<td><a href="{{ route('consumables.view', $revision->revisionable_id) }}">Consumable #{{ $revision->revisionable_id }}</a></td>
+								@elseif ($revision->revisionable_type == 'App\Category')
+									<td><a href="{{ route('categories.view', $revision->revisionable_id) }}">Category #{{ $revision->revisionable_id }}</a></td>
 								@endif
 
 								@if ($revision->key == 'created_at')
