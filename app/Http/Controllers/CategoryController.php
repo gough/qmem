@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller
 {
@@ -79,10 +80,17 @@ class CategoryController extends Controller
     {
         // GET /categories/{id}
            
-        $category = Category::findOrFail($id);
-        $assets = $category->assets()->sortable(['created_at' => 'desc'])->get();
-        $consumables = $category->consumables()->sortable(['created_at' => 'desc'])->get();
-
+        try
+        {
+            $category = Category::findOrFail($id);
+            $assets = $category->assets()->sortable(['created_at' => 'desc'])->get();
+            $consumables = $category->consumables()->sortable(['created_at' => 'desc'])->get();
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return redirect()->route('categories.index');
+        }
+        
         return view('pages.categories.view', compact('category', 'assets', 'consumables'));
     }
 
@@ -169,7 +177,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // POST /categories/{id}/destroy
         

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Consumable, App\Category, App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ConsumableController extends Controller
 {
@@ -89,8 +90,15 @@ class ConsumableController extends Controller
     public function view($id)
     {
         // GET /consumables/{id}
-                
-        $consumable = Consumable::findOrFail($id);
+        
+        try
+        {
+            $consumable = Consumable::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return redirect()->route('consumable.index');
+        }   
 
         return view('pages.consumables.view', compact('consumable'));
     }
@@ -170,7 +178,7 @@ class ConsumableController extends Controller
      * @param  \App\Consumable  $consumable
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // POST /consumables/{id}/destroy
         

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Asset, App\Category, App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AssetController extends Controller
 {
@@ -86,7 +87,14 @@ class AssetController extends Controller
     {
         // GET /assets/{id}
 
-        $asset = Asset::findOrFail($id);
+        try
+        {
+            $asset = Asset::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return redirect()->route('assets.index');
+        }
 
         return view('pages.assets.view', compact('asset'));
     }
