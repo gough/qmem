@@ -28,16 +28,16 @@ Route::prefix('assets')
 	Route::get('', 'AssetController@index')->name('index');
 	// no POST view for listing
 	
-	Route::get('create', 'AssetController@create')->name('create');
-	Route::post('store', 'AssetController@store')->name('store');
+	Route::get('new', 'AssetController@new')->name('new');
+	Route::post('create', 'AssetController@create')->name('create');
 
 	Route::get('{id}', 'AssetController@view')->name('view');
 	
 	Route::get('{id}/edit', 'AssetController@edit')->name('edit');
-	Route::post('update', 'AssetController@update')->name('update');
+	Route::post('{id}/update', 'AssetController@update')->name('update');
 
 	Route::get('{id}/delete', 'AssetController@delete')->name('delete');
-	Route::post('destroy', 'AssetController@destroy')->name('destroy');
+	Route::post('{id}/destroy', 'AssetController@destroy')->name('destroy');
 
 });
 
@@ -48,8 +48,8 @@ Route::prefix('categories')
 	Route::get('', 'CategoryController@index')->name('index');
 	// no POST view for listing
 	
-	Route::get('create', 'CategoryController@create')->name('create');
-	Route::post('store', 'CategoryController@store')->name('store');
+	Route::get('new', 'CategoryController@new')->name('new');
+	Route::post('create', 'CategoryController@create')->name('create');
 
 	Route::get('{id}', 'CategoryController@view')->name('view');
 	
@@ -68,8 +68,8 @@ Route::prefix('consumables')
 	Route::get('', 'ConsumableController@index')->name('index');
 	// no POST view for listing
 
-	Route::get('create', 'ConsumableController@create')->name('create');
-	Route::post('store', 'ConsumableController@store')->name('store');
+	Route::get('new', 'ConsumableController@new')->name('new');
+	Route::post('create', 'ConsumableController@create')->name('create');
 	
 	Route::get('{id}', 'ConsumableController@view')->name('view');
 	
