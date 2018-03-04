@@ -174,6 +174,10 @@ class ConsumableController extends Controller
     {
         // POST /consumables/{id}/destroy
         
-        // TODO: actually destory consumable
+        $consumable = Consumable::findOrFail($id);
+
+        Consumable::destroy($id);
+
+        return redirect($request->post('next'));
     }
 }

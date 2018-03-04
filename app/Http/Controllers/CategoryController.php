@@ -21,7 +21,7 @@ class CategoryController extends Controller
     {
         // GET /categories
         
-        $categories = Category::sortable(['created_at' => 'desc'])->paginate(50);
+        $categories = Category::sortable(['id'])->paginate(50);
 
         return view('pages.categories.index', compact('categories'));
     }
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     public function view($id)
     {
         // GET /categories/{id}
-                
+           
         $category = Category::findOrFail($id);
         $assets = $category->assets()->sortable(['created_at' => 'desc'])->get();
         $consumables = $category->consumables()->sortable(['created_at' => 'desc'])->get();
@@ -96,6 +96,11 @@ class CategoryController extends Controller
     {
         // GET /categories/{id}/edit
         
+        if ($id == 1)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+
         $category = Category::findOrFail($id);
 
         return view('pages.categories.edit', compact('category'));
@@ -111,7 +116,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         // POST /categories/{id}/update
-                
+
+        if ($id == 1)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+      
         $category = Category::findOrFail($id);
 
         $rules = array(
@@ -143,6 +153,13 @@ class CategoryController extends Controller
     {
         // GET /categories/{id}/delete
 
+        if ($id == 1)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+
+        $category = Category::findOrFail($id);
+
         return view('pages.categories.delete', compact('category'));        
     }
 
@@ -156,6 +173,27 @@ class CategoryController extends Controller
     {
         // POST /categories/{id}/destroy
         
-        // TODO: actually destory category
+        if ($id == 1)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+
+        $category = Category::findOrFail($id);
+
+        foreach ($category->assets as $asset)
+        {
+            $asset->category_id = 1;
+            $asset->save();
+        }
+
+        foreach ($category->consumables as $consumable)
+        {
+            $consumable->category_id = 1;
+            $consumable->save();
+        }
+
+        Category::destroy($id);
+
+        return redirect($request->post('next'));
     }
 }

@@ -163,10 +163,14 @@ class AssetController extends Controller
      * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // POST /assets/{id}/destroy
         
-        // TODO: actually destory asset
+        $asset = Asset::findOrFail($id);
+
+        Asset::destroy($id);
+
+        return redirect($request->post('next'));
     }
 }
