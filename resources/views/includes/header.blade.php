@@ -15,6 +15,9 @@
 			<li class="nav-item {{ Route::currentRouteNamed('consumables.index') ? 'active' : '' }}">
 				<a class="nav-link" href="{{ route('consumables.index') }}">Consumables</a>
 			</li>
+			<li class="nav-item {{ Route::currentRouteNamed('categories.index') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+			</li>
 			<li class="nav-item {{ Route::currentRouteNamed('reports.index') ? 'active' : '' }}">
 				<a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
 			</li>
@@ -36,7 +39,12 @@
 				{{ Auth::user()->name }}
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">My Items</a>
 					<a class="dropdown-item" href="{{ route('user.preferences') }}">Preferences</a>
+					@if (Auth::user()->group == "admin")
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item text-danger" href="#">Administration</a>
+					@endif
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
 				</div>

@@ -10,8 +10,46 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
+				<div class="card-header">
+					<span class="card-title">Consumable Information</span>
+				</div>
 				<div class="card-body">
-					{{ $consumable }}
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>ID</strong></td>
+								<td style="width: 75%">{{ $consumable->id }}</td>
+							</tr>
+							<tr>
+								<td><strong>Name</strong></td>
+								<td>{{ $consumable->name }}</td>
+							</tr>
+							<tr>
+								<td><strong>Quantity</strong></td>
+								<td>{{ $consumable->quantity }}</td>
+							</tr>
+							<tr>
+								<td><strong>Created At</strong></td>
+								<td>{{ $consumable->created_at }}</td>
+							</tr>
+							<tr>
+								<td><strong>Updated At</strong></td>
+								<td>{{ $consumable->updated_at }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<span class="card-title">Consumable History</span>
+				</div>
+				<div class="card-body">
+					@include('includes.revisions', ['revisions' => $consumable->revisionHistory->reverse()])
 				</div>
 			</div>
 		</div>

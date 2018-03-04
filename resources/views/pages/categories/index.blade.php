@@ -18,6 +18,7 @@
 								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
 								<th>@sortablelink('created_at', 'Created At')</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -26,6 +27,10 @@
 								<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->id }}</a></td>
 								<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->name }}</a></td>
 								<td>{{ $category->created_at }}</td>
+								<td>
+									<a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('categories.delete', $category->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>						

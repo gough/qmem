@@ -6,7 +6,7 @@
 				<h1>Consumables</h1>
 			</div>
 			<div class="title-buttons pull-right">
-				<a class="btn btn-primary btn-lg" href="{{ route('consumables.create') }}">
+				<a class="btn btn-primary btn-lg" href="{{ route('consumables.new') }}">
 					New
 				</a>
 			</div>
@@ -37,7 +37,7 @@
 								<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
 								<td>{{ $consumable->quantity }}</td>
 								<td><a href="{{ route('users.view', $consumable->user->netid) }}">{{ $consumable->user->name }}</a></td>
-								<td>{{ $consumable->created_at->format('Y-m-d h:i:s A') }}</td>
+								<td>{{ $consumable->created_at }}</td>
 								<td>
 									<a href="{{ route('consumables.edit', $consumable->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
 									<a href="{{ route('consumables.delete', $consumable->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>

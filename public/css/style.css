@@ -33,6 +33,10 @@ td i.fa-cube {
 	top: -1px;
 }
 
+select {
+	text-indent: 3px;
+}
+
 p,
 .card {
 	margin: 0.75em 0;
@@ -53,6 +57,10 @@ p,
 .pagination-detail span {
 	line-height: 38px;
 	padding: 8px 0;
+}
+
+.table-no-margin {
+	margin: 0;
 }
 
 #actionsMonth,

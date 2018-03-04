@@ -3,12 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
 
 class Consumable extends BaseModel
 {
-	use Sortable;
+    use RevisionableTrait;
+    use Sortable;
 
+    protected $revisionCreationsEnabled = true;
+
+    public $fillable = ['name', 'category_id', 'quantity'];
     public $sortable = ['id', 'name', 'category', 'quantity', 'user', 'created_at'];
 
     public function user()

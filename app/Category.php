@@ -20,9 +20,4 @@ class Category extends BaseModel
     {
     	return $this->hasMany('\App\Consumable');
     }
-
-    public function items()
-    {
-        return $this->assets->merge($this->consumables)->sortByDesc('created_at');
-    }
 }

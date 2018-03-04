@@ -6,7 +6,7 @@
 				<h1>Assets</h1>
 			</div>
 			<div class="title-buttons pull-right">
-				<a class="btn btn-primary btn-lg" href="{{ route('assets.create') }}">
+				<a class="btn btn-primary btn-lg" href="{{ route('assets.new') }}">
 					New
 				</a>
 			</div>
@@ -35,7 +35,7 @@
 								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
 								<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
 								<td><a href="{{ route('users.view', $asset->user->netid) }}">{{ $asset->user->name }}</a></td>
-								<td>{{ $asset->created_at->format('Y-m-d h:i:s A') }}</td>
+								<td>{{ $asset->created_at }}</td>
 								<td>
 									<a href="{{ route('assets.edit', $asset->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
 									<a href="{{ route('assets.delete', $asset->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
