@@ -6,10 +6,10 @@
 				<h1>Category: {{ !empty($category->name) ? $category->name : '#' . $category->id }}</h1>
 			</div>
 			<div class="title-buttons pull-right">
-				<a class="btn btn-warning btn-lg" href="{{ route('categories.edit', $category->id) }}">
+				<a class="btn btn-warning btn-lg{{ ($category->id == 1) ? ' disabled' : null }}" href="{{ route('categories.edit', $category->id) }}">
 					Edit
 				</a>
-				<a class="btn btn-danger btn-lg" href="{{ route('categories.delete', $category->id) }}">
+				<a class="btn btn-danger btn-lg{{ ($category->id == 1) ? ' disabled' : null }}" href="{{ route('categories.delete', $category->id) }}">
 					Delete
 				</a>
 			</div>

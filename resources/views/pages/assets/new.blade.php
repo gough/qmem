@@ -47,7 +47,7 @@
 								$field = 'category';
 								$label = 'Asset Category';
 								$placeholder = 'Pick a category...';
-								$value = null;
+								$value = 1;
 								$helptext = 'Pick a category for the asset.';
 
 								if ($errors->first($field))

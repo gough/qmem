@@ -33,8 +33,8 @@
 								<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->name }}</a></td>
 								<td>{{ $category->created_at }}</td>
 								<td>
-									<a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-									<a href="{{ route('categories.delete', $category->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+									<a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm {{ ($category->id == 1) ? ' disabled' : null }}"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('categories.delete', $category->id) }}" class="btn btn-danger btn-sm {{ ($category->id == 1) ? ' disabled' : null }}"><i class="fa fa-trash"></i></a>
 								</td>
 							</tr>
 							@endforeach

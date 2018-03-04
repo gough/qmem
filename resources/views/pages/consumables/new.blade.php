@@ -47,7 +47,7 @@
 								$field = 'category';
 								$label = 'Consumable Category';
 								$placeholder = 'Pick a category...';
-								$value = null;
+								$value = 1;
 								$helptext = 'Pick a category for the consumable.';
 
 								if ($errors->first($field))

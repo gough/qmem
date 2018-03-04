@@ -40,7 +40,7 @@
 								</td>
 							</tr>
 							@endforeach
-						</tbody>						
+						</tbody>
 					</table>
 					@include('includes.pagination', ['items' => $assets])
 					</div>
