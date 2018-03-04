@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Asset;
+use App\Asset, App\Category, App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssetController extends Controller
 {
@@ -21,7 +22,7 @@ class AssetController extends Controller
     {
         // GET /assets
         
-        $assets = Asset::sortable()->paginate(50);
+        $assets = Asset::sortable(['created_at' => 'desc'])->paginate(50);
 
         return view('pages.assets.index', compact('assets'));
     }
@@ -31,11 +32,13 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function new()
     {
         // GET /assets/new
         
-        return view('pages.assets.create');
+        $categories = Category::pluck('name', 'id')->sort();
+
+        return view('pages.assets.new', compact('categories'));
     }
 
     /**
@@ -44,11 +47,33 @@ class AssetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         // POST /assets
         
-        // TODO: actually store asset
+        $rules = array(
+            'name' => 'required|min:2|max:255',
+            'category' => 'required'
+        );
+
+        $messages = array(
+            'name.required' => 'name.required',
+            'name.min' => 'name.min',
+            'name.max' => 'name.max',
+            'category.required' => 'category.required',
+        );
+        
+        $validator = $request->validate($rules, $messages);
+
+        $asset = new Asset;
+
+        $asset->name = $validator['name'];
+        $asset->category_id = $validator['category'];
+        $asset->user_id = Auth::user()->id;
+
+        $asset->save();
+
+        return redirect()->route('assets.view', $asset->id);
     }
 
     /**
@@ -60,7 +85,7 @@ class AssetController extends Controller
     public function view($id)
     {
         // GET /assets/{id}
-                
+
         $asset = Asset::findOrFail($id);
 
         return view('pages.assets.view', compact('asset'));
@@ -77,8 +102,9 @@ class AssetController extends Controller
         // GET /assets/{id}/edit
         
         $asset = Asset::findOrFail($id);
+        $categories = Category::pluck('name', 'id')->sort();
 
-        return view('pages.assets.edit', compact('asset'));
+        return view('pages.assets.edit', compact('asset', 'categories'));
     }
 
     /**
@@ -88,11 +114,32 @@ class AssetController extends Controller
      * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asset $asset)
+    public function update(Request $request, $id)
     {
-        // POST /assets/{id}
+        // POST /assets/{id}/update
         
-        // TODO: actually update asset
+        $asset = Asset::findOrFail($id);
+
+        $rules = array(
+            'name' => 'required|min:2|max:255',
+            'category' => 'required'
+        );
+
+        $messages = array(
+            'name.required' => 'name.required',
+            'name.min' => 'name.min',
+            'name.max' => 'name.max',
+            'category.required' => 'category.required',
+        );
+        
+        $validator = $request->validate($rules, $messages);
+
+        $asset->update([
+            'name' => $validator['name'],
+            'category_id' => $validator['category']
+        ]);
+
+        return redirect()->route('assets.view', $asset->id);
     }
 
     /**
