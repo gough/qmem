@@ -14,7 +14,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i = 1; $i < 10; $i++) {           
+        for ($i = 1; $i < 25; $i++) {           
             $category = new Category;
             $category->name = $faker->city;
             $category->save();
