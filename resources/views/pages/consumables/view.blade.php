@@ -33,6 +33,10 @@
 								<td>{{ $consumable->name }}</td>
 							</tr>
 							<tr>
+								<td><strong>Category</strong></td>
+								<td><a href="{{ route('categories.view', $consumable->category_id) }}">{{ $consumable->category->name }}</a></td>
+							</tr>
+							<tr>
 								<td><strong>Quantity</strong></td>
 								<td>{{ $consumable->quantity }}</td>
 							</tr>
