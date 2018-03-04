@@ -23,8 +23,23 @@
 				<td colspan="3">Create</td>
 			@elseif ($revision->key == 'category_id')
 				<td>Update 'category'</td>
-				<td><a href="{{ route('categories.view', $revision->new_value) }}">{{ Category::find($revision->new_value)->name }}</a></td>
-				<td><a href="{{ route('categories.view', $revision->new_value) }}">{{ Category::find($revision->old_value)->name }}</a></td>
+	
+				<?php
+					$new_category = Category::find($revision->new_value);
+					$old_category = Category::find($revision->old_value);
+				?>
+
+				@if (!empty($new_category))
+					<td><a href="{{ route('categories.view', $revision->old_value) }}">{{ $new_category->name }}</a></td>
+				@else
+					<td><span class="text-muted">(deleted)</span></td>
+				@endif
+
+				@if (!empty($old_category))
+					<td><a href="{{ route('categories.view', $revision->old_value) }}">{{ $old_category->name }}</a></td>
+				@else
+					<td><span class="text-muted">(deleted)</span></td>
+				@endif
 			@else
 				<td>Update '{{ $revision->key }}'</td>
 				<td>{{ $revision->new_value }}</td>
