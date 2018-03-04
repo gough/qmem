@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Venturecraft\Revisionable\Revision;
+
 use \App\Asset, \App\Consumable, \App\User;
 
 class DashboardController extends Controller
@@ -13,9 +15,9 @@ class DashboardController extends Controller
     }
 
     public function index() {
-        $recent_activity = Asset::all()->toBase()->merge(Consumable::all())->sortByDesc('updated_at')->take(10);
+        $recent_activity = Revision::latest()->limit(10)->get();
 
-    	$total_items = 9999;
+    	$total_items = Asset::all()->toBase()->merge(Consumable::all())->count();
         $total_asset = Asset::count();
     	$total_consumable = Consumable::count();
     	$total_users = User::count();
