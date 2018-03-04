@@ -5,6 +5,14 @@
 			<div class="pull-left">
 				<h1>Asset: {{ !empty($asset->name) ? $asset->name : '#' . $asset->id }}</h1>
 			</div>
+			<div class="title-buttons pull-right">
+				<a class="btn btn-warning btn-lg" href="{{ route('assets.edit', $asset->id) }}">
+					Edit
+				</a>
+				<a class="btn btn-danger btn-lg" href="{{ route('assets.delete', $asset->id) }}">
+					Delete
+				</a>
+			</div>
 		</div>
 	</div>
 	<div class="row">

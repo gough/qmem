@@ -14,49 +14,63 @@
 					{{ Form::open(array('route' => array('assets.create'))) }}
 						@php ($label_classes = 'col-md-2 col-form-label')
 						@php ($field_classes = 'form-control')
+
 						<div class="form-group row">
-							{{ Form::label('name', 'Asset Name', array('class' => $label_classes)) }}
+							<?php
+								$field = 'name';
+								$label = 'Asset Name';
+								$placeholder = 'Asset Name';
+								$value = null;
+								$helptext = 'Enter a unique name for the asset.';
+
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
 							<div class="col-md-10">
-								@if ($errors->first('name'))
-									{{ Form::text(
-										'name',
-										null,
-										array('placeholder' => 'Asset Name', 'class' => $field_classes . ' border-danger')
-									) }}
-									<small class="form-text text-danger">{{ $errors->first('name') }}</small>
-								@else
-									{{ Form::text(
-										'name',
-										null,
-										array('placeholder' => 'Asset Name', 'class' => $field_classes)
-									) }}
-									<small class="form-text text-muted">Enter a unique name for the asset.</small>
-								@endif
+								{{ Form::text($field, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
 							</div>
 						</div>
+
 						<div class="form-group row">
-							{{ Form::label('category', 'Asset Category', array('class' => $label_classes)) }}
+							<?php
+								$field = 'category';
+								$label = 'Asset Category';
+								$placeholder = 'Pick a category...';
+								$value = null;
+								$helptext = 'Pick a category for the asset.';
+
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
 							<div class="col-md-10">
-								@if ($errors->first('category'))
-									{{ Form::select(
-										'category',
-										$categories,
-										null,
-										array('placeholder' => 'Pick a category...', 'class' => $field_classes . ' border-danger')
-									) }}
-							    	<small class="form-text text-danger">{{ $errors->first('category') }}</small>		
-								@else
-									{{ Form::select(
-										'category',
-										$categories,
-										null,
-										array('placeholder' => 'Pick a category...', 'class' => $field_classes)
-									) }}
-							    	<small class="form-text text-muted">Pick a category that best represents this asset.</small>
-								@endif
+								{{ Form::select($field, $categories, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
 							</div>
 						</div>
+
 						<hr>
+
 						<div class="form-group row">
 							<div class="offset-md-2 col-md-10">
 								{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}

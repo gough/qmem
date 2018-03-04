@@ -118,7 +118,7 @@ class ConsumableController extends Controller
      * @param  \App\Consumable  $consumable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Consumable $consumable)
+    public function update(Request $request, $id)
     {
         // POST /consumables/{id}
         

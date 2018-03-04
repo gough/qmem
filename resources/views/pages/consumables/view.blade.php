@@ -5,6 +5,14 @@
 			<div class="pull-left">
 				<h1>Consumable: {{ !empty($consumable->name) ? $consumable->name : '#' . $consumable->id }}</h1>
 			</div>
+			<div class="title-buttons pull-right">
+				<a class="btn btn-warning btn-lg" href="{{ route('consumables.edit', $consumable->id) }}">
+					Edit
+				</a>
+				<a class="btn btn-danger btn-lg" href="{{ route('consumables.delete', $consumable->id) }}">
+					Delete
+				</a>
+			</div>
 		</div>
 	</div>
 	<div class="row">

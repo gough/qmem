@@ -74,10 +74,10 @@ Route::prefix('consumables')
 	Route::get('{id}', 'ConsumableController@view')->name('view');
 	
 	Route::get('{id}/edit', 'ConsumableController@edit')->name('edit');
-	Route::post('update', 'ConsumableController@update')->name('update');
+	Route::post('{id}/update', 'ConsumableController@update')->name('update');
 
 	Route::get('{id}/delete', 'ConsumableController@delete')->name('delete');
-	Route::post('destroy', 'ConsumableController@destroy')->name('destroy');
+	Route::post('{id}/destroy', 'ConsumableController@destroy')->name('destroy');
 });
 
 Route::prefix('reports')

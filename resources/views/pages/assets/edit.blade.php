@@ -12,30 +12,65 @@
 			<div class="card">
 				<div class="card-body">
 					{{ Form::open(array('route' => array('assets.update', $asset->id))) }}
-						@php ($label_options = array('class' => 'col-md-2 col-form-label'))
-						@php ($field_options = array('class' => 'form-control'))
+						@php ($label_classes = 'col-md-2 col-form-label')
+						@php ($field_classes = 'form-control')
+
 						<div class="form-group row">
-							{{ Form::label('name', 'Asset Name', $label_options) }}
+							<?php
+								$field = 'name';
+								$label = 'Asset Name';
+								$placeholder = 'Asset Name';
+								$value = $asset->name;
+								$helptext = 'Enter a unique name for the Asset.';
+
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
 							<div class="col-md-10">
-								{{ Form::text(
-									'name',
-									$asset->name,
-									array_merge(['placeholder' => 'Asset Name'], $field_options)
-								) }}
+								{{ Form::text($field, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
 							</div>
 						</div>
+
 						<div class="form-group row">
-							{{ Form::label('category', 'Asset Category', $label_options) }}
+							<?php
+								$field = 'category';
+								$label = 'Asset Category';
+								$placeholder = 'Pick a category...';
+								$value = $asset->category_id;
+								$helptext = 'Pick a category for the Asset.';
+
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
 							<div class="col-md-10">
-								{{ Form::select(
-									'category',
-									$categories,
-									$asset->category_id,
-									array_merge(['placeholder' => 'Pick a category...'], $field_options)
-								) }}
+								{{ Form::select($field, $categories, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
 							</div>
 						</div>
+
 						<hr>
+
 						<div class="form-group row">
 							<div class="offset-md-2 col-md-10">
 								{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
