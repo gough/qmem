@@ -47,6 +47,7 @@
 						<div class="form-group row">
 							<div class="offset-md-2 col-md-10">
 								{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+								<a class="btn btn-secondary" href="{{ url()->previous() }}">Cancel</a>
 							</div>
 						</div>
 					{{ Form::close() }}
