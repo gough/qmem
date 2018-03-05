@@ -50,7 +50,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					{{ Form::open(array('route' => array('categories.destroy', $consumable->id))) }}
+					{{ Form::open(array('route' => array('consumables.destroy', $consumable->id))) }}
 						{{ Form::hidden('next', url()->previous()) }}
 
 						<div class="form-group row">
