@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Asset, App\Category, App\User;
+
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -73,6 +75,9 @@ class AssetController extends Controller
         $asset->user_id = Auth::user()->id;
 
         $asset->save();
+
+        Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was created.');
+        Session::flash('alert-class', 'alert-success');
 
         return redirect()->route('assets.view', $asset->id);
     }
@@ -147,6 +152,9 @@ class AssetController extends Controller
             'category_id' => $validator['category']
         ]);
 
+        Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was updated.');
+        Session::flash('alert-class', 'alert-success');
+
         return redirect()->route('assets.view', $asset->id);
     }
 
@@ -178,6 +186,9 @@ class AssetController extends Controller
         $asset = Asset::findOrFail($id);
 
         Asset::destroy($id);
+
+        Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was destoryed.');
+        Session::flash('alert-class', 'alert-success');
 
         return redirect($request->post('next'));
     }

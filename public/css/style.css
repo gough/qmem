@@ -63,6 +63,10 @@ p,
 	margin: 0;
 }
 
+.alert {
+	margin-top: 1rem;
+}
+
 #actionsMonth,
 #actionsYear {
 	display: none;

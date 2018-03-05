@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Consumable, App\Category, App\User;
+
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -77,6 +79,9 @@ class ConsumableController extends Controller
         $consumable->user_id = Auth::user()->id;
 
         $consumable->save();
+
+        Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was created.');
+        Session::flash('alert-class', 'alert-success');
 
         return redirect()->route('consumables.view', $consumable->id);
     }
@@ -154,6 +159,9 @@ class ConsumableController extends Controller
             'quantity' => $validator['quantity']
         ]);
 
+        Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was updated.');
+        Session::flash('alert-class', 'alert-success');
+
         return redirect()->route('consumables.view', $consumable->id);
     }
 
@@ -185,6 +193,9 @@ class ConsumableController extends Controller
         $consumable = Consumable::findOrFail($id);
 
         Consumable::destroy($id);
+
+        Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was destroyed.');
+        Session::flash('alert-class', 'alert-success');
 
         return redirect($request->post('next'));
     }

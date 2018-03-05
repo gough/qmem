@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -66,6 +68,9 @@ class CategoryController extends Controller
         $category->name = $validator['name'];
 
         $category->save();
+
+        Session::flash('message', '<strong>Success!</strong> Category #' . $category->id . ' was created.');
+        Session::flash('alert-class', 'alert-success');
 
         return redirect()->route('categories.view', $category->id);
     }
@@ -148,6 +153,9 @@ class CategoryController extends Controller
             'name' => $validator['name'],
         ]);
 
+        Session::flash('message', '<strong>Success!</strong> Category #' . $category->id . ' was updated.');
+        Session::flash('alert-class', 'alert-success');
+
         return redirect()->route('categories.view', $category->id);
     }
 
@@ -201,6 +209,9 @@ class CategoryController extends Controller
         }
 
         Category::destroy($id);
+
+        Session::flash('message', '<strong>Success!</strong> Category #' . $category->id . ' was destroyed.');
+        Session::flash('alert-class', 'alert-success');
 
         return redirect($request->post('next'));
     }
