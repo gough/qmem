@@ -29,19 +29,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($consumables as $consumable)
-							<tr>
-								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id }}</a></td>
-								<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
-								<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
-								<td>{{ $consumable->quantity }}</td>
-								<td>{{ $consumable->created_at }}</td>
-								<td>
-									<a href="{{ route('consumables.edit', $consumable->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-									<a href="{{ route('consumables.delete', $consumable->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-								</td>
-							</tr>
-							@endforeach
+							@if ($consumables->count() > 0)
+								@foreach ($consumables as $consumable)
+									<tr>
+										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id }}</a></td>
+										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
+										<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
+										<td>{{ $consumable->quantity }}</td>
+										<td>{{ $consumable->created_at }}</td>
+										<td>
+											<a href="{{ route('consumables.edit', $consumable->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+											<a href="{{ route('consumables.delete', $consumable->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+								@endforeach
+							@else
+								<td class="text-center" colspan="6">No consumables found.</td>
+							@endif
 						</tbody>						
 					</table>
 					@include('includes.pagination', ['items' => $consumables])

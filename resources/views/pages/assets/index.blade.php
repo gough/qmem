@@ -28,18 +28,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($assets as $asset)
-							<tr>
-								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
-								<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
-								<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
-								<td>{{ $asset->created_at }}</td>
-								<td>
-									<a href="{{ route('assets.edit', $asset->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-									<a href="{{ route('assets.delete', $asset->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-								</td>
-							</tr>
-							@endforeach
+							@if ($assets->count() > 0)
+								@foreach ($assets as $asset)
+									<tr>
+										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
+										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
+										<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
+										<td>{{ $asset->created_at }}</td>
+										<td>
+											<a href="{{ route('assets.edit', $asset->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+											<a href="{{ route('assets.delete', $asset->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+								@endforeach
+							@else
+								<td class="text-center" colspan="5">No assets found.</td>
+							@endif
 						</tbody>
 					</table>
 					@include('includes.pagination', ['items' => $assets])

@@ -74,7 +74,7 @@
 								</tr>
 								@endforeach
 							@else
-								<td colspan="5">This category contains no assets.</td>
+								<td class="text-center" colspan="5">This category contains no assets.</td>
 							@endif
 						</tbody>						
 					</table>
@@ -110,7 +110,7 @@
 								</tr>
 								@endforeach
 							@else
-								<td colspan="5">This category contains no consumables.</td>
+								<td class="text-center" colspan="5">This category contains no consumables.</td>
 							@endif
 						</tbody>						
 					</table>

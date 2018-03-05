@@ -27,17 +27,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($categories as $category)
-							<tr>
-								<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->id }}</a></td>
-								<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->name }}</a></td>
-								<td>{{ $category->created_at }}</td>
-								<td>
-									<a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm {{ ($category->id == 1) ? ' disabled' : null }}"><i class="fa fa-pencil"></i></a>
-									<a href="{{ route('categories.delete', $category->id) }}" class="btn btn-danger btn-sm {{ ($category->id == 1) ? ' disabled' : null }}"><i class="fa fa-trash"></i></a>
-								</td>
-							</tr>
-							@endforeach
+							@if ($categories->count() > 0)
+								@foreach ($categories as $category)
+									<tr>
+										<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->id }}</a></td>
+										<td><a href="{{ route('categories.view', $category->id) }}">{{ $category->name }}</a></td>
+										<td>{{ $category->created_at }}</td>
+										<td>
+											<a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm {{ ($category->id == 1) ? ' disabled' : null }}"><i class="fa fa-pencil"></i></a>
+											<a href="{{ route('categories.delete', $category->id) }}" class="btn btn-danger btn-sm {{ ($category->id == 1) ? ' disabled' : null }}"><i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+								@endforeach
+							@else
+								<td class="text-center" colspan="4">No categories found.</td>
+							@endif
 						</tbody>						
 					</table>
 					@include('includes.pagination', ['items' => $categories])
