@@ -74,57 +74,7 @@
 					<span class="card-title">Recent Activity</span>
 				</div>
 				<div class="card-body">
-					<table class="table table-bordered table-hover table-responsive-md table-no-margin">
-						<thead class="thead-default">
-							<tr>
-								<th>Created/Updated At</th>
-								<th>User</th>
-								<th>Action</th>
-								<th>Item</th>
-								<th>Old Value</th>
-								<th>New Value</th>
-							</tr>
-						</thead>
-						<tbody>
-							@if ($recent_activity->count() > 0)
-								@foreach ($recent_activity as $revision)
-									<tr>
-										<td>{{ $revision->created_at->format('Y-m-d h:i:s A') }}</td>
-
-										@if (!empty($revision->user_id))
-											<td><a href="{{ route('users.view', $revision->userResponsible()->netid) }}">{{ $revision->userResponsible()->name }}</a></td>
-										@else
-											<td>SYSTEM</td>
-										@endif
-
-										@if ($revision->key == 'created_at')
-											<td>Create</td>
-										@else
-											<td>Update '{{ $revision->key }}'</td>
-										@endif
-
-										@if ($revision->revisionable_type == 'App\Asset') 
-											<td><a href="{{ route('assets.view', $revision->revisionable_id) }}">Asset #{{ $revision->revisionable_id }}</a></td>
-										@elseif ($revision->revisionable_type == 'App\Consumable')
-											<td><a href="{{ route('consumables.view', $revision->revisionable_id) }}">Consumable #{{ $revision->revisionable_id }}</a></td>
-										@elseif ($revision->revisionable_type == 'App\Category')
-											<td><a href="{{ route('categories.view', $revision->revisionable_id) }}">Category #{{ $revision->revisionable_id }}</a></td>
-										@endif
-
-										@if ($revision->key == 'created_at')
-											<td class="text-muted">(not applicable)</td>
-											<td class="text-muted">(not applicable)</td>
-										@else
-											<td>{{ $revision->new_value }}</td>
-											<td>{{ $revision->old_value }}</td>
-										@endif
-									</tr>
-								@endforeach
-							@else
-								<td class="text-center" colspan="6">No recent activity found.</td>
-							@endif
-						</tbody>						
-					</table>
+					@include('includes.revisions', ['revisions' => $recent_activity, 'show_item' => True, 'no_found_error' => 'No recent activity found.'])
 				</div>
 			</div>
 		</div>
