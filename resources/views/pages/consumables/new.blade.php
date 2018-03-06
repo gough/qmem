@@ -76,7 +76,7 @@
 								$field = 'quantity';
 								$label = 'Quantity';
 								$placeholder = '1';
-								$value = null;
+								$value = 1;
 								$helptext = 'Enter the initial amount of this consumable. This can be changed after creation.';
 
 								if ($errors->first($field))
