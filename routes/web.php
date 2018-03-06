@@ -18,8 +18,12 @@ Route::get('/', function() {
 Route::get('dashboard', 'DashboardController@index')
 	->name('dashboard');
 
-Route::get('search', 'SearchController@index')
-	->name('search');
+Route::prefix('search')
+	->name('search.')
+	->group(function () {
+
+	Route::get('', 'SearchController@index')->name('index');
+});
 
 Route::prefix('assets')
 	->name('assets.')

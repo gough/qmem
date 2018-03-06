@@ -6,3 +6,38 @@
 <script src="{{ asset('js/vendor/popper.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+<script>
+  	var client = algoliasearch('RASJ5ESF7D', '224caa417854ad1973968544c23d2603');
+  	var assets = client.initIndex('assets');
+	var consumables = client.initIndex('consumables');
+
+	$('#search-input').autocomplete({ hint: false }, [
+		{
+			source: $.fn.autocomplete.sources.hits(assets, { hitsPerPage: 5 }),
+			displayKey: 'name',
+			templates: {
+				header: '<div class="aa-suggestions-category">Assets</div>',
+				suggestion: function(suggestion) {
+					suggestion['url'] = ('{{ route('assets.view', '') }}/' + suggestion.id);
+					return suggestion._highlightResult.name.value;
+				}
+			}
+		},
+		{
+			source: $.fn.autocomplete.sources.hits(consumables, { hitsPerPage: 5 }),
+			displayKey: 'name',
+			templates: {
+				header: '<div class="aa-suggestions-category">Consumables</div>',
+				suggestion: function(suggestion) {
+					suggestion['url'] = ('{{ route('consumables.view', '') }}/' + suggestion.id);
+					return suggestion._highlightResult.name.value;
+				}
+			}
+		}
+	]).on('autocomplete:selected', function(event, suggestion, dataset) {
+		location.href = suggestion.url;
+		console.log(suggestion)
+	});
+</script>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
@@ -9,6 +10,7 @@ use Kyslik\ColumnSortable\Sortable;
 class Consumable extends BaseModel
 {
     use RevisionableTrait;
+    use Searchable;
     use Sortable;
 
     protected $revisionCreationsEnabled = true;

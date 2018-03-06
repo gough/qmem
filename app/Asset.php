@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
@@ -9,7 +10,8 @@ use Kyslik\ColumnSortable\Sortable;
 class Asset extends BaseModel
 {
     use RevisionableTrait;
-	use Sortable;
+    use Searchable;
+    use Sortable;
 
     protected $revisionCreationsEnabled = true;
 

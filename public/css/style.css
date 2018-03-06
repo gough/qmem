@@ -154,44 +154,65 @@ p,
 	margin-top: 1rem;
 }
 
-/**
- * Mod Unit
- */
-
-/*.modunit {
-	background-color: #fff;
-	margin: 1rem 0;
-	border: 1px solid #dedede;
-	border-radius: 3px;
+.aa-input-container {
+  display: inline-block;
+  position: relative;
 }
 
-.modunit h3 {
-	font-size: 1.5rem;
-	font-weight: 400;
+.aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button,
+.aa-input-search::-webkit-search-results-button, .aa-input-search::-webkit-search-results-decoration {
+    display: none;
 }
 
-.modunit header {
-	padding: 1.5rem;
-	padding-bottom: 0;
+.aa-input-icon {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  fill: #e4e4e4;
+  pointer-events: none;
 }
 
-.modunit .mod-body {
-	padding: 1.5rem;
+.aa-dropdown-menu {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  min-width: 300px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
 }
 
-.modunit .mod-info-top {
-	padding: 1.5rem;
+.aa-suggestion {
+  padding: 6px 12px;
+  cursor: pointer;
 }
 
-.modunit .mod-info-top h3 {
-	margin: 0;
-	padding: 0;
-	font-weight: 600;
-	font-size: 1.75rem;
+.aa-suggestion:hover, .aa-suggestion.aa-cursor {
+	background-color: #ececec;
 }
 
-.modunit .mod-title {
-	margin-bottom: 0;
+.aa-suggestions-category {
+  border-top: 1px solid rgba(228, 228, 228, 0.6);
+  padding: 6px 12px;
+  font-weight: bold;
 }
-*/
 
+.aa-dropdown-menu > div {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.aa-dropdown-menu em {
+	background-color: #ccc;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.aa-empty {
+  padding: 6px 12px;
+}

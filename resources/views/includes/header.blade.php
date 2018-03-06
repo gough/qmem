@@ -24,12 +24,14 @@
 		</ul>
 		<form action="{{ url('search') }}" id="search" class="form-inline">
 			<div class="search input-group">
-				<input type="text" class="my-2 my-md-0 form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" autofocus="autofocus">
+				{{ Form::open(array('method' => 'get', 'route' => array('search.index'))) }}
+				<input type="text" name="query" id="search-input" class="my-2 my-md-0 form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" autofocus="autofocus">
 				<div class="input-group-append">
-					<button class="btn btn-outline-secondary my-2 my-md-0 form-control" type="submit">
+					<button type="submit" class="btn btn-outline-secondary my-2 my-md-0 form-control" >
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
+				{{ Form::close() }}
 			</div>
 		</form>
 		@if (Auth::check())
