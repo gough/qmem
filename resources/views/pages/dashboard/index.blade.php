@@ -45,7 +45,7 @@
 						<span class="card-desc">Total Categories</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-success" href="{{ route('assets.index') }}">
+				<a class="card-button-bottom text-success" href="{{ route('categories.index') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
