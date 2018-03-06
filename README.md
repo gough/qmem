@@ -37,6 +37,13 @@ DB_USERNAME=<username>
 DB_PASSWORD=<password>
 ```
 
+For search to work, you must also create an account with [Algolia](https://www.algolia.com/) and supply an application ID and secret. The information should be stored in the `.env` file described above, using the variables below.
+
+```
+ALGOLIA_APP_ID=<algolia_app_id>
+ALGOLIA_SECRET=<algolia_secret>
+```
+
 Initialize the database by running all migrations:
 ```
 php artisan migrate
