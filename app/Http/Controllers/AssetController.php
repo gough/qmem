@@ -58,15 +58,8 @@ class AssetController extends Controller
             'name' => 'required|min:2|max:255',
             'category' => 'required'
         );
-
-        $messages = array(
-            'name.required' => 'name.required',
-            'name.min' => 'name.min',
-            'name.max' => 'name.max',
-            'category.required' => 'category.required',
-        );
         
-        $validator = $request->validate($rules, $messages);
+        $validator = $request->validate($rules);
 
         $asset = new Asset;
 
@@ -137,15 +130,8 @@ class AssetController extends Controller
             'name' => 'required|min:2|max:255',
             'category' => 'required'
         );
-
-        $messages = array(
-            'name.required' => 'name.required',
-            'name.min' => 'name.min',
-            'name.max' => 'name.max',
-            'category.required' => 'category.required',
-        );
         
-        $validator = $request->validate($rules, $messages);
+        $validator = $request->validate($rules);
 
         $asset->update([
             'name' => $validator['name'],

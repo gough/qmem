@@ -57,19 +57,10 @@ class ConsumableController extends Controller
         $rules = array(
             'name' => 'required|min:2|max:255',
             'category' => 'required',
-            'quantity' => 'required|numeric|min:0'
-        );
-
-        $messages = array(
-            'name.required' => 'name.required',
-            'name.min' => 'name.min',
-            'name.max' => 'name.max',
-            'category.required' => 'category.required',
-            'quantity.required' => 'quantity.required',
-            'quantity.min' => 'quantity.min'
+            'quantity' => 'required|numeric|min:0|max:2147483646'
         );
         
-        $validator = $request->validate($rules, $messages);
+        $validator = $request->validate($rules);
 
         $consumable = new Consumable;
 
@@ -140,18 +131,10 @@ class ConsumableController extends Controller
         $rules = array(
             'name' => 'required|min:2|max:255',
             'category' => 'required',
-            'quantity' => 'required'
-        );
-
-        $messages = array(
-            'name.required' => 'name.required',
-            'name.min' => 'name.min',
-            'name.max' => 'name.max',
-            'category.required' => 'category.required',
-            'quantity.required' => 'quantity.required',
+            'quantity' => 'required|numeric|min:0|max:2147483647'
         );
         
-        $validator = $request->validate($rules, $messages);
+        $validator = $request->validate($rules);
 
         $consumable->update([
             'name' => $validator['name'],

@@ -54,14 +54,8 @@ class CategoryController extends Controller
         $rules = array(
             'name' => 'required|min:2|max:255',
         );
-
-        $messages = array(
-            'name.required' => 'name.required',
-            'name.min' => 'name.min',
-            'name.max' => 'name.max',
-        );
         
-        $validator = $request->validate($rules, $messages);
+        $validator = $request->validate($rules);
 
         $category = new Category;
 
@@ -140,14 +134,8 @@ class CategoryController extends Controller
         $rules = array(
             'name' => 'required|min:2|max:255',
         );
-
-        $messages = array(
-            'name.required' => 'name.required',
-            'name.min' => 'name.min',
-            'name.max' => 'name.max',
-        );
         
-        $validator = $request->validate($rules, $messages);
+        $validator = $request->validate($rules);
 
         $category->update([
             'name' => $validator['name'],
