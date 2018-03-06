@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
 <script>
-  	var client = algoliasearch('RASJ5ESF7D', '224caa417854ad1973968544c23d2603');
+  	var client = algoliasearch('{{ env('ALGOLIA_APP_ID') }}', '{{ env('ALOGLIA_SEARCH_ONLY_SECRET') }}');
   	var assets = client.initIndex('assets');
 	var consumables = client.initIndex('consumables');
 
