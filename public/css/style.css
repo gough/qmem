@@ -67,6 +67,10 @@ p,
 	margin-top: 1rem;
 }
 
+.breadcrumb {
+	margin-top: 1rem;
+}
+
 #actionsMonth,
 #actionsYear {
 	display: none;
@@ -98,6 +102,10 @@ p,
 
 .card-info-top h3 {
 	margin: 0;
+}
+
+.card-info-top i.fa-tint {
+	margin-top: 5px;
 }
 
 .card-info-top div:first-child {
