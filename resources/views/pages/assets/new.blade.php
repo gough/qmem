@@ -14,7 +14,7 @@
 					{{ Form::open(array('route' => array('assets.create'))) }}
 						@php ($label_classes = 'col-md-2 col-form-label')
 						@php ($field_classes = 'form-control')
-
+						<!-- Asset Name-->
 						<div class="form-group row">
 							<?php
 								$field = 'name';
@@ -41,7 +41,7 @@
 								{!! $message !!}
 							</div>
 						</div>
-
+						<!-- asset category -->
 						<div class="form-group row">
 							<?php
 								$field = 'category';
@@ -69,8 +69,80 @@
 							</div>
 						</div>
 
+						<!--location-->
+
+						<div class="form-group row">
+							<?php
+								$field = 'location';
+								$label = 'Location';
+								$placeholder = 'Insert location';
+								$value = null;
+								$helptext = 'Enter the location of the asset.';
+
+							if ($errors->first($field))
+							{
+								$class = $field_classes . ' border-danger';
+								$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+							}
+							else
+							{
+								$class = $field_classes;
+								$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+							}
+							?>
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
+							<div class="col-md-10">
+								{{ Form::text($field, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
+							</div>
+						</div>
+						<!-- barcode -->
+						<div class="form-group row">
+							<?php
+								$field = 'barcode';
+								$label = 'Barcode';
+								$placeholder = 'Insert barcode';
+								$value = null;
+								$helptext = 'Enter the barcode of the asset.';
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
+							<div class="col-md-10">
+								{{ Form::text($field, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
+							</div>
+						</div>
+						<!-- image -->
 						<div class="form-group row">
 							<div class="col-md-10">
+								<?php
+									$field = 'image';
+									$label = 'Asset Image';
+									$placeholder = 'Asset Image';
+									$value = null;
+									$helptext = 'Insert an image to identify assets';
+									if ($errors->first($field))
+									{
+										$class = $field_classes . ' border-danger';
+										$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+									}
+									else
+									{
+										$class = $field_classes;
+										$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+									}
+								?>
+								{{ Form::label($field, $label, array('class' => $label_classes)) }}
+
 								<?php
 								$target_dir = "uploads/";
 								$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -88,6 +160,9 @@
 								    }
 								}
 								?>
+								{{ Form::button($field, $value, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
+
 							</div>
 						</div>
 						<hr>
