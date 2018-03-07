@@ -22,16 +22,16 @@
 				<a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
 			</li>
 		</ul>
+		{{ Form::open(array('method' => 'get', 'route' => array('search.index'), 'class' => 'form-inline', 'id' => 'search')) }}
 		<div class="search input-group">
-			{{ Form::open(array('method' => 'get', 'route' => array('search.index'))) }}
 			<input type="text" name="query" id="search-input" class="my-2 my-md-0 form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" autofocus="autofocus">
 			<div class="input-group-append">
 				<button type="submit" class="btn btn-outline-secondary my-2 my-md-0 form-control" >
 					<i class="fa fa-search"></i>
 				</button>
 			</div>
-			{{ Form::close() }}
 		</div>
+		{{ Form::close() }}
 		@if (Auth::check())
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown">
