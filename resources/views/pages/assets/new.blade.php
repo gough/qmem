@@ -69,10 +69,39 @@
 							</div>
 						</div>
 
+						<hr>
+
+						<div class="form-group row">
+							<?php
+								$field = 'image';
+								$label = 'Image';
+								$placeholder = null;
+								$value = null;
+								$helptext = 'Upload an image for the asset.';
+
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
+							<div class="col-md-10">
+								{{ Form::file($field, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<div class="col-md-10">
 								<?php
-								$target_dir = "uploads/";
+								/*$target_dir = "uploads/";
 								$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 								$uploadOk = 1;
 								$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -86,11 +115,13 @@
 								        echo "File is not an image.";
 								        $uploadOk = 0;
 								    }
-								}
+								}*/
 								?>
 							</div>
 						</div>
+
 						<hr>
+
 						<div class="form-group row">
 							<div class="offset-md-2 col-md-10">
 								{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}

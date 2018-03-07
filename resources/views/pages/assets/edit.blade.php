@@ -72,6 +72,35 @@
 						<hr>
 
 						<div class="form-group row">
+							<?php
+								$field = 'image';
+								$label = 'Image';
+								$placeholder = null;
+								$value = null;
+								$helptext = 'Upload an image for the asset.';
+
+								if ($errors->first($field))
+								{
+									$class = $field_classes . ' border-danger';
+									$message = '<small class="form-text text-danger">' . $errors->first($field) . '</small>';
+								}
+								else
+								{
+									$class = $field_classes;
+									$message = '<small class="form-text text-muted">' . $helptext . '</small>';
+								}
+							?>
+
+							{{ Form::label($field, $label, array('class' => $label_classes)) }}
+							<div class="col-md-10">
+								{{ Form::file($field, array('placeholder' => $placeholder, 'class' => $class)) }}
+								{!! $message !!}
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="form-group row">
 							<div class="offset-md-2 col-md-10">
 								{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 								<a class="btn btn-secondary" href="{{ url()->previous() }}">Cancel</a>

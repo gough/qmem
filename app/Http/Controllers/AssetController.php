@@ -56,7 +56,8 @@ class AssetController extends Controller
         
         $rules = array(
             'name' => 'required|min:2|max:255',
-            'category' => 'required'
+            'category' => 'required',
+            'image' => ''
         );
         
         $validator = $request->validate($rules);
@@ -128,7 +129,8 @@ class AssetController extends Controller
 
         $rules = array(
             'name' => 'required|min:2|max:255',
-            'category' => 'required'
+            'category' => 'required',
+            'image' => ''
         );
         
         $validator = $request->validate($rules);
