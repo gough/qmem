@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "algolia/algoliasearch-client-php": "^1.25",
+        "codeitnowin/barcode": "^2.1",
         "fideloper/proxy": "~3.3",
         "kyslik/column-sortable": "5.6.*",
         "laracasts/flash": "^3.0",
@@ -14,7 +15,8 @@
         "laravel/scout": "^4.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
-        "venturecraft/revisionable": "^1.28"
+        "venturecraft/revisionable": "^1.28",
+        "vinkla/hashids": "3.3.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

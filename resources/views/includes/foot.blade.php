@@ -15,24 +15,24 @@
 
 	$('#search-input').autocomplete({ hint: false }, [
 		{
-			source: $.fn.autocomplete.sources.hits(assets, { hitsPerPage: 5 }),
+			source: $.fn.autocomplete.sources.hits(assets, { hitsPerPage: 3 }),
 			displayKey: 'name',
 			templates: {
 				header: '<div class="aa-suggestions-category">Assets</div>',
 				suggestion: function(suggestion) {
 					suggestion['url'] = ('{{ route('assets.view', '') }}/' + suggestion.id);
-					return suggestion._highlightResult.name.value;
+					return suggestion._highlightResult.name.value + '<br><small class="text-muted">' + suggestion._highlightResult.id_hash.value + '</small>';
 				}
 			}
 		},
 		{
-			source: $.fn.autocomplete.sources.hits(consumables, { hitsPerPage: 5 }),
+			source: $.fn.autocomplete.sources.hits(consumables, { hitsPerPage: 3 }),
 			displayKey: 'name',
 			templates: {
 				header: '<div class="aa-suggestions-category">Consumables</div>',
 				suggestion: function(suggestion) {
 					suggestion['url'] = ('{{ route('consumables.view', '') }}/' + suggestion.id);
-					return suggestion._highlightResult.name.value;
+					return suggestion._highlightResult.name.value + '<br><small class="text-muted">' + suggestion._highlightResult.id_hash.value + '</small>';
 				}
 			}
 		}

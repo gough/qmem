@@ -6,6 +6,7 @@ use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Consumable extends BaseModel
 {
@@ -40,5 +41,13 @@ class Consumable extends BaseModel
     	return $query->join('users', 'consumables.user_id', '=', 'users.id')
     				->select('users.name as user_name', 'consumables.*')
     				->orderBy('user_name', $direction);
+    }
+
+    public function toSearchableArray()
+    {
+        $record = $this->toArray();
+        $record['id_hash'] = '2' . Hashids::encode($this->id);
+
+        return $record;
     }
 }
