@@ -45,9 +45,9 @@ ALGOLIA_SECRET=<algolia_secret>
 ALGOLIA_SEARCH_ONLY_SECRET=<algolia_search_only_secret>
 ```
 
-Initialize the database by running all migrations:
+Initialize the database by running all migrations and seeding the database:
 ```
-php artisan migrate
+php artisan migrate:refresh && php artisan db:seed
 ```
 
 If everything worked and no errors were encountered, you should now be able to load the application in any web browser by visiting the root web directory!
