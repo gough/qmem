@@ -45,9 +45,6 @@ class Asset extends BaseModel
 
     public function toSearchableArray()
     {
-        $record = $this->toArray();
-        $record['id_hash'] = '1' . Hashids::encode($this->id);
-
-        return $record;
+        return parent::toSearchableArray();
     }
 }
