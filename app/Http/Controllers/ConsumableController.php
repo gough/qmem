@@ -93,7 +93,7 @@ class ConsumableController extends Controller
         }
         catch (ModelNotFoundException $e)
         {
-            return redirect()->route('consumable.index');
+            return redirect()->route('consumables.index');
         }   
 
         return view('pages.consumables.view', compact('consumable'));
