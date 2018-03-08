@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
-				<h1><em>Search results</em> for '{{ Request::get('query') }}'</h1>
+				<h1>Search results for '{{ Request::get('query') }}'</h1>
 			</div>
 		</div>
 	</div>

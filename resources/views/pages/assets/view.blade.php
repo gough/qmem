@@ -37,6 +37,10 @@
 								<td><a href="{{ route('categories.view', $asset->category_id) }}">{{ $asset->category->name }}</a></td>
 							</tr>
 							<tr>
+								<td><strong>Barcode</strong></td>
+								<td>{!! $asset->barcode() !!}</td>
+							</tr>
+							<tr>
 								<td><strong>Created At</strong></td>
 								<td>{{ $asset->created_at }}</td>
 							</tr>

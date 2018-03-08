@@ -57,7 +57,9 @@ class ConsumableController extends Controller
         $rules = array(
             'name' => 'required|min:2|max:255',
             'category' => 'required',
-            'quantity' => 'required|numeric|min:0|max:2147483646'
+            'quantity' => 'required|numeric|min:0|max:2147483646',
+            'image' => ''
+
         );
         
         $validator = $request->validate($rules);
@@ -93,7 +95,7 @@ class ConsumableController extends Controller
         }
         catch (ModelNotFoundException $e)
         {
-            return redirect()->route('consumable.index');
+            return redirect()->route('consumables.index');
         }   
 
         return view('pages.consumables.view', compact('consumable'));
@@ -139,7 +141,8 @@ class ConsumableController extends Controller
         $consumable->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
-            'quantity' => $validator['quantity']
+            'quantity' => $validator['quantity'],
+            'image' => ''
         ]);
 
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was updated.');
