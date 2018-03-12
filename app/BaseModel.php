@@ -39,7 +39,7 @@ class BaseModel extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d h:i:s A');
     }
 
-    public function barcode()
+    public function barcode($class = null)
     {
     	$barcode = new BarcodeGenerator();
 
@@ -50,7 +50,7 @@ class BaseModel extends Model
     	$barcode->setFontSize(10);
     	$code = $barcode->generate();
 
-    	return '<img src="data:image/png;base64,' . $code . '" />';
+        return '<img class="img-fluid" src="data:image/png;base64,' . $code . '">';
     }
 
     public function toSearchableArray()

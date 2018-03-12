@@ -40,4 +40,10 @@
 		location.href = suggestion.url;
 		console.log(suggestion)
 	});
+
+	$(function () {
+		$('[data-toggle="popover"]').popover({
+			html: true,
+		})
+	})
 </script>

@@ -11,6 +11,15 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ConsumableController extends Controller
 {
+    private $rules = array(
+        'name' => 'required|min:2|max:255',
+        'category' => 'required',
+        'quantity' => 'required|min:0',
+        'location' => 'nullable',
+        'image' => 'nullable|image|max:1000',
+        'notes' => 'nullable|max:2000'
+    );
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -53,24 +62,24 @@ class ConsumableController extends Controller
     public function create(Request $request)
     {
         // POST /consumables/create
-                
-        $rules = array(
-            'name' => 'required|min:2|max:255',
-            'category' => 'required',
-            'quantity' => 'required|numeric|min:0|max:2147483646',
-            'image' => ''
-
-        );
         
-        $validator = $request->validate($rules);
+        $validator = $request->validate($this->rules);
 
         $consumable = new Consumable;
 
         $consumable->name = $validator['name'];
         $consumable->category_id = $validator['category'];
         $consumable->quantity = $validator['quantity'];
-        $consumable->user_id = Auth::user()->id;
+        $consumable->location = $validator['location'];
+        $consumable->image_id = null;
+        $consumable->notes = $validator['notes'];
 
+        if (isset($validator['image']))
+        {
+            $consumable->image_id = $this->makeImage($validator['image']);
+        }
+
+        $consumable->user_id = Auth::user()->id;
         $consumable->save();
 
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was created.');
@@ -129,20 +138,22 @@ class ConsumableController extends Controller
         // POST /consumables/{id}/update
         
         $consumable = Consumable::findOrFail($id);
-
-        $rules = array(
-            'name' => 'required|min:2|max:255',
-            'category' => 'required',
-            'quantity' => 'required|numeric|min:0|max:2147483647'
-        );
         
-        $validator = $request->validate($rules);
+        $validator = $request->validate($this->rules);
+
+        $image = $consumable->image_id;
+        if (isset($validator['image']))
+        {
+            $image = $this->makeImage($validator['image']);
+        }
 
         $consumable->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
             'quantity' => $validator['quantity'],
-            'image' => ''
+            'location' => $validator['location'],
+            'image_id' => $image,
+            'notes' => $validator['notes']
         ]);
 
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was updated.');

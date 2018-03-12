@@ -9,6 +9,8 @@
         "algolia/algoliasearch-client-php": "^1.25",
         "codeitnowin/barcode": "^2.1",
         "fideloper/proxy": "~3.3",
+        "graham-campbell/markdown": "^10.0",
+        "intervention/image": "^2.4",
         "kyslik/column-sortable": "5.6.*",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",

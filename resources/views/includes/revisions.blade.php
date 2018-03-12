@@ -27,6 +27,8 @@
 						<td>Create</td>
 					@elseif ($revision->key == 'category_id')
 						<td>Update 'category'</td>
+					@elseif ($revision->key == 'image_id')
+						<td>Update 'image'</td>
 					@else
 						<td>Update '{{ $revision->key }}'</td>
 					@endif
@@ -41,7 +43,7 @@
 						@endif
 					@endif
 
-					@if ($revision->key == 'created_at')
+					@if ($revision->key == 'created_at' || $revision->key == 'image_id' || $revision->key == 'notes')
 						<td class="text-muted">(not applicable)</td>
 						<td class="text-muted">(not applicable)</td>
 					@elseif ($revision->key == 'category_id')

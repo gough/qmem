@@ -11,6 +11,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AssetController extends Controller
 {
+    private $rules = array(
+        'name' => 'required|min:2|max:255',
+        'category' => 'required',
+        'location' => 'nullable',
+        'image' => 'nullable|image|max:1000',
+        'notes' => 'nullable|max:2000'
+    );
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -54,20 +62,22 @@ class AssetController extends Controller
     {
         // POST /assets/create
         
-        $rules = array(
-            'name' => 'required|min:2|max:255',
-            'category' => 'required',
-            'image' => ''
-        );
-        
-        $validator = $request->validate($rules);
+        $validator = $request->validate($this->rules);
 
         $asset = new Asset;
 
         $asset->name = $validator['name'];
         $asset->category_id = $validator['category'];
-        $asset->user_id = Auth::user()->id;
+        $asset->location = $validator['location'];
+        $asset->image_id = null;
+        $asset->notes = $validator['notes'];
 
+        if (isset($validator['image']))
+        {
+            $asset->image_id = $this->makeImage($validator['image']);
+        }
+
+        $asset->user_id = Auth::user()->id;
         $asset->save();
 
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was created.');
@@ -126,18 +136,21 @@ class AssetController extends Controller
         // POST /assets/{id}/update
         
         $asset = Asset::findOrFail($id);
-
-        $rules = array(
-            'name' => 'required|min:2|max:255',
-            'category' => 'required',
-            'image' => ''
-        );
         
-        $validator = $request->validate($rules);
+        $validator = $request->validate($this->rules);
+
+        $image = $asset->image_id;
+        if (isset($validator['image']))
+        {
+            $image = $this->makeImage($validator['image']);
+        }
 
         $asset->update([
             'name' => $validator['name'],
-            'category_id' => $validator['category']
+            'category_id' => $validator['category'],
+            'location' => $validator['location'],
+            'image_id' => $image,
+            'notes' => $validator['notes']
         ]);
 
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was updated.');
