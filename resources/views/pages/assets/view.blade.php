@@ -69,7 +69,7 @@
 				</div>
 				<div class="card-body text-center{{ !empty($asset->image_id) ? '' : ' my-4' }}">
 					@if (!empty($asset->image_id))
-						<img class="img-fluid mx-auto d-block" src="/img/{{ $asset->image_id }}">
+						<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
 					@else
 						<span class="text-muted">(no image)</span>
 					@endif
