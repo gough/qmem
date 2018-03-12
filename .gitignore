@@ -14,5 +14,6 @@ yarn-error.log
 .DS_Store
 /public/phpinfo.php
 /public/phpmyadmin
+/public/img
 /yarn.lock
 composer.lock
