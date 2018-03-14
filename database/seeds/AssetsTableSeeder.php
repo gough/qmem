@@ -16,9 +16,10 @@ class AssetsTableSeeder extends Seeder
         $faker = Faker::create();
         for ($i = 1; $i < 123; $i++) {
             $asset = new Asset;
-            
+
             $asset->name = $faker->catchPhrase;
             $asset->category_id = Category::all()->random()->id;
+            $asset->status = null;
             $asset->user_id = User::where('active', True)->where('name', '<>', '')->get()->random()->id;
 
             $asset->save();

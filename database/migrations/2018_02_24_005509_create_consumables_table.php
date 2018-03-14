@@ -18,6 +18,7 @@ class CreateConsumablesTable extends Migration
             $table->string('name');
             $table->string('category_id');
             $table->integer('quantity');
+            $table->float('price');
             $table->string('location')->nullable();
             $table->string('image_id')->nullable();
             $table->text('notes')->nullable();

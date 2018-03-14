@@ -40,6 +40,10 @@
 								<td>{{ $consumable->quantity }}</td>
 							</tr>
 							<tr>
+								<td><strong>Price</strong></td>
+								<td>{{ $consumable->price }}</td>
+							</tr>
+							<tr>
 								<td><strong>Created At</strong></td>
 								<td>{{ $consumable->created_at }}</td>
 							</tr>

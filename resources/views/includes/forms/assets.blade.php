@@ -12,7 +12,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::text(
-			$field, $value, 
+			$field, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -34,7 +34,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::select(
-			$field, $categories, $value, 
+			$field, $categories, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -58,7 +58,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::text(
-			$field, $value, 
+			$field, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -68,7 +68,28 @@
 		</small>
 	</div>
 </div>
+<!-- Status -->
+<div class="form-group row">
+	@php ($field = 'status')
+	@php ($label = 'Status')
+	@php ($placeholder = 'Status')
+	@php ($value = isset($asset->status) ? $asset->status : null)
+	@php ($helptext = 'Maintenance Status update.')
+	@php ($options = 'Unavailable', 'Available')
 
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::select(
+			$field, $options, $value, 
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
 <!-- Image -->
 <div class="form-group row">
 	@php ($field = 'image')

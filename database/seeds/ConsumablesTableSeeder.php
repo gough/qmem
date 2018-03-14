@@ -16,10 +16,11 @@ class ConsumablesTableSeeder extends Seeder
     	$faker = Faker::create();
         for ($i = 1; $i < 234; $i++) {
             $consumable = new Consumable;
-            
+
             $consumable->name = $faker->catchPhrase;
             $consumable->category_id = Category::all()->random()->id;
             $consumable->quantity = mt_rand(0, 100);
+            $consumable->price = mt_rand(0, 100);
             $consumable->user_id = User::where('active', True)->where('name', '<>', '')->get()->random()->id;
 
             $consumable->save();

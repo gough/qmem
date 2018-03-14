@@ -12,7 +12,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::text(
-			$field, $value, 
+			$field, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -34,7 +34,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::select(
-			$field, $categories, $value, 
+			$field, $categories, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -56,7 +56,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::number(
-			$field, $value, 
+			$field, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -66,7 +66,27 @@
 		</small>
 	</div>
 </div>
+<!-- Price -->
+<div class="form-group row">
+	@php ($field = 'price')
+	@php ($label = 'Price')
+	@php ($placeholder = 'Price')
+	@php ($value = isset($consumable->price) ? $consumable->price : null)
+	@php ($helptext = 'Enter the price of the consumable.')
 
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::number(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
 <hr>
 
 <!-- Location -->
@@ -80,7 +100,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::text(
-			$field, $value, 
+			$field, $value,
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
