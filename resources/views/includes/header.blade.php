@@ -18,8 +18,14 @@
 			<li class="nav-item {{ Route::currentRouteNamed('categories.index') ? 'active' : '' }}">
 				<a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
 			</li>
-			<li class="nav-item {{ Route::currentRouteNamed('reports.index') ? 'active' : '' }}">
-				<a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Tools
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{{ route('reports.index') }}">Reports</a>
+					<a class="dropdown-item" href="{{ route('barcodes.index') }}">Generate Barcodes</a>
+				</div>
 			</li>
 		</ul>
 		{{ Form::open(array('method' => 'get', 'route' => array('search.index'), 'class' => 'form-inline', 'id' => 'search')) }}

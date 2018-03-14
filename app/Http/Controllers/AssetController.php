@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Asset, App\Category, App\User;
 
+use App;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
 
 class AssetController extends Controller
 {

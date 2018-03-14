@@ -88,6 +88,9 @@
 		</small>
 	</div>
 </div>
+
+<hr>
+
 <!-- Price -->
 <div class="form-group row">
 	@php ($field = 'price')
@@ -98,18 +101,23 @@
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
-		{{ Form::number(
-			$field, $value,
-			['placeholder' => $placeholder,
-			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
-		) }}
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<div class="input-group-text">$</div>
+			</div>
+			{{ Form::number(
+				$field, $value,
+				['placeholder' => $placeholder,
+				'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes,
+				'step' => '0.01']
+			) }}
+		</div>
 
 		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
 			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
 		</small>
 	</div>
 </div>
-<hr>
 
 <!-- Location -->
 <div class="form-group row">
