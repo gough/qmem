@@ -45,6 +45,28 @@
 	</div>
 </div>
 
+<!-- Status -->
+<div class="form-group row">
+	@php ($field = 'status')
+	@php ($label = 'Status')
+	@php ($placeholder = 'Pick a status...')
+	@php ($value = isset($consumable->status) ? $consumable->status : 'available')
+	@php ($helptext = 'Set the status of this consumable.')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::select(
+			$field, $statuses, $value, 
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
 <!-- Quantity -->
 <div class="form-group row">
 	@php ($field = 'quantity')

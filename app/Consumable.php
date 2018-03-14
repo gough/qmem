@@ -16,7 +16,7 @@ class Consumable extends BaseModel
 
     protected $revisionCreationsEnabled = true;
 
-    public $fillable = ['name', 'category_id', 'quantity','price', 'location', 'image_id', 'notes'];
+    public $fillable = ['name', 'category_id', 'status', 'quantity', 'price', 'location', 'image_id', 'notes'];
     public $sortable = ['id', 'name', 'category', 'quantity','price', 'user', 'created_at'];
 
     public function user()

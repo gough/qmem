@@ -36,12 +36,16 @@
 								<td><a href="{{ route('categories.view', $consumable->category_id) }}">{{ $consumable->category->name }}</a></td>
 							</tr>
 							<tr>
+								<td><strong>Status</strong></td>
+								<td>{{ ucfirst($consumable->status) }}</td>
+							</tr>
+							<tr>
 								<td><strong>Quantity</strong></td>
 								<td>{{ $consumable->quantity }}</td>
 							</tr>
 							<tr>
 								<td><strong>Price</strong></td>
-								<td>{{ $consumable->price }}</td>
+								<td>${{ number_format($consumable->price, 2, '.', '') }}</td>
 							</tr>
 							<tr>
 								<td><strong>Created At</strong></td>
@@ -61,7 +65,7 @@
 						Notes
 					</span>
 				</div>
-				<div class="card-body">
+				<div class="card-body notes">
 					@if (!empty($consumable->notes))
 						{!! Markdown::convertToHtml($consumable->notes) !!}
 					@else

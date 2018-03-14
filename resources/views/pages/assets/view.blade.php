@@ -36,8 +36,12 @@
 								<td><a href="{{ route('categories.view', $asset->category_id) }}">{{ $asset->category->name }}</a></td>
 							</tr>
 							<tr>
-								<td><strong>Maintenance Status</strong></td>
-								<td>{{ $asset->status }}</td>
+								<td><strong>Status</strong></td>
+								<td>{{ ucfirst($asset->status) }}</td>
+							</tr>
+							<tr>
+								<td><strong>Price</strong></td>
+								<td>${{ number_format($asset->price, 2, '.', '') }}</td>
 							</tr>
 							<tr>
 								<td><strong>Created At</strong></td>
@@ -57,7 +61,7 @@
 						Notes
 					</span>
 				</div>
-				<div class="card-body">
+				<div class="card-body notes">
 					@if (!empty($asset->notes))
 						{!! Markdown::convertToHtml($asset->notes) !!}
 					@else

@@ -24,7 +24,6 @@
 								<th>@sortablelink('name', 'Name')</th>
 								<th>@sortablelink('category', 'Category')</th>
 								<th>@sortablelink('quantity', 'Quantity')</th>
-								<th>@sortablelink('price', 'Price')</th>
 								<th>@sortablelink('created_at', 'Created At')</th>
 								<th>Actions</th>
 							</tr>
@@ -37,7 +36,6 @@
 										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
 										<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
 										<td>{{ $consumable->quantity }}</td>
-										<td>{{ $consumable->price}}</td>
 										<td>{{ $consumable->created_at }}</td>
 										<td>
 											<a href="{{ route('consumables.edit', $consumable->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>

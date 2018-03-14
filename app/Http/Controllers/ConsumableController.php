@@ -14,10 +14,17 @@ class ConsumableController extends Controller
     private $rules = array(
         'name' => 'required|min:2|max:255',
         'category' => 'required',
-        'quantity' => 'required|min:0',
+        'status' => 'required',
+        'quantity' => 'required|numeric|min:0',
+        'price' => 'nullable|numeric|min:0',
         'location' => 'nullable',
         'image' => 'nullable|image|max:1000',
         'notes' => 'nullable|max:2000'
+    );
+
+    private $statuses = array(
+        'available' => 'Available',
+        'unavailable' => 'Unavailable'
     );
 
     public function __construct()
@@ -49,8 +56,9 @@ class ConsumableController extends Controller
         // GET /consumables/new
         
         $categories = Category::pluck('name', 'id')->sort();
+        $statuses = $this->statuses;
 
-        return view('pages.consumables.new', compact('categories'));
+        return view('pages.consumables.new', compact('categories', 'statuses'));
     }
 
     /**
@@ -69,7 +77,9 @@ class ConsumableController extends Controller
 
         $consumable->name = $validator['name'];
         $consumable->category_id = $validator['category'];
+        $consumable->status = $validator['status'];
         $consumable->quantity = $validator['quantity'];
+        $consumable->price = number_format($validator['price'], 2, '.', '');
         $consumable->location = $validator['location'];
         $consumable->image_id = null;
         $consumable->notes = $validator['notes'];
@@ -122,8 +132,9 @@ class ConsumableController extends Controller
         
         $consumable = Consumable::findOrFail($id);
         $categories = Category::pluck('name', 'id')->sort();
+        $statuses = $this->statuses;
 
-        return view('pages.consumables.edit', compact('consumable', 'categories'));
+        return view('pages.consumables.edit', compact('consumable', 'categories', 'statuses'));
     }
 
     /**
@@ -150,7 +161,9 @@ class ConsumableController extends Controller
         $consumable->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
+            'status' => $validator['status'],
             'quantity' => $validator['quantity'],
+            'price' => number_format($validator['price'], 2, '.', ''),
             'location' => $validator['location'],
             'image_id' => $image,
             'notes' => $validator['notes']

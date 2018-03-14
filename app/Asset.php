@@ -16,7 +16,7 @@ class Asset extends BaseModel
 
     protected $revisionCreationsEnabled = true;
 
-    public $fillable = ['name', 'category_id', 'location','status' ,'image_id', 'notes'];
+    public $fillable = ['name', 'category_id', 'status', 'price', 'location', 'image_id', 'notes'];
     public $sortable = ['id', 'name', 'category', 'user', 'created_at'];
 
     public function user()

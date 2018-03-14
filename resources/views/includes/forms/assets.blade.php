@@ -45,7 +45,58 @@
 	</div>
 </div>
 
+<!-- Status -->
+<div class="form-group row">
+	@php ($field = 'status')
+	@php ($label = 'Status')
+	@php ($placeholder = 'Pick a status...')
+	@php ($value = isset($asset->status) ? $asset->status : 'available')
+	@php ($helptext = 'Set the status of this asset.')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::select(
+			$field, $statuses, $value, 
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
 <hr>
+
+<!-- Price -->
+<div class="form-group row">
+	@php ($field = 'price')
+	@php ($label = 'Price')
+	@php ($placeholder = 'Price')
+	@php ($value = isset($asset->price) ? $asset->price : null)
+	@php ($helptext = 'Enter the price of the asset.')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<div class="input-group-text">$</div>
+			</div>
+			{{ Form::number(
+				$field, $value,
+				['placeholder' => $placeholder,
+				'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes,
+				'step' => '0.01']
+			) }}
+		</div>
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
 
 <!-- Location -->
 <div class="form-group row">
@@ -68,28 +119,7 @@
 		</small>
 	</div>
 </div>
-<!-- Status -->
-<div class="form-group row">
-	@php ($field = 'status')
-	@php ($label = 'Status')
-	@php ($placeholder = 'Status')
-	@php ($value = isset($asset->status) ? $asset->status : null)
-	@php ($helptext = 'Maintenance Status update.')
-	@php ($options = 'Unavailable', 'Available')
 
-	{{ Form::label($field, $label, ['class' => $label_classes]) }}
-	<div class="col-md-10">
-		{{ Form::select(
-			$field, $options, $value, 
-			['placeholder' => $placeholder,
-			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
-		) }}
-
-		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
-			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
-		</small>
-	</div>
-</div>
 <!-- Image -->
 <div class="form-group row">
 	@php ($field = 'image')

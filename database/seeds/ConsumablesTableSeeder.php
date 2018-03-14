@@ -19,8 +19,9 @@ class ConsumablesTableSeeder extends Seeder
 
             $consumable->name = $faker->catchPhrase;
             $consumable->category_id = Category::all()->random()->id;
+            $consumable->status = 'available';
             $consumable->quantity = mt_rand(0, 100);
-            $consumable->price = mt_rand(0, 100);
+            $consumable->price = mt_rand(1, 10000) / 100;
             $consumable->user_id = User::where('active', True)->where('name', '<>', '')->get()->random()->id;
 
             $consumable->save();

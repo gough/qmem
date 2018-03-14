@@ -64,8 +64,8 @@
 							<td><span class="text-muted">(deleted)</span></td>
 						@endif
 					@else
-						<td>{{ $revision->new_value }}</td>
-						<td>{{ $revision->old_value }}</td>
+						<td>{{ $revision->key == 'price' ? '$' : '' }}{{ $revision->new_value }}</td>
+						<td>{{ $revision->key == 'price' ? '$' : '' }}{{ $revision->old_value }}</td>
 					@endif
 				</tr>
 			@endforeach

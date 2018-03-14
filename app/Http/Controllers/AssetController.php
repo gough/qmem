@@ -14,9 +14,16 @@ class AssetController extends Controller
     private $rules = array(
         'name' => 'required|min:2|max:255',
         'category' => 'required',
+        'status' => 'required',
+        'price' => 'nullable|numeric|min:0',
         'location' => 'nullable',
         'image' => 'nullable|image|max:1000',
         'notes' => 'nullable|max:2000'
+    );
+
+    private $statuses = array(
+        'available' => 'Available',
+        'unavailable' => 'Unavailable'
     );
 
     public function __construct()
@@ -48,8 +55,9 @@ class AssetController extends Controller
         // GET /assets/new
         
         $categories = Category::pluck('name', 'id')->sort();
+        $statuses = $this->statuses;
 
-        return view('pages.assets.new', compact('categories'));
+        return view('pages.assets.new', compact('categories', 'statuses'));
     }
 
     /**
@@ -68,6 +76,8 @@ class AssetController extends Controller
 
         $asset->name = $validator['name'];
         $asset->category_id = $validator['category'];
+        $asset->status = $validator['status'];
+        $asset->price = number_format($validator['price'], 2, '.', '');
         $asset->location = $validator['location'];
         $asset->image_id = null;
         $asset->notes = $validator['notes'];
@@ -120,8 +130,9 @@ class AssetController extends Controller
         
         $asset = Asset::findOrFail($id);
         $categories = Category::pluck('name', 'id')->sort();
+        $statuses = $this->statuses;
 
-        return view('pages.assets.edit', compact('asset', 'categories'));
+        return view('pages.assets.edit', compact('asset', 'categories', 'statuses'));
     }
 
     /**
@@ -148,6 +159,8 @@ class AssetController extends Controller
         $asset->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
+            'status' => $validator['status'],
+            'price' => number_format($validator['price'], 2, '.', ''),
             'location' => $validator['location'],
             'image_id' => $image,
             'notes' => $validator['notes']

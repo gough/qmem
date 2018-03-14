@@ -17,9 +17,10 @@ class CreateAssetsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('category_id');
+            $table->string('status');
+            $table->float('price')->nullable();
             $table->string('location')->nullable();
             $table->string('image_id')->nullable();
-            $table->string('status')->nullable();
             $table->text('notes')->nullable();
             $table->integer('user_id');
             $table->timestamps();
