@@ -6,7 +6,7 @@
 	@php ($field = 'assets')
 	@php ($label = 'Assets')
 	@php ($placeholder = 'Assets')
-	@php ($value = '48-50')
+	@php ($value = null)
 	@php ($helptext = 'Specify the ID for each asset you would like to print (seperated by commas). Enter "all" to print all assets or leave blank to print none.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
@@ -28,7 +28,7 @@
 	@php ($field = 'consumables')
 	@php ($label = 'Consumables')
 	@php ($placeholder = 'Consumables')
-	@php ($value = '50-52')
+	@php ($value = null)
 	@php ($helptext = 'Specify the ID for each consumable you would like to print (seperated by commas). Enter "all" to print all consumables or leave blank to print none.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
