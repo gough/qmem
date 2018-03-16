@@ -14,7 +14,7 @@ class Controller extends BaseController
 
     protected function makeImage($image)
     {
-        $file = time() . '.png';
+        $file = time() . '.jpg';
         $path = public_path() . '/img/' . $file;
 
         Image::make($image)
