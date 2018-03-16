@@ -91,8 +91,8 @@
 									<tr>
 										<td>Consumable</td>
 										<td>
-											@if (!empty($asset->image_id))
-												<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
+											@if (!empty($consumable->image_id))
+												<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $consumable->image_id }}">
 											@else
 												<small class="text-muted">(no image)</small>
 											@endif
