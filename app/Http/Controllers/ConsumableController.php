@@ -172,7 +172,7 @@ class ConsumableController extends Controller
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was updated.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('consumables.view', $consumable->id);
+        return redirect($request->post('next'));
     }
 
     /**

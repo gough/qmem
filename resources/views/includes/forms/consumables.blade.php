@@ -1,6 +1,8 @@
 @php ($label_classes = 'col-md-2 col-form-label')
 @php ($field_classes = 'form-control')
 
+{{ Form::hidden('next', url()->previous()) }}
+
 <!-- Consumable Name -->
 <div class="form-group row">
 	@php ($field = 'name')

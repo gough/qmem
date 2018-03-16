@@ -171,7 +171,7 @@ class AssetController extends Controller
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was updated.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('assets.view', $asset->id);
+        return redirect($request->post('next'));
     }
 
     /**
