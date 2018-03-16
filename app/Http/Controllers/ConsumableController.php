@@ -18,7 +18,7 @@ class ConsumableController extends Controller
         'quantity' => 'required|numeric|min:0',
         'price' => 'nullable|numeric|min:0',
         'location' => 'nullable',
-        'image' => 'nullable|image|max:1000',
+        'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
     );
 

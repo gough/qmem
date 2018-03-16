@@ -19,7 +19,7 @@ class AssetController extends Controller
         'status' => 'required',
         'price' => 'nullable|numeric|min:0',
         'location' => 'nullable',
-        'image' => 'nullable|image|max:1000',
+        'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
     );
 
