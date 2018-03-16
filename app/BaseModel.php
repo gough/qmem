@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
-use Vinkla\Hashids\Facades\Hashids;
 
 class BaseModel extends Model
 {

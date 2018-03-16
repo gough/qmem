@@ -6,7 +6,6 @@ use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
-use Vinkla\Hashids\Facades\Hashids;
 
 class Consumable extends BaseModel
 {
