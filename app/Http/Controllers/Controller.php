@@ -19,7 +19,7 @@ class Controller extends BaseController
 
         Image::make($image)
             ->widen(2000, function ($constraint) { $constraint->upsize(); })
-            ->encode('png')
+            ->encode('jpg', 75)
             ->save($path);
 
         return $file;
