@@ -19,6 +19,7 @@ class Controller extends BaseController
 
         Image::make($image)
             ->widen(2000, function ($constraint) { $constraint->upsize(); })
+            ->orientate();
             ->encode('jpg', 75)
             ->save($path);
 
