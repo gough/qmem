@@ -18,8 +18,7 @@
         "laravel/scout": "^4.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
-        "venturecraft/revisionable": "^1.28",
-        "vinkla/hashids": "3.3.0"
+        "venturecraft/revisionable": "^1.28"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
