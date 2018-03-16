@@ -154,7 +154,7 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		@if (!empty($consumable->image_id))
-			<img class="img-fluid mb-2 p-2 border rounded" width="200" src="/img/{{ $consumable->image_id }}">
+			<img class="img-fluid mb-2 p-2 border rounded" width="200" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
 		@endif
 		{{ Form::file(
 			$field,
