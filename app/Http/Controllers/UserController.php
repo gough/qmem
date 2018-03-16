@@ -89,8 +89,7 @@ class UserController extends Controller
     {
         // GET /users/{netid}
                 
-        $id = User::where('netid', $netid)->firstOrFail()->id;
-        $user = User::findOrFail($id);
+        $user = User::where('netid', $netid)->firstOrFail();
 
         return view('pages.users.view', compact('user'));
     }
@@ -105,8 +104,7 @@ class UserController extends Controller
     {
         // GET /users/{netid}/edit
 
-        $id = User::where('netid', $netid)->firstOrFail()->id;
-        $user = User::findOrFail($id);
+        $user = User::where('netid', $netid)->firstOrFail();
 
         if ($user->netid == Auth::user()->netid)
         {
@@ -130,8 +128,7 @@ class UserController extends Controller
     {
         // POST /users/{netid}/update
         
-        $id = User::where('netid', $netid)->firstOrFail()->id;
-        $user = User::findOrFail($id);
+        $user = User::where('netid', $netid)->firstOrFail();
         
         if ($user->netid == Auth::user()->netid)
         {
@@ -171,8 +168,7 @@ class UserController extends Controller
     {
         // GET /users/{netid}/delete
 
-        $id = User::where('netid', $netid)->firstOrFail()->id;
-        $user = User::findOrFail($id);
+        $user = User::where('netid', $netid)->firstOrFail();
         
         if ($user->netid == Auth::user()->netid)
         {
@@ -192,8 +188,7 @@ class UserController extends Controller
     {
         // POST /users/{netid}/destroy
         
-        $id = User::where('netid', $netid)->firstOrFail()->id;
-        $user = User::findOrFail($id);
+        $user = User::where('netid', $netid)->firstOrFail();
         
         if ($user->netid == Auth::user()->netid)
         {
