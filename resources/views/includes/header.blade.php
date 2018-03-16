@@ -30,7 +30,7 @@
 		</ul>
 		{{ Form::open(array('method' => 'get', 'route' => array('search.index'), 'class' => 'form-inline', 'id' => 'search')) }}
 		<div class="search input-group">
-			<input type="text" name="query" id="search-input" class="my-2 my-md-0 form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" autofocus="autofocus">
+			<input type="text" name="query" id="search-input" class="my-2 my-md-0 form-control" placeholder="Search" {{ Route::currentRouteNamed('search.index') ? '' : 'autofocus="autofocus"' }}>
 			<div class="input-group-append">
 				<button type="submit" class="btn btn-outline-secondary my-2 my-md-0 form-control" >
 					<i class="fa fa-search"></i>
@@ -47,9 +47,10 @@
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">My Items</a>
 						<a class="dropdown-item" href="{{ route('user.preferences') }}">Preferences</a>
-						@if (Auth::user()->group == "admin")
+						@if (Auth::user()->group->name == 'admin')
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-danger" href="#">Administration</a>
+						<h6 class="dropdown-header text-danger">Administration</h6>
+						<a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
 						@endif
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
