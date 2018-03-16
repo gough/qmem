@@ -45,6 +45,28 @@
 	</div>
 </div>
 
+<!-- Active -->
+<div class="form-group row">
+	@php ($field = 'active')
+	@php ($label = 'Active')
+	@php ($placeholder = 'Pick an answer...')
+	@php ($value = isset($user->active) ? $user->active : 1)
+	@php ($helptext = 'Set whether the user is active or not.')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::select(
+			$field, $actives, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
 <hr>
 
 <!-- Full Name -->

@@ -10,8 +10,8 @@ class User extends Authenticatable
 {
     use Sortable;
 
-    public $fillable = ['netid', 'group_id', 'name', 'email'];
-    public $sortable = ['netid', 'group_id', 'name', 'email', 'created_at'];
+    public $fillable = ['netid', 'group_id', 'active', 'name', 'email'];
+    public $sortable = ['netid', 'group_id', 'active', 'name', 'email', 'created_at'];
 
     public function group()
     {

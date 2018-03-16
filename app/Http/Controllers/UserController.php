@@ -11,8 +11,14 @@ class UserController extends Controller
 {
     private $rules = [
         'netid' => 'required|min:3',
-        'group' => 'required'
+        'group' => 'required',
+        'active' => 'required|boolean'
     ];
+
+    private $actives = array(
+        1 => 'True',
+        0 => 'False'
+    );
 
     public function __construct()
     {
@@ -43,8 +49,9 @@ class UserController extends Controller
         // GET /users/new
         
         $groups = UserGroup::pluck('name', 'id');
+        $actives = $this->actives;
 
-        return view('pages.users.new', compact('groups'));
+        return view('pages.users.new', compact('groups', 'actives'));
     }
 
     /**
@@ -63,6 +70,7 @@ class UserController extends Controller
 
         $user->netid = $validator['netid'];
         $user->group_id = $validator['group'];
+        $user->active = $validator['active'];
         $user->save();
 
         Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was created.');
@@ -106,8 +114,9 @@ class UserController extends Controller
         }
 
         $groups = UserGroup::pluck('name', 'id');
+        $actives = $this->actives;
 
-        return view('pages.users.edit', compact('user', 'groups'));
+        return view('pages.users.edit', compact('user', 'groups', 'actives'));
     }
 
     /**
@@ -131,15 +140,25 @@ class UserController extends Controller
 
         $validator = $request->validate($this->rules);
 
+        $netidChanged = ($user->netid != $validator['netid']) ? true : false;
+
         $user->update([
             'netid' => $validator['netid'],
-            'group_id' => $validator['group']
+            'group_id' => $validator['group'],
+            'active' => $validator['active']
         ]);
 
         Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was updated.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('users.view', $user->netid);
+        if ($netidChanged)
+        {
+            return redirect()->route('users.view', $user->netid);
+        }
+        else
+        {
+            return redirect($request->post('next'));
+        }
     }
 
     /**

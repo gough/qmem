@@ -22,6 +22,7 @@
                             <tr>
                                 <th>@sortablelink('netid', 'NetID')</th>
                                 <th>@sortablelink('group', 'Group')</th>
+                                <th>@sortablelink('active', 'Active')</th>
                                 <th>@sortablelink('name', 'Name')</th>
                                 <th>@sortablelink('email', 'Email')</th>
                                 <th>@sortablelink('created_at', 'Created At')</th>
@@ -34,6 +35,7 @@
                                 <tr>
                                     <td><a href="{{ route('users.view', $user->netid) }}">{{ $user->netid }}</a></td>
                                     <td>{{ $user->group->name }}</td>
+                                    <td>{{ ($user->active) ? 'True' : 'False' }}</td>
                                     <td>{!! !empty($user->name) ? $user->name : '<span class="text-muted text-small">(not set)</span>' !!}</td>
                                     <td>{!! !empty($user->email) ? $user->email : '<span class="text-muted text-small">(not set)</span>' !!}</td>
                                     <td>{{ $user->created_at }}</td>
