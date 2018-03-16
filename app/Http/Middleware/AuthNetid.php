@@ -42,15 +42,10 @@ class AuthNetid
                 {
                     // header is present, lookup user id by searching for netid
                     $netid = $_SERVER['HTTP_QUEENSU_NETID'];
+                    $user = User::where('netid', $netid)->first();
 
-                    $id = User::where('netid', $netid)->firstOrFail()->id;
-                    $user = User::findOrFail($id);
-
-                    try
+                    if ($user !== null)                    
                     {
-                        $id = User::where('netid', $netid)->firstOrFail()->id;
-                        $user = User::findOrFail($id);
-
                         // user found, check that they are active
                         if ($user->active)
                         { 
@@ -75,7 +70,7 @@ class AuthNetid
                             return response('Forbidden (user not active)', 403)->header('Content-Type', 'text/plain');
                         }
                     }
-                    catch (ModelNotFoundException $e)
+                    else
                     {
                         // user id NOT found, return forbidden message saying as such
                         return response('Forbidden (user doesn\'t exist)', 403)->header('Content-Type', 'text/plain');
