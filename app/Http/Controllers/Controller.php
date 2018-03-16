@@ -18,7 +18,7 @@ class Controller extends BaseController
         $path = public_path() . '/img/' . $file;
 
         Image::make($image)
-            ->widen(468, function ($constraint) { $constraint->upsize(); })
+            ->widen(2000, function ($constraint) { $constraint->upsize(); })
             ->encode('png')
             ->save($path);
 

@@ -220,3 +220,7 @@ p,
 .aa-empty {
   padding: 6px 12px;
 }
+
+.fancybox-button--share {
+  display: none !important;
+}
