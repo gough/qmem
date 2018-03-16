@@ -106,6 +106,17 @@ Route::prefix('user')
 Route::prefix('users')
 	->name('users.')
 	->group(function () {
+
 	Route::get('', 'UserController@index')->name('index');
+
+	Route::get('new', 'UserController@new')->name('new');
+	Route::post('create', 'UserController@create')->name('create');
+
 	Route::get('{netid}', 'UserController@view')->name('view');
+
+	Route::get('{netid}/edit', 'UserController@edit')->name('edit');
+	Route::post('{netid}/update', 'UserController@update')->name('update');
+
+	Route::get('{netid}/delete', 'UserController@delete')->name('delete');
+	Route::post('{netid}/destroy', 'UserController@destroy')->name('destroy');
 });

@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use Session;
+use App\User, App\UserGroup;
 use Illuminate\Http\Request;
 use Auth;
 
 class UserController extends Controller
 {
+    private $rules = [
+        'netid' => 'required|min:3',
+        'group' => 'required'
+    ];
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'auth.admin']);
     }
     
     /**
@@ -22,7 +28,7 @@ class UserController extends Controller
     {
         // GET /users
         
-        $users = User::orderBy('created_at', 'desc')->paginate(50);
+        $users = User::sortable(['created_at' => 'desc'])->paginate(50);
 
         return view('pages.users.index', compact('users'));
     }
@@ -32,11 +38,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function new()
     {
         // GET /users/new
         
-        return view('pages.users.create');
+        $groups = UserGroup::pluck('name', 'id');
+
+        return view('pages.users.new', compact('groups'));
     }
 
     /**
@@ -45,17 +53,28 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        // POST /users
+        // POST /users/create
         
-        // TODO: actually store user
+        $validator = $request->validate($this->rules);
+
+        $user = new User;
+
+        $user->netid = $validator['netid'];
+        $user->group_id = $validator['group'];
+        $user->save();
+
+        Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was created.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect()->route('users.view', $user->netid);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\user  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function view($netid)
@@ -71,43 +90,75 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\user  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($netid)
     {
-        // GET /users/{id}/edit
-        
-        $user = ''; // TODO: actually load user
+        // GET /users/{netid}/edit
 
-        return view('pages.users.edit', compact('user'));
+        $id = User::where('netid', $netid)->firstOrFail()->id;
+        $user = User::findOrFail($id);
+
+        if ($user->netid == Auth::user()->netid)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+
+        $groups = UserGroup::pluck('name', 'id');
+
+        return view('pages.users.edit', compact('user', 'groups'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\user  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, $netid)
     {
-        // POST /users/{id}
+        // POST /users/{netid}/update
         
-        // TODO: actually update user
+        $id = User::where('netid', $netid)->firstOrFail()->id;
+        $user = User::findOrFail($id);
+        
+        if ($user->netid == Auth::user()->netid)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+
+        $validator = $request->validate($this->rules);
+
+        $user->update([
+            'netid' => $validator['netid'],
+            'group_id' => $validator['group']
+        ]);
+
+        Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was updated.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect()->route('users.view', $user->netid);
     }
 
     /**
      * Show the form for deleting the specified resource.
      *
-     * @param  \App\user  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function delete(User $user)
+    public function delete($netid)
     {
-        // GET /users/{id}/delete
+        // GET /users/{netid}/delete
 
-        $user = ''; // TODO: actually load user
+        $id = User::where('netid', $netid)->firstOrFail()->id;
+        $user = User::findOrFail($id);
+        
+        if ($user->netid == Auth::user()->netid)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
 
         return view('pages.users.delete', compact('user'));        
     }
@@ -115,14 +166,27 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\user  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, $netid)
     {
-        // POST /users/{id}
+        // POST /users/{netid}/destroy
         
-        // TODO: actually destory user
+        $id = User::where('netid', $netid)->firstOrFail()->id;
+        $user = User::findOrFail($id);
+        
+        if ($user->netid == Auth::user()->netid)
+        {
+            return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
+        }
+
+        User::destroy($id);
+
+        Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was destoryed.');
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect($request->post('next'));
     }
 }
 

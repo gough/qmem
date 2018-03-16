@@ -20,10 +20,10 @@ class UsersTableSeeder extends Seeder
         // (when netid system is unavailable)
         $user = new User;
         $user->netid = '12ab34';
-        $user->group = 'admin';
+        $user->group_id = 1;
         $user->name = 'Test User';
         $user->email = 'test.user@example.com';
-        $user->active = True;
+        $user->active = true;
         $user->save();
 
         $infos = [
@@ -37,20 +37,20 @@ class UsersTableSeeder extends Seeder
         foreach ($infos as $info) {
             $user = new User;
             $user->netid = $info[0];
-            $user->group = 'admin';
+            $user->group_id = 1;
+            $user->active = true;
             $user->name = $info[1];
             $user->email = '';
-            $user->active = True;
             $user->save();
         }
 
         for ($i = 1; $i < 7; $i++) {
             $user = new User;
             $user->netid = mt_rand(100000,999999);
-            $user->group = 'user';
+            $user->group_id = 2;
+            $user->active = true;
             $user->name = $faker->firstName . ' ' . $faker->lastName;
             $user->email = $faker->email;
-            $user->active = True;
             $user->save();
         }
     }
