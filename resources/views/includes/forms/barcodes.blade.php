@@ -47,13 +47,12 @@
 
 <hr>
 
-<!-- Consumables -->
 <div class="form-group row">
 	@php ($field = 'paper_size')
 	@php ($label = 'Paper Size')
 	@php ($placeholder = 'Pick a size...')
 	@php ($value = 'label')
-	@php ($helptext = 'Specify the ID for each consumable you would like to print (seperated by commas). Enter "all" to print all consumables or leave blank to print none.')
+	@php ($helptext = 'Specify the paper size you want to print to.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -68,6 +67,8 @@
 		</small>
 	</div>
 </div>
+
+<hr>
 
 <div class="form-group row">
 	<div class="offset-md-2 col-md-10">

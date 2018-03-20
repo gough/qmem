@@ -17,13 +17,15 @@
 			<div class="card">
 				<div class="card-body">
 					@include('includes.pagination', ['items' => $assets])
-					<table class="table table-bordered table-hover table-responsive-md">
+					<table class="table table-bordered table-hover table-responsive-lg">
 						<thead class="thead-default">
 							<tr>
-								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
 								<th>@sortablelink('category', 'Category')</th>
-								<th>@sortablelink('created_at', 'Created At')</th>
+								<th>@sortablelink('serial_number', 'Serial Number')</th>
+								<th>@sortablelink('status', 'Status')</th>
+								<th>@sortablelink('location', 'Location')</th>
+								<th>@sortablelink('price', 'Price')</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -31,10 +33,12 @@
 							@if ($assets->count() > 0)
 								@foreach ($assets as $asset)
 									<tr>
-										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
 										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
 										<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
-										<td>{{ $asset->created_at }}</td>
+										<td>{{ $asset->serial_number }}</td>
+										<td>{{ $asset->status->name }}</td>
+										<td>{{ $asset->location }}</td>
+										<td>{{ $asset->price }}</td>
 										<td>
 											<a href="{{ route('assets.edit', $asset->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
 											<a href="{{ route('assets.delete', $asset->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>

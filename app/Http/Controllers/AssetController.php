@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Asset, App\Category, App\User;
+use App\Asset, App\Category, App\Status;
 
 use App;
 use Session;
@@ -17,15 +17,14 @@ class AssetController extends Controller
         'name' => 'required|min:2|max:255',
         'category' => 'required',
         'status' => 'required',
-        'price' => 'nullable|numeric|min:0',
+
+        'serial_number' => 'nullable',
+        'catalog_number' => 'nullable',
+        'custom_number' => 'nullable',
         'location' => 'nullable',
+        'price' => 'nullable|numeric|min:0',
         'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
-    );
-
-    private $statuses = array(
-        'available' => 'Available',
-        'unavailable' => 'Unavailable'
     );
 
     public function __construct()
@@ -57,7 +56,7 @@ class AssetController extends Controller
         // GET /assets/new
         
         $categories = Category::pluck('name', 'id')->sort();
-        $statuses = $this->statuses;
+        $statuses = Status::pluck('name', 'id')->sort();
 
         return view('pages.assets.new', compact('categories', 'statuses'));
     }
@@ -79,8 +78,12 @@ class AssetController extends Controller
         $asset->name = $validator['name'];
         $asset->category_id = $validator['category'];
         $asset->status = $validator['status'];
-        $asset->price = number_format($validator['price'], 2, '.', '');
+
+        $asset->serial_number = $validator['serial_number'];
+        $asset->catalog_number = $validator['catalog_number'];
+        $asset->custom_number = $validator['custom_number'];
         $asset->location = $validator['location'];
+        $asset->price = $validator['price'];
         $asset->image_id = null;
         $asset->notes = $validator['notes'];
 
@@ -89,7 +92,6 @@ class AssetController extends Controller
             $asset->image_id = $this->makeImage($validator['image']);
         }
 
-        $asset->user_id = Auth::user()->id;
         $asset->save();
 
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was created.');
@@ -132,7 +134,7 @@ class AssetController extends Controller
         
         $asset = Asset::findOrFail($id);
         $categories = Category::pluck('name', 'id')->sort();
-        $statuses = $this->statuses;
+        $statuses = Status::pluck('name', 'id')->sort();
 
         return view('pages.assets.edit', compact('asset', 'categories', 'statuses'));
     }
@@ -162,8 +164,12 @@ class AssetController extends Controller
             'name' => $validator['name'],
             'category_id' => $validator['category'],
             'status' => $validator['status'],
-            'price' => number_format($validator['price'], 2, '.', ''),
+
+            'serial_number' => $validator['serial_number'],
+            'catalog_number' => $validator['catalog_number'],
+            'custom_number' => $validator['custom_number'],
             'location' => $validator['location'],
+            'price' => $validator['price'],
             'image_id' => $image,
             'notes' => $validator['notes']
         ]);

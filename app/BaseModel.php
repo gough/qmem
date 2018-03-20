@@ -28,6 +28,11 @@ class BaseModel extends Model
         return $id_hash;
     }
 
+    public function getPriceAttribute($price)
+    {
+        return number_format($price, 2, '.', '');
+    }
+
     public function getCreatedAtAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d h:i:s A');

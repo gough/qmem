@@ -14,16 +14,25 @@ class CreateConsumablesTable extends Migration
     public function up()
     {
         Schema::create('consumables', function (Blueprint $table) {
+            // internal
             $table->increments('id');
+
+            // required
             $table->string('name');
             $table->string('category_id');
             $table->integer('quantity');
-            $table->string('status');
-            $table->float('price')->nullable();
+
+            // optional
+            $table->integer('minimum_quantity')->nullable();
+            $table->string('item_number')->nullable();
+            $table->string('catalog_number')->nullable();
+            $table->string('custom_number')->nullable();
             $table->string('location')->nullable();
+            $table->float('price')->nullable();
             $table->string('image_id')->nullable();
             $table->text('notes')->nullable();
-            $table->integer('user_id');
+
+            // internal
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@
 	@php ($label = 'Asset Name')
 	@php ($placeholder = 'Asset Name')
 	@php ($value = isset($asset->name) ? $asset->name : null)
-	@php ($helptext = 'Enter a unique name for the asset.')
+	@php ($helptext = 'Enter a unique name for this asset.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -31,7 +31,7 @@
 	@php ($label = 'Category')
 	@php ($placeholder = 'Pick a category...')
 	@php ($value = isset($asset->category_id) ? $asset->category_id : 1)
-	@php ($helptext = 'Pick a category for the asset.')
+	@php ($helptext = 'Pick a category for this asset.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -52,8 +52,8 @@
 	@php ($field = 'status')
 	@php ($label = 'Status')
 	@php ($placeholder = 'Pick a status...')
-	@php ($value = isset($asset->status) ? $asset->status : 'available')
-	@php ($helptext = 'Set the status of this asset.')
+	@php ($value = isset($asset->status_id) ? $asset->status_id : 1)
+	@php ($helptext = 'Pick a status for this asset.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -70,6 +70,87 @@
 </div>
 
 <hr>
+
+<!-- Indentifiers -->
+<div class="form-group row">
+	@php ($field = 'identifiers')
+	@php ($label = 'Identifiers')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+
+	@php ($field = 'serial_number')
+	@php ($placeholder = 'Serial Number')
+	@php ($value = isset($asset->serial_number) ? $asset->serial_number : null)
+	@php ($helptext = 'Enter the serial number for this asset.')
+
+	<div class="col-md-4">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+
+	@php ($field = 'catalog_number')
+	@php ($placeholder = 'Catalog Number')
+	@php ($value = isset($asset->catalog_number) ? $asset->catalog_number : null)
+	@php ($helptext = 'Enter the catalog number.')
+
+	<div class="col-md-3 mt-3 mt-md-0">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+
+	@php ($field = 'custom_number')
+	@php ($placeholder = 'Custom Number')
+	@php ($value = isset($asset->custom_number) ? $asset->custom_number : null)
+	@php ($helptext = 'Enter any other indentifing number.')
+
+	<div class="col-md-3 mt-3 mt-md-0">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
+<!-- Location -->
+<div class="form-group row">
+	@php ($field = 'location')
+	@php ($label = 'Location')
+	@php ($placeholder = 'Location')
+	@php ($value = isset($asset->location) ? $asset->location : null)
+	@php ($helptext = 'Enter the location where the asset can be found.')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
 
 <!-- Price -->
 <div class="form-group row">
@@ -92,29 +173,6 @@
 				'step' => '0.01']
 			) }}
 		</div>
-
-		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
-			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
-		</small>
-	</div>
-</div>
-
-
-<!-- Location -->
-<div class="form-group row">
-	@php ($field = 'location')
-	@php ($label = 'Location')
-	@php ($placeholder = 'Location')
-	@php ($value = isset($asset->location) ? $asset->location : null)
-	@php ($helptext = 'Enter the location where the asset can be found.')
-
-	{{ Form::label($field, $label, ['class' => $label_classes]) }}
-	<div class="col-md-10">
-		{{ Form::text(
-			$field, $value,
-			['placeholder' => $placeholder,
-			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
-		) }}
 
 		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
 			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
@@ -146,8 +204,6 @@
 		</small>
 	</div>
 </div>
-
-<hr>
 
 <div class="form-group row">
 	@php ($field = 'notes')

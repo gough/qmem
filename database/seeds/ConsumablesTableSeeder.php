@@ -19,10 +19,16 @@ class ConsumablesTableSeeder extends Seeder
 
             $consumable->name = $faker->catchPhrase;
             $consumable->category_id = Category::all()->random()->id;
-            $consumable->status = 'available';
-            $consumable->quantity = mt_rand(0, 100);
-            $consumable->price = mt_rand(1, 10000) / 100;
-            $consumable->user_id = User::where('active', True)->where('name', '<>', '')->get()->random()->id;
+            $consumable->quantity = $faker->numberBetween(0, 500);
+
+            $consumable->minimum_quantity = $faker->numberBetween(0, 100);
+            $consumable->item_number = $faker->numberBetween(111111111, 999999999999);
+            $consumable->catalog_number = $faker->numberBetween(111111, 999999999);
+            $consumable->custom_number = $faker->numberBetween(111, 999999);
+            $consumable->location = $faker->state();
+            $consumable->price = $faker->randomFloat(2, 0, 100000);
+            $consumable->image_id = null;
+            $consumable->notes = $faker->paragraphs(4, true);
 
             $consumable->save();
         }

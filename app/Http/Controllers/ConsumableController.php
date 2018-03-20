@@ -14,17 +14,16 @@ class ConsumableController extends Controller
     private $rules = array(
         'name' => 'required|min:2|max:255',
         'category' => 'required',
-        'status' => 'required',
         'quantity' => 'required|numeric|min:0',
-        'price' => 'nullable|numeric|min:0',
+
+        'minimum_quantity' => 'nullable|numeric|min:0',
+        'item_number' => 'nullable',
+        'catalog_number' => 'nullable',
+        'custom_number' => 'nullable',
         'location' => 'nullable',
+        'price' => 'nullable|numeric|min:0',
         'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
-    );
-
-    private $statuses = array(
-        'available' => 'Available',
-        'unavailable' => 'Unavailable'
     );
 
     public function __construct()
@@ -56,7 +55,6 @@ class ConsumableController extends Controller
         // GET /consumables/new
         
         $categories = Category::pluck('name', 'id')->sort();
-        $statuses = $this->statuses;
 
         return view('pages.consumables.new', compact('categories', 'statuses'));
     }
@@ -77,10 +75,14 @@ class ConsumableController extends Controller
 
         $consumable->name = $validator['name'];
         $consumable->category_id = $validator['category'];
-        $consumable->status = $validator['status'];
         $consumable->quantity = $validator['quantity'];
-        $consumable->price = number_format($validator['price'], 2, '.', '');
+
+        $conusmable->minimum_quantity = $validator['minimum_quantity'];
+        $consumable->item_number = $validator['item_number'];
+        $consumable->catalog_number = $validator['catalog_number'];
+        $consumable->custom_number = $validator['custom_number'];
         $consumable->location = $validator['location'];
+        $consumable->price = $validator['price'];
         $consumable->image_id = null;
         $consumable->notes = $validator['notes'];
 
@@ -132,7 +134,6 @@ class ConsumableController extends Controller
         
         $consumable = Consumable::findOrFail($id);
         $categories = Category::pluck('name', 'id')->sort();
-        $statuses = $this->statuses;
 
         return view('pages.consumables.edit', compact('consumable', 'categories', 'statuses'));
     }
@@ -161,10 +162,14 @@ class ConsumableController extends Controller
         $consumable->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
-            'status' => $validator['status'],
             'quantity' => $validator['quantity'],
-            'price' => number_format($validator['price'], 2, '.', ''),
+
+            'minimum_quantity' => $validator['minimum_quantity'],
+            'item_number' => $validator['item_number'],
+            'catalog_number' => $validator['catalog_number'],
+            'custom_number' => $validator['custom_number'],
             'location' => $validator['location'],
+            'price' => $validator['price'],
             'image_id' => $image,
             'notes' => $validator['notes']
         ]);

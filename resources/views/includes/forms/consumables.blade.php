@@ -9,7 +9,7 @@
 	@php ($label = 'Consumable Name')
 	@php ($placeholder = 'Consumable Name')
 	@php ($value = isset($consumable->name) ? $consumable->name : null)
-	@php ($helptext = 'Enter a unique name for the consumable.')
+	@php ($helptext = 'Enter a unique name for this consumable.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -31,34 +31,12 @@
 	@php ($label = 'Category')
 	@php ($placeholder = 'Pick a category...')
 	@php ($value = isset($consumable->category_id) ? $consumable->category_id : 1)
-	@php ($helptext = 'Pick a category for the consumable.')
+	@php ($helptext = 'Pick a category for this consumable.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		{{ Form::select(
 			$field, $categories, $value,
-			['placeholder' => $placeholder,
-			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
-		) }}
-
-		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
-			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
-		</small>
-	</div>
-</div>
-
-<!-- Status -->
-<div class="form-group row">
-	@php ($field = 'status')
-	@php ($label = 'Status')
-	@php ($placeholder = 'Pick a status...')
-	@php ($value = isset($consumable->status) ? $consumable->status : 'available')
-	@php ($helptext = 'Set the status of this consumable.')
-
-	{{ Form::label($field, $label, ['class' => $label_classes]) }}
-	<div class="col-md-10">
-		{{ Form::select(
-			$field, $statuses, $value, 
 			['placeholder' => $placeholder,
 			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
 		) }}
@@ -75,10 +53,28 @@
 	@php ($label = 'Quantity')
 	@php ($placeholder = 'Quantity')
 	@php ($value = isset($consumable->quantity) ? $consumable->quantity : null)
-	@php ($helptext = 'Enter the initial amount of this consumable. This can be changed after creation.')
+	@php ($helptext = 'Enter the amount of this consumable.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
-	<div class="col-md-10">
+	
+	<div class="col-md-5">
+		{{ Form::number(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+
+	@php ($field = 'minimum_quantity')
+	@php ($placeholder = 'Minimum Quantity')
+	@php ($value = isset($consumable->minimum_quantity) ? $consumable->minimum_quantity : null)
+	@php ($helptext = 'Enter the minimum allowable amount of this consumable.')
+
+	<div class="col-md-5 mt-3 mt-md-0">
 		{{ Form::number(
 			$field, $value,
 			['placeholder' => $placeholder,
@@ -93,13 +89,94 @@
 
 <hr>
 
+<!-- Location -->
+<div class="form-group row">
+	@php ($field = 'identifiers')
+	@php ($label = 'Identifiers')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+
+	@php ($field = 'item_number')
+	@php ($placeholder = 'Item Number')
+	@php ($value = isset($consumable->item_number) ? $consumable->item_number : null)
+	@php ($helptext = 'Enter the item number for this consumable.')
+
+	<div class="col-md-4">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+
+	@php ($field = 'catalog_number')
+	@php ($placeholder = 'Catalog Number')
+	@php ($value = isset($consumable->catalog_number) ? $consumable->catalog_number : null)
+	@php ($helptext = 'Enter the catalog number.')
+
+	<div class="col-md-3 mt-3 mt-md-0">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+
+	@php ($field = 'custom_number')
+	@php ($placeholder = 'Custom Number')
+	@php ($value = isset($consumable->custom_number) ? $consumable->custom_number : null)
+	@php ($helptext = 'Enter any other indentifing number.')
+
+	<div class="col-md-3 mt-3 mt-md-0">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
+<!-- Location -->
+<div class="form-group row">
+	@php ($field = 'location')
+	@php ($label = 'Location')
+	@php ($placeholder = 'Location')
+	@php ($value = isset($consumable->location) ? $consumable->location : null)
+	@php ($helptext = 'Enter the location where this consumable can be found.')
+
+	{{ Form::label($field, $label, ['class' => $label_classes]) }}
+	<div class="col-md-10">
+		{{ Form::text(
+			$field, $value,
+			['placeholder' => $placeholder,
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+		) }}
+
+		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
+		</small>
+	</div>
+</div>
+
 <!-- Price -->
 <div class="form-group row">
 	@php ($field = 'price')
 	@php ($label = 'Price')
 	@php ($placeholder = 'Price')
 	@php ($value = isset($consumable->price) ? $consumable->price : null)
-	@php ($helptext = 'Enter the price of the consumable.')
+	@php ($helptext = 'Enter the price of this consumable.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -121,35 +198,13 @@
 	</div>
 </div>
 
-<!-- Location -->
-<div class="form-group row">
-	@php ($field = 'location')
-	@php ($label = 'Location')
-	@php ($placeholder = 'Location')
-	@php ($value = isset($consumable->location) ? $consumable->location : null)
-	@php ($helptext = 'Enter the location where the consumable can be found.')
-
-	{{ Form::label($field, $label, ['class' => $label_classes]) }}
-	<div class="col-md-10">
-		{{ Form::text(
-			$field, $value,
-			['placeholder' => $placeholder,
-			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
-		) }}
-
-		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
-			{{ $errors->first($field) ? $errors->first($field) : $helptext }}
-		</small>
-	</div>
-</div>
-
 <!-- Image -->
 <div class="form-group row">
 	@php ($field = 'image')
 	@php ($label = 'Image')
 	@php ($placeholder = 'Image')
 	@php ($value = isset($consumable->image_id) ? $consumable->image_id : null)
-	@php ($helptext = 'Upload an image that best represents the consumable. If an image already exists, uploading will overwrite the existing one.')
+	@php ($helptext = 'Upload an image that best represents this consumable. If an image already exists, uploading will overwrite the existing one.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
@@ -167,8 +222,6 @@
 		</small>
 	</div>
 </div>
-
-<hr>
 
 <div class="form-group row">
 	@php ($field = 'notes')

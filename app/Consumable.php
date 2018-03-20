@@ -15,13 +15,32 @@ class Consumable extends BaseModel
 
     protected $revisionCreationsEnabled = true;
 
-    public $fillable = ['name', 'category_id', 'status', 'quantity', 'price', 'location', 'image_id', 'notes'];
-    public $sortable = ['id', 'name', 'category', 'quantity','price', 'user', 'created_at'];
+    public $fillable = [
+        'name',
+        'category_id',
+        'quantity',
+        'minimum_quantity',
+        'item_number',
+        'catalog_number',
+        'custom_number',
+        'location',
+        'price',
+        'image_id',
+        'notes'
+    ];
 
-    public function user()
-    {
-    	return $this->belongsTo('\App\User');
-    }
+    public $sortable = [
+        'name',
+        'category',
+        'quantity',
+        'minimum_quantity',
+        'item_number',
+        'catalog_number',
+        'custom_number',
+        'location',
+        'price',
+        'notes'
+    ];
 
     public function category()
     {
@@ -33,13 +52,6 @@ class Consumable extends BaseModel
         return $query->join('categories', 'consumables.category_id', '=', 'categories.id')
                     ->select('categories.name as category_name', 'consumables.*')
                     ->orderBy('category_name', $direction);
-    }
-
-    public function userSortable($query, $direction)
-    {
-    	return $query->join('users', 'consumables.user_id', '=', 'users.id')
-    				->select('users.name as user_name', 'consumables.*')
-    				->orderBy('user_name', $direction);
     }
 
     public function toSearchableArray()

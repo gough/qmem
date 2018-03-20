@@ -33,27 +33,35 @@
 							</tr>
 							<tr>
 								<td><strong>Category</strong></td>
-								<td><a href="{{ route('categories.view', $consumable->category_id) }}">{{ $consumable->category->name }}</a></td>
-							</tr>
-							<tr>
-								<td><strong>Status</strong></td>
-								<td>{{ ucfirst($consumable->status) }}</td>
+								<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
 							</tr>
 							<tr>
 								<td><strong>Quantity</strong></td>
-								<td>{{ $consumable->quantity }}</td>
+								<td>{{ $consumable->quantity }} (minimum: {{ $consumable->minimum_quantity }})</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>Item Number</strong></td>
+								<td style="width: 75%">{{ $consumable->item_number }}</td>
+							</tr>
+							<tr>
+								<td><strong>Catalog Number</strong></td>
+								<td>{{ $consumable->catalog_number }}</td>
+							</tr>
+							<tr>
+								<td><strong>Custom Number</strong></td>
+								<td>{{ $consumable->custom_number }}</td>
+							</tr>
+							<tr>
+								<td><strong>Location</strong></td>
+								<td>{{ $consumable->location }}</td>
 							</tr>
 							<tr>
 								<td><strong>Price</strong></td>
-								<td>${{ number_format($consumable->price, 2, '.', '') }}</td>
-							</tr>
-							<tr>
-								<td><strong>Created At</strong></td>
-								<td>{{ $consumable->created_at }}</td>
-							</tr>
-							<tr>
-								<td><strong>Updated At</strong></td>
-								<td>{{ $consumable->updated_at }}</td>
+								<td>{{ $consumable->price }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -107,6 +115,16 @@
 				</div>
 				<div class="card-body">
 					@include('includes.revisions', ['revisions' => $consumable->revisionHistory->reverse()])
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 20%"><strong>Created At</strong></td>
+								<td style="width: 30%">{{ $consumable->created_at }}</td>
+								<td style="width: 20%"><strong>Updated At</strong></td>
+								<td style="width: 30%">{{ $consumable->created_at }}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
