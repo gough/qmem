@@ -77,7 +77,7 @@ class AssetController extends Controller
 
         $asset->name = $validator['name'];
         $asset->category_id = $validator['category'];
-        $asset->status = $validator['status'];
+        $asset->status_id = $validator['status'];
 
         $asset->serial_number = $validator['serial_number'];
         $asset->catalog_number = $validator['catalog_number'];
@@ -163,7 +163,7 @@ class AssetController extends Controller
         $asset->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
-            'status' => $validator['status'],
+            'status_id' => $validator['status'],
 
             'serial_number' => $validator['serial_number'],
             'catalog_number' => $validator['catalog_number'],
