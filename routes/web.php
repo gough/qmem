@@ -26,6 +26,14 @@ Route::prefix('barcodes')
 	Route::post('generate', 'BarcodeController@generate')->name('generate');
 });
 
+Route::prefix('export')
+	->name('export.')
+	->group(function () {
+
+	Route::get('', 'ExportController@index')->name('index');
+	Route::post('download', 'ExportController@download')->name('download');
+});
+
 Route::prefix('search')
 	->name('search.')
 	->group(function () {

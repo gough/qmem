@@ -25,6 +25,7 @@
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{{ route('reports.index') }}">Reports</a>
 					<a class="dropdown-item" href="{{ route('barcodes.index') }}">Generate Barcodes</a>
+					<a class="dropdown-item" href="{{ route('export.index') }}">Export Data</a>
 				</div>
 			</li>
 		</ul>
