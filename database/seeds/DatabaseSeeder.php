@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         // categories must be created before assets can be assigned them
         $this->call(CategoriesTableSeeder::class);
 
+        // statuses must also be created before assets can be assigned them
+        $this->call(StatusesTableSeeder::class);
+
         $this->call(AssetsTableSeeder::class);
         $this->call(ConsumablesTableSeeder::class);    
     }

@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use DB;
+use Auth;
+use \App\User;
 
 class AuthAdmin
 {
@@ -16,13 +17,20 @@ class AuthAdmin
      */
     public function handle($request, Closure $next)
     {
-        $netid = $_SERVER['HTTP_QUEENSU_NETID'];
-        $netidGroup = DB::table('users')->where('netid', $netid)->value('group');
-
-        if ($netidGroup != 'admin') {
-            return response('Forbidden (not admin)', 403)->header('Content-Type', 'text/plain');
+        if (Auth::check())
+        {
+            if (Auth::user()->group->name == 'admin')
+            {
+                return $next($request);
+            }
+            else
+            {
+                return response('Not Allowed (not admin)', 405)->header('Content-Type', 'text/plain');
+            }
         }
-
-        return $next($request);
+        else
+        {
+            return response('Forbidden (not authenticated)', 403)->header('Content-Type', 'text/plain');
+        }
     }
 }

@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Asset, App\Category, App\User;
+use App\Asset, App\Category, App\Status;
 
+use App;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
 
 class AssetController extends Controller
 {
     private $rules = array(
         'name' => 'required|min:2|max:255',
         'category' => 'required',
+        'status' => 'required',
+
+        'serial_number' => 'nullable',
+        'catalog_number' => 'nullable',
+        'custom_number' => 'nullable',
         'location' => 'nullable',
-        'image' => 'nullable|image|max:1000',
+        'price' => 'nullable|numeric|min:0',
+        'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
     );
 
@@ -48,8 +56,9 @@ class AssetController extends Controller
         // GET /assets/new
         
         $categories = Category::pluck('name', 'id')->sort();
+        $statuses = Status::pluck('name', 'id')->sort();
 
-        return view('pages.assets.new', compact('categories'));
+        return view('pages.assets.new', compact('categories', 'statuses'));
     }
 
     /**
@@ -68,7 +77,13 @@ class AssetController extends Controller
 
         $asset->name = $validator['name'];
         $asset->category_id = $validator['category'];
+        $asset->status = $validator['status'];
+
+        $asset->serial_number = $validator['serial_number'];
+        $asset->catalog_number = $validator['catalog_number'];
+        $asset->custom_number = $validator['custom_number'];
         $asset->location = $validator['location'];
+        $asset->price = $validator['price'];
         $asset->image_id = null;
         $asset->notes = $validator['notes'];
 
@@ -77,7 +92,6 @@ class AssetController extends Controller
             $asset->image_id = $this->makeImage($validator['image']);
         }
 
-        $asset->user_id = Auth::user()->id;
         $asset->save();
 
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was created.');
@@ -120,8 +134,9 @@ class AssetController extends Controller
         
         $asset = Asset::findOrFail($id);
         $categories = Category::pluck('name', 'id')->sort();
+        $statuses = Status::pluck('name', 'id')->sort();
 
-        return view('pages.assets.edit', compact('asset', 'categories'));
+        return view('pages.assets.edit', compact('asset', 'categories', 'statuses'));
     }
 
     /**
@@ -148,7 +163,13 @@ class AssetController extends Controller
         $asset->update([
             'name' => $validator['name'],
             'category_id' => $validator['category'],
+            'status' => $validator['status'],
+
+            'serial_number' => $validator['serial_number'],
+            'catalog_number' => $validator['catalog_number'],
+            'custom_number' => $validator['custom_number'],
             'location' => $validator['location'],
+            'price' => $validator['price'],
             'image_id' => $image,
             'notes' => $validator['notes']
         ]);
@@ -156,7 +177,7 @@ class AssetController extends Controller
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was updated.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('assets.view', $asset->id);
+        return redirect($request->post('next'));
     }
 
     /**

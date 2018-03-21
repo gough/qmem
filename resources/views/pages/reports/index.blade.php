@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.no-fluid')
 @section('content')
 
 	<form action = "{{route('reports.create')}}" method="post" id="report_check">

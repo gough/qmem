@@ -71,6 +71,10 @@ p,
 	margin-top: 1rem;
 }
 
+.notes p {
+	margin-top: 0 !important;
+}
+
 #actionsMonth,
 #actionsYear {
 	display: none;
@@ -215,4 +219,8 @@ p,
 
 .aa-empty {
   padding: 6px 12px;
+}
+
+.fancybox-button--share {
+  display: none !important;
 }

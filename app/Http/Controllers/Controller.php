@@ -14,12 +14,13 @@ class Controller extends BaseController
 
     protected function makeImage($image)
     {
-        $file = time() . '.png';
+        $file = time() . '.jpg';
         $path = public_path() . '/img/' . $file;
 
         Image::make($image)
-            ->widen(468, function ($constraint) { $constraint->upsize(); })
-            ->encode('png')
+            ->widen(2000, function ($constraint) { $constraint->upsize(); })
+            ->orientate()
+            ->encode('jpg', 75)
             ->save($path);
 
         return $file;

@@ -33,15 +33,35 @@
 							</tr>
 							<tr>
 								<td><strong>Category</strong></td>
-								<td><a href="{{ route('categories.view', $asset->category_id) }}">{{ $asset->category->name }}</a></td>
+								<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
 							</tr>
 							<tr>
-								<td><strong>Created At</strong></td>
-								<td>{{ $asset->created_at }}</td>
+								<td><strong>Status</strong></td>
+								<td>{{ $asset->status->name }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>Serial Number</strong></td>
+								<td style="width: 75%">{{ $asset->serial_number }}</td>
 							</tr>
 							<tr>
-								<td><strong>Updated At</strong></td>
-								<td>{{ $asset->updated_at }}</td>
+								<td><strong>Catalog Number</strong></td>
+								<td>{{ $asset->catalog_number }}</td>
+							</tr>
+							<tr>
+								<td><strong>Custom Number</strong></td>
+								<td>{{ $asset->custom_number }}</td>
+							</tr>
+							<tr>
+								<td><strong>Location</strong></td>
+								<td>{{ $asset->location }}</td>
+							</tr>
+							<tr>
+								<td><strong>Price</strong></td>
+								<td>{{ $asset->price }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -53,7 +73,7 @@
 						Notes
 					</span>
 				</div>
-				<div class="card-body">
+				<div class="card-body notes">
 					@if (!empty($asset->notes))
 						{!! Markdown::convertToHtml($asset->notes) !!}
 					@else
@@ -69,7 +89,9 @@
 				</div>
 				<div class="card-body text-center{{ !empty($asset->image_id) ? '' : ' my-4' }}">
 					@if (!empty($asset->image_id))
-						<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
+						<a data-fancybox="gallery" href="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
+							<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
+						</a>
 					@else
 						<span class="text-muted">(no image)</span>
 					@endif
@@ -93,6 +115,16 @@
 				</div>
 				<div class="card-body">
 					@include('includes.revisions', ['revisions' => $asset->revisionHistory->reverse()])
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 20%"><strong>Created At</strong></td>
+								<td style="width: 30%">{{ $asset->created_at }}</td>
+								<td style="width: 20%"><strong>Updated At</strong></td>
+								<td style="width: 30%">{{ $asset->created_at }}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

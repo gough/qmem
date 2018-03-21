@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use DB;
 use Auth;
 use \App\User;
 
@@ -42,42 +41,25 @@ class AuthNetid
                 if (isset($_SERVER['HTTP_QUEENSU_NETID']))
                 {
                     // header is present, lookup user id by searching for netid
-                    $user_id = DB::table('users')->where('netid', $_SERVER['HTTP_QUEENSU_NETID'])->select('id')->get();
+                    $netid = $_SERVER['HTTP_QUEENSU_NETID'];
+                    $user = User::where('netid', $netid)->first();
 
-                    // if user id has been found from netid and user isn't disabled
-                    if ($user_id->count() == 1)
+                    if ($user !== null)                    
                     {
                         // user found, check that they are active
-                        if (User::find($user_id->first()->id)->active)
+                        if ($user->active)
                         { 
                             // user is active, so authenticate to our application using this id (not netid)
-                            Auth::loginUsingId($user_id->first()->id);
-                            $user = Auth::user();
+                            Auth::loginUsingId($user->id);
 
                             // check if additional user information is present in server headers
                             if (isset($_SERVER['HTTP_COMMON_NAME']) && isset($_SERVER['HTTP_QUEENSU_MAIL']))
                             {
-                                // additional information is available, so check if we need to update our records
-                                // by default we assume nothing has changed
-                                $changed = False;
-
-                                if ($user->name != $_SERVER['HTTP_COMMON_NAME'])
-                                {
-                                    $user->name = $_SERVER['HTTP_COMMON_NAME'];
-                                    $changed = True;
-                                }
-
-                                if ($user->email != $_SERVER['HTTP_QUEENSU_MAIL'])
-                                {
-                                    $user->email = $_SERVER['HTTP_QUEENSU_MAIL'];   
-                                    $changed = True;
-                                }
-
-                                // if we've changed any information, save it back to the database
-                                if ($changed)
-                                {
-                                    $user->save();
-                                }                          
+                                // additional information is available, so update our records
+                                $user->update([
+                                    'name' => $_SERVER['HTTP_COMMON_NAME'],
+                                    'email' => $_SERVER['HTTP_QUEENSU_MAIL']
+                                ]);                         
                             }                    
                             
                             // finally, continue to next page
@@ -91,7 +73,7 @@ class AuthNetid
                     else
                     {
                         // user id NOT found, return forbidden message saying as such
-                        return response('Forbidden (user not found)', 403)->header('Content-Type', 'text/plain');
+                        return response('Forbidden (user doesn\'t exist)', 403)->header('Content-Type', 'text/plain');
                     }
                 }
                 else {

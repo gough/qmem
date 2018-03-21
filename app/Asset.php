@@ -6,7 +6,6 @@ use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use \Venturecraft\Revisionable\RevisionableTrait;
 use Kyslik\ColumnSortable\Sortable;
-use Vinkla\Hashids\Facades\Hashids;
 
 class Asset extends BaseModel
 {
@@ -16,17 +15,39 @@ class Asset extends BaseModel
 
     protected $revisionCreationsEnabled = true;
 
-    public $fillable = ['name', 'category_id', 'location', 'image_id', 'notes'];
-    public $sortable = ['id', 'name', 'category', 'user', 'created_at'];
+    public $fillable = [
+        'name',
+        'category_id',
+        'status_id',
+        'serial_number',
+        'catalog_number',
+        'custom_number',
+        'location',
+        'price',
+        'image_id',
+        'notes'
+    ];
 
-    public function user()
-    {
-    	return $this->belongsTo('\App\User');
-    }
+    public $sortable = [
+        'name',
+        'category',
+        'status',
+        'serial_number',
+        'catalog_number',
+        'custom_number',
+        'location',
+        'price',
+        'notes'
+    ];
 
     public function category()
     {
     	return $this->belongsTo('\App\Category');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('\App\Status');
     }
 
     public function categorySortable($query, $direction)
@@ -36,11 +57,11 @@ class Asset extends BaseModel
     				->orderBy('category_name', $direction);
     }
 
-    public function userSortable($query, $direction)
+    public function statusSortable($query, $direction)
     {
-    	return $query->join('users', 'assets.user_id', '=', 'users.id')
-    				->select('users.name as user_name', 'assets.*')
-    				->orderBy('user_name', $direction);
+        return $query->join('statuses', 'assets.status_id', '=', 'statuses.id')
+                    ->select('statuses.name as status_name', 'assets.*')
+                    ->orderBy('status_name', $direction);
     }
 
     public function toSearchableArray()

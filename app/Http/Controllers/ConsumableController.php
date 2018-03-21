@@ -14,9 +14,15 @@ class ConsumableController extends Controller
     private $rules = array(
         'name' => 'required|min:2|max:255',
         'category' => 'required',
-        'quantity' => 'required|min:0',
+        'quantity' => 'required|numeric|min:0',
+
+        'minimum_quantity' => 'nullable|numeric|min:0',
+        'item_number' => 'nullable',
+        'catalog_number' => 'nullable',
+        'custom_number' => 'nullable',
         'location' => 'nullable',
-        'image' => 'nullable|image|max:1000',
+        'price' => 'nullable|numeric|min:0',
+        'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
     );
 
@@ -50,7 +56,7 @@ class ConsumableController extends Controller
         
         $categories = Category::pluck('name', 'id')->sort();
 
-        return view('pages.consumables.new', compact('categories'));
+        return view('pages.consumables.new', compact('categories', 'statuses'));
     }
 
     /**
@@ -70,7 +76,13 @@ class ConsumableController extends Controller
         $consumable->name = $validator['name'];
         $consumable->category_id = $validator['category'];
         $consumable->quantity = $validator['quantity'];
+
+        $conusmable->minimum_quantity = $validator['minimum_quantity'];
+        $consumable->item_number = $validator['item_number'];
+        $consumable->catalog_number = $validator['catalog_number'];
+        $consumable->custom_number = $validator['custom_number'];
         $consumable->location = $validator['location'];
+        $consumable->price = $validator['price'];
         $consumable->image_id = null;
         $consumable->notes = $validator['notes'];
 
@@ -123,7 +135,7 @@ class ConsumableController extends Controller
         $consumable = Consumable::findOrFail($id);
         $categories = Category::pluck('name', 'id')->sort();
 
-        return view('pages.consumables.edit', compact('consumable', 'categories'));
+        return view('pages.consumables.edit', compact('consumable', 'categories', 'statuses'));
     }
 
     /**
@@ -151,7 +163,13 @@ class ConsumableController extends Controller
             'name' => $validator['name'],
             'category_id' => $validator['category'],
             'quantity' => $validator['quantity'],
+
+            'minimum_quantity' => $validator['minimum_quantity'],
+            'item_number' => $validator['item_number'],
+            'catalog_number' => $validator['catalog_number'],
+            'custom_number' => $validator['custom_number'],
             'location' => $validator['location'],
+            'price' => $validator['price'],
             'image_id' => $image,
             'notes' => $validator['notes']
         ]);
@@ -159,7 +177,7 @@ class ConsumableController extends Controller
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was updated.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('consumables.view', $consumable->id);
+        return redirect($request->post('next'));
     }
 
     /**
