@@ -88,6 +88,8 @@ Route::prefix('reports')
 	->name('reports.')
 	->group(function () {
 	Route::get('', 'ReportsController@index')->name('index');
+
+	Route::post('create', 'ReportsController@create')->name('create');
 });
 
 Route::prefix('user')
