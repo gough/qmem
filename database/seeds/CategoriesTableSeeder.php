@@ -17,11 +17,14 @@ class CategoriesTableSeeder extends Seeder
         $category->name = '(uncategorized)';
         $category->save();
 
-        $faker = Faker::create();
-        for ($i = 1; $i < 25; $i++) {           
-            $category = new Category;
-            $category->name = $faker->city;
-            $category->save();
+        if (app('APP_ENV') != 'production')
+        {
+            $faker = Faker::create();
+            for ($i = 1; $i < 25; $i++) {           
+                $category = new Category;
+                $category->name = $faker->city;
+                $category->save();
+            }
         }
     }
 }
