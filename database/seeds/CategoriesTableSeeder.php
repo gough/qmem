@@ -17,7 +17,7 @@ class CategoriesTableSeeder extends Seeder
         $category->name = '(uncategorized)';
         $category->save();
 
-        if (app('APP_ENV') != 'production')
+        if (config('app.env') != 'production')
         {
             $faker = Faker::create();
             for ($i = 1; $i < 25; $i++) {           

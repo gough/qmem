@@ -19,7 +19,7 @@ class AuthNetid
      */
     public function handle($request, Closure $next)
     {
-        if (env('APP_ENV') == 'local')
+        if (config('app.env') == 'local')
         {
             // if environment is local, manually login because we can't use netid system
             Auth::loginUsingId(1);

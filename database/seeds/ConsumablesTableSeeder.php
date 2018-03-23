@@ -13,7 +13,7 @@ class ConsumablesTableSeeder extends Seeder
      */
     public function run()
     {
-        if (app('APP_ENV') != 'production')
+        if (config('app.env') != 'production')
         {
         	$faker = Faker::create();
             for ($i = 1; $i < 234; $i++) {
