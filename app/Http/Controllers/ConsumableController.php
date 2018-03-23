@@ -22,6 +22,7 @@ class ConsumableController extends Controller
         'custom_number' => 'nullable',
         'location' => 'nullable',
         'price' => 'nullable|numeric|min:0',
+        'delete_image' => 'nullable',
         'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
     );
@@ -154,7 +155,11 @@ class ConsumableController extends Controller
         $validator = $request->validate($this->rules);
 
         $image = $consumable->image_id;
-        if (isset($validator['image']))
+        if (isset($validator['delete_image']) && $validator['delete_image'] == 1)
+        {
+            $image = null;
+        }
+        else if (isset($validator['image']))
         {
             $image = $this->makeImage($validator['image']);
         }
