@@ -48,7 +48,7 @@
 									</tr>
 								@endforeach
 							@else
-								<td class="text-center" colspan="5">No assets found.</td>
+								<td class="text-center" colspan="8">No assets found.</td>
 							@endif
 						</tbody>
 					</table>

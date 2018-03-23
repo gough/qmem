@@ -50,7 +50,7 @@
 									</tr>
 								@endforeach
 							@else
-								<td class="text-center" colspan="6">No consumables found.</td>
+								<td class="text-center" colspan="9">No consumables found.</td>
 							@endif
 						</tbody>
 					</table>
