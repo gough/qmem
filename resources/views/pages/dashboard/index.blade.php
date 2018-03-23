@@ -51,17 +51,17 @@
 			</div>
 		</div>
 		<div class="col-lg-3 col-sm-6">
-			<div class="card border-danger">
-				<div class="card-info-top bg-danger">
+			<div class="card border-dark">
+				<div class="card-info-top bg-dark">
 					<div class="pull-left">
-						<i class="fa fa-user-circle-o fa-4x align-middle"></i>
+						<i class="fa fa-archive fa-4x align-middle"></i>
 					</div>
 					<div class="pull-right">
-						<span class="card-title">{{ number_format($total_users) }}</span>
-						<span class="card-desc">Total Users</span>
+						<span class="card-title">{{ number_format($total_items) }}</span>
+						<span class="card-desc">Total Items</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-danger" href="{{ route('users.index') }}">
+				<a class="card-button-bottom text-dark" href="{{ route('users.index') }}">
 					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>

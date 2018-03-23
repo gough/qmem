@@ -20,14 +20,14 @@ class DashboardController extends Controller
         $total_assets = Asset::count();
     	$total_consumables = Consumable::count();
         $total_categories = Category::count();
-    	$total_users = User::count();
+    	$total_items = $total_assets + $total_consumables;
 
     	return view('pages.dashboard.index', compact(
     		'recent_activity',
             'total_assets',
     		'total_consumables',
             'total_categories',
-    		'total_users'
+    		'total_items'
     	));
     }
 }
