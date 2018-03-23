@@ -19,7 +19,38 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					{{ $user }}
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>NetID</strong></td>
+								<td style="width: 75%">{{ $user->netid }}</td>
+							</tr>
+							<tr>
+								<td><strong>Group</strong></td>
+								<td>{{ $user->group->name }}</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>Name</strong></td>
+								<td style="width: 75%">{!! isset($user->name) ? $user->name : '<span class="text-muted">(not set)</span>' !!}</td>
+							</tr>
+							<tr>
+								<td><strong>Email</strong></td>
+								<td>{!! isset($user->group->email) ? $user->group->email : '<span class="text-muted">(not set)</span>' !!}</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>Created At</strong></td>
+								<td style="width: 75%">{{ Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d h:i:s A') }}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
