@@ -21,9 +21,9 @@ class CreateConsumablesTable extends Migration
             $table->string('name');
             $table->string('category_id');
             $table->integer('quantity');
+            $table->integer('minimum_quantity');
 
             // optional
-            $table->integer('minimum_quantity')->nullable();
             $table->string('item_number')->nullable();
             $table->string('catalog_number')->nullable();
             $table->string('custom_number')->nullable();

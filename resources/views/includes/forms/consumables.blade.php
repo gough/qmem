@@ -71,7 +71,7 @@
 
 	@php ($field = 'minimum_quantity')
 	@php ($placeholder = 'Minimum Quantity')
-	@php ($value = isset($consumable->minimum_quantity) ? $consumable->minimum_quantity : null)
+	@php ($value = isset($consumable->minimum_quantity) ? $consumable->minimum_quantity : 0)
 	@php ($helptext = 'Enter the minimum allowable amount of this consumable.')
 
 	<div class="col-md-5 mt-3 mt-md-0">

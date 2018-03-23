@@ -15,8 +15,8 @@ class ConsumableController extends Controller
         'name' => 'required|min:2|max:255',
         'category' => 'required',
         'quantity' => 'required|numeric|min:0',
+        'minimum_quantity' => 'numeric|min:0',
 
-        'minimum_quantity' => 'nullable|numeric|min:0',
         'item_number' => 'nullable',
         'catalog_number' => 'nullable',
         'custom_number' => 'nullable',
@@ -77,8 +77,8 @@ class ConsumableController extends Controller
         $consumable->name = $validator['name'];
         $consumable->category_id = $validator['category'];
         $consumable->quantity = $validator['quantity'];
-
         $conusmable->minimum_quantity = $validator['minimum_quantity'];
+
         $consumable->item_number = $validator['item_number'];
         $consumable->catalog_number = $validator['catalog_number'];
         $consumable->custom_number = $validator['custom_number'];
@@ -92,7 +92,6 @@ class ConsumableController extends Controller
             $consumable->image_id = $this->makeImage($validator['image']);
         }
 
-        $consumable->user_id = Auth::user()->id;
         $consumable->save();
 
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was created.');
@@ -168,8 +167,8 @@ class ConsumableController extends Controller
             'name' => $validator['name'],
             'category_id' => $validator['category'],
             'quantity' => $validator['quantity'],
-
             'minimum_quantity' => $validator['minimum_quantity'],
+            
             'item_number' => $validator['item_number'],
             'catalog_number' => $validator['catalog_number'],
             'custom_number' => $validator['custom_number'],
