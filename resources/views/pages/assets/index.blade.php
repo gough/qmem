@@ -20,6 +20,7 @@
 					<table class="table table-bordered table-hover table-responsive-lg">
 						<thead class="thead-default">
 							<tr>
+								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
 								<th>@sortablelink('category', 'Category')</th>
 								<th>@sortablelink('serial_number', 'Serial Number')</th>
@@ -33,6 +34,7 @@
 							@if ($assets->count() > 0)
 								@foreach ($assets as $asset)
 									<tr>
+										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
 										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
 										<td><a href="{{ route('categories.view', $asset->category->id) }}">{{ $asset->category->name }}</a></td>
 										<td>{{ $asset->serial_number }}</td>

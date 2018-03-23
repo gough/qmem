@@ -29,6 +29,7 @@ class Asset extends BaseModel
     ];
 
     public $sortable = [
+        'id',
         'name',
         'category',
         'status',

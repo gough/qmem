@@ -25,20 +25,20 @@
 					<table class="table table-bordered table-hover table-responsive-md table-no-margin">
 						<tbody>
 							<tr>
-								<td style="width: 25%"><strong>ID</strong></td>
-								<td style="width: 75%">{{ $category->id }}</td>
+								<td style="width: 25%"><strong>Name</strong></td>
+								<td style="width: 75%">{{ $category->name }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 25%"><strong>Assets</strong></td>
+								<td style="width: 75%">{{ $assets->count() }}</td>
 							</tr>
 							<tr>
-								<td><strong>Name</strong></td>
-								<td>{{ $category->name }}</td>
-							</tr>
-							<tr>
-								<td><strong>Created At</strong></td>
-								<td>{{ $category->created_at }}</td>
-							</tr>
-							<tr>
-								<td><strong>Updated At</strong></td>
-								<td>{{ $category->updated_at }}</td>
+								<td><strong>Consumables</strong></td>
+								<td>{{ $consumables->count() }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -52,10 +52,9 @@
 					<table class="table table-bordered table-hover table-responsive-md table-no-margin">
 						<thead class="thead-default">
 							<tr>
-								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
-								<th>@sortablelink('user', 'User')</th>
-								<th>@sortablelink('created_at', 'Created At')</th>
+								<th>@sortablelink('serial_number', 'Serial Number')</th>
+								<th>@sortablelink('status', 'Status')</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -63,10 +62,9 @@
 							@if ($assets->count() > 0)
 								@foreach ($assets as $asset)
 								<tr>
-									<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id }}</a></td>
 									<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td>
-									<td><a href="{{ route('users.view', $asset->user->netid) }}">{{ $asset->user->name }}</a></td>
-									<td>{{ $asset->created_at }}</td>
+									<td>{{ $asset->serial_number }}</td>
+									<td>{{ $asset->status->name }}</td>
 									<td>
 										<a href="{{ route('assets.edit', $asset->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
 										<a href="{{ route('assets.delete', $asset->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -88,10 +86,10 @@
 					<table class="table table-bordered table-hover table-responsive-md table-no-margin">
 						<thead class="thead-default">
 							<tr>
-								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
-								<th>@sortablelink('user', 'User')</th>
-								<th>@sortablelink('created_at', 'Created At')</th>
+								<th>@sortablelink('item_number', 'Item Number')</th>
+								<th>@sortablelink('quantity', 'Quantity')</th>
+								<th>@sortablelink('minimum_quantity', 'Min. Qty.')</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -99,10 +97,10 @@
 							@if ($consumables->count() > 0)
 								@foreach ($consumables as $consumable)
 								<tr>
-									<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id }}</a></td>
 									<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
-									<td><a href="{{ route('users.view', $consumable->user->netid) }}">{{ $consumable->user->name }}</a></td>
-									<td>{{ $consumable->created_at }}</td>
+									<td>{{ $consumable->item_number }}</td>
+									<td>{{ $consumable->quantity }}</td>
+									<td>{{ $consumable->minimum_quantity }}</td>
 									<td>
 										<a href="{{ route('consumables.edit', $consumable->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
 										<a href="{{ route('consumables.delete', $consumable->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -126,6 +124,16 @@
 				</div>
 				<div class="card-body">
 					@include('includes.revisions', ['revisions' => $category->revisionHistory->reverse()])
+					<table class="table table-bordered table-hover table-responsive-md table-no-margin mt-3">
+						<tbody>
+							<tr>
+								<td style="width: 20%"><strong>Created At</strong></td>
+								<td style="width: 30%">{{ $category->created_at }}</td>
+								<td style="width: 20%"><strong>Updated At</strong></td>
+								<td style="width: 30%">{{ $category->created_at }}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

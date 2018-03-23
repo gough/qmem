@@ -20,6 +20,7 @@
 					<table class="table table-bordered table-hover table-responsive-lg">
 						<thead class="thead-default">
 							<tr>
+								<th>@sortablelink('id', 'ID')</th>
 								<th>@sortablelink('name', 'Name')</th>
 								<th>@sortablelink('category', 'Category')</th>
 								<th>@sortablelink('item_number', 'Item Number')</th>
@@ -34,6 +35,7 @@
 							@if ($consumables->count() > 0)
 								@foreach ($consumables as $consumable)
 									<tr>
+										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id }}</a></td>
 										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
 										<td><a href="{{ route('categories.view', $consumable->category->id) }}">{{ $consumable->category->name }}</a></td>
 										<td>{{ $consumable->item_number }}</td>

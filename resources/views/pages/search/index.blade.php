@@ -53,7 +53,7 @@
 								@foreach ($assets as $asset)
 									<tr>
 										<td>Asset</td>
-										<td>
+										<td class="text-center">
 											@if (!empty($asset->image_id))
 												<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
 											@else

@@ -40,7 +40,7 @@ class ConsumableController extends Controller
     {
         // GET /consumables
 
-        $consumables = Consumable::sortable(['created_at' => 'desc'])->paginate(50);
+        $consumables = Consumable::sortable(['id' => 'desc'])->paginate(50);
 
         return view('pages.consumables.index', compact('consumables'));
     }

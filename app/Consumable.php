@@ -30,6 +30,7 @@ class Consumable extends BaseModel
     ];
 
     public $sortable = [
+        'id',
         'name',
         'category',
         'quantity',
