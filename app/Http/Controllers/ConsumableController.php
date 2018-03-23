@@ -77,7 +77,7 @@ class ConsumableController extends Controller
         $consumable->name = $validator['name'];
         $consumable->category_id = $validator['category'];
         $consumable->quantity = $validator['quantity'];
-        $conusmable->minimum_quantity = $validator['minimum_quantity'];
+        $consumable->minimum_quantity = $validator['minimum_quantity'];
 
         $consumable->item_number = $validator['item_number'];
         $consumable->catalog_number = $validator['catalog_number'];
@@ -168,7 +168,7 @@ class ConsumableController extends Controller
             'category_id' => $validator['category'],
             'quantity' => $validator['quantity'],
             'minimum_quantity' => $validator['minimum_quantity'],
-            
+
             'item_number' => $validator['item_number'],
             'catalog_number' => $validator['catalog_number'],
             'custom_number' => $validator['custom_number'],
