@@ -200,7 +200,7 @@ class UserController extends Controller
         Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was destoryed.');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect($request->post('next'));
+        return redirect(route('users.index')));
     }
 }
 
