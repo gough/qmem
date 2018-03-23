@@ -12,7 +12,7 @@
 			<div class="card">
 				<div class="card-body">
 					<span>
-						<strong>Note:</strong> Data export may take a long time, especially if there are a large amount of items. Please be patient.
+						<strong>Note:</strong> Data export may take a long time, especially if there are a large amount of items.
 					</span>
 
 					<hr>
