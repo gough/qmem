@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App, Excel;
 use Illuminate\Http\Request;
-use \App\Asset,App\Consumable, App\Category, App\User, \App\Status;;
+use \Venturecraft\Revisionable\Revision;
+use \App\Asset,App\Consumable, App\Category, App\User, \App\Status;
 
 class ReportsController extends Controller
 {   
@@ -58,21 +59,50 @@ class ReportsController extends Controller
         $values = $validator['items'];
         $filename = "itemReport".date('m-d-Y-His');
 
-        $items = Consumable::whereIn('id', $values)->get()->toArray();
+        $costArray = array();
+        $purchased = array();
+        $totalCost = 0.0;
+        $output = array(array('Id','Name','Current Price','Number Purchased', 'Total Cost'));
 
-        for ($count = 0; $count < count($items); $count++)
+        for ($count = 0; $count < count($values); $count++)
         { 
-            $items[$count]['category_id'] = Category::find($items[$count]['category_id'])->name;
-        }
-    
+
+
+            $costArray[$count]=0;
+            $purchased[$count]=0;
+            $item =Consumable::where('id', $values[$count])->get()->toArray()[0];
+            $cost_at_time = (float)$item['price'];
+
+            $revs= Revision::where('revisionable_type', 'App\Consumable')->where('revisionable_id', $values[$count])->whereIn('key',['price', 'quantity'])->get()->toArray();
+
+            foreach($revs as $rev){
+                if ($rev['key'] == 'price'){
+                    $cost_at_time = (float)$rev['new_value'];
+                }else{
+                    if ($rev['new_value'] >= $rev['old_value'] )   {
+                        $purchased[$count] += ((float)$rev['new_value'] - (float)$rev['old_value']);
+                        $costArray[$count] += $cost_at_time *((float)$rev['new_value'] - (float)$rev['old_value']);
+
+                    }
+                }
+
+            }
+            $totalCost += $costArray[$count];
+            $output[$count+1] = array($item['id'],$item['name'],$item['price'], ($purchased[$count] != 0 ? $purchased[$count] : "0") ,($costArray[$count] != 0 ? $costArray[$count] : "0"));
+        }  
+
+        $output[count($values)+1] = array('','','','','');
+        $output[count($values)+2] = array('Total Cost:',$totalCost,'','','');
+
+
 
         $excel = App::make('excel');
 
-        $excel->create($filename, function($excel) use ($items)
+        $excel->create($filename, function($excel) use ($output)
         {
-            $excel->sheet('sheet', function($sheet) use ($items)
+            $excel->sheet('sheet', function($sheet) use ($output)
             {
-                $sheet->fromArray($items);
+                $sheet->fromArray($output);
             });
         })->download('csv');
     }

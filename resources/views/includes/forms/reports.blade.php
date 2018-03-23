@@ -26,16 +26,9 @@
 </div>
 
 <div class="form-group row">
-    @php ($field = 'consumable')
-    @php ($label = 'Format')
-    @php ($placeholder = 'Pick a format...')
-    @php ($value = null)
-    @php ($helptext = 'Specify the format you want to export to.')
-
     @foreach($consumables as $consumable) 
         <input type="hidden" name="items[]" value = "{{$consumable->id}}">
-    @endforeach
-    
+    @endforeach   
 </div>
 
 <hr>
