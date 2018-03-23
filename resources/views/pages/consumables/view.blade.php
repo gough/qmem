@@ -89,8 +89,8 @@
 				</div>
 				<div class="card-body text-center{{ !empty($consumable->image_id) ? '' : ' my-4' }}">
 					@if (!empty($consumable->image_id))
-						<a data-fancybox="gallery" href="{{ config('app.env') . 'img/' . $consumable->image_id }}">
-							<img class="img-fluid mx-auto d-block" src="{{ config('app.env') . 'img/' . $consumable->image_id }}">
+						<a data-fancybox="gallery" href="{{ config('app.url') . 'img/' . $consumable->image_id }}">
+							<img class="img-fluid mx-auto d-block" src="{{ config('app.url') . 'img/' . $consumable->image_id }}">
 						</a>
 					@else
 						<span class="text-muted">(no image)</span>
