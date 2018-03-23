@@ -113,7 +113,7 @@ Route::prefix('reports')
 Route::prefix('user')
 	->name('user.')
 	->group(function () {
-	Route::get('preferences', 'CurrentUserController@preferences')->name('preferences');
+	Route::get('profile', 'CurrentUserController@profile')->name('profile');
 	Route::get('logout', 'CurrentUserController@logout')->name('logout');
 });
 

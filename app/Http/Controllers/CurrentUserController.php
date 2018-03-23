@@ -12,9 +12,9 @@ class CurrentUserController extends Controller
     	$this->middleware('auth')->except('logout');
     }
 
-    public function preferences(Request $request)
+    public function profile(Request $request)
     {
-        return view('pages.user.preferences');
+        return view('pages.user.profile');
     }
 
     public function logout()

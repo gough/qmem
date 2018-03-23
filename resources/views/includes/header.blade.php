@@ -46,8 +46,7 @@
 					{{ Auth::user()->name }}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">My Items</a>
-						<a class="dropdown-item" href="{{ route('user.preferences') }}">Preferences</a>
+						<a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
 						@if (Auth::user()->group->name == 'admin')
 						<div class="dropdown-divider"></div>
 						<h6 class="dropdown-header text-danger">Administration</h6>
