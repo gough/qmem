@@ -247,8 +247,4 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Carbon' => Carbon\Carbon::class,
     ],
-
-    'algolia_app_id' => env('ALGOLIA_APP_ID'),
-    'algolia_secret' => env('ALGOLIA_SECRET'),
-    'algolia_search_only_secret' => env('ALOGLIA_SEARCH_ONLY_SECRET'),
 ];
