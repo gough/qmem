@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 <script>
-  	var client = algoliasearch('{{ env('ALGOLIA_APP_ID') }}', '{{ env('ALOGLIA_SEARCH_ONLY_SECRET') }}');
+  	var client = algoliasearch('{{ config('algolia.app.id') }}', '{{ config('algolia.search.only.secret') }}');
   	var assets = client.initIndex('assets');
 	var consumables = client.initIndex('consumables');
 
