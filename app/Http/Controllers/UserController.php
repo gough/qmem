@@ -195,7 +195,7 @@ class UserController extends Controller
             return response('Not Allowed', 405)->header('Content-Type', 'text/plain');
         }
 
-        User::destroy($id);
+        User::destroy($user->id);
 
         Session::flash('message', '<strong>Success!</strong> User (' . $user->netid . ') was destoryed.');
         Session::flash('alert-class', 'alert-success');
