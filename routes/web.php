@@ -104,6 +104,10 @@ Route::prefix('reports')
 	Route::get('', 'ReportsController@index')->name('index');
 
 	Route::post('create', 'ReportsController@create')->name('create');
+	
+	Route::post('excelDownload', 'ReportsController@excelDownload')->name('excelDownload');
+	Route::post('pdfDownload', 'ReportsController@pdfDownload')->name('pdfDownload');
+
 });
 
 Route::prefix('user')
