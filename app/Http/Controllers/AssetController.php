@@ -23,6 +23,7 @@ class AssetController extends Controller
         'custom_number' => 'nullable',
         'location' => 'nullable',
         'price' => 'nullable|numeric|min:0',
+        'delete_image' => 'nullable',
         'image' => 'nullable|image|max:10000',
         'notes' => 'nullable|max:2000'
     );
@@ -149,13 +150,17 @@ class AssetController extends Controller
     public function update(Request $request, $id)
     {
         // POST /assets/{id}/update
-        
+                
         $asset = Asset::findOrFail($id);
         
         $validator = $request->validate($this->rules);
 
         $image = $asset->image_id;
-        if (isset($validator['image']))
+        if (isset($validator['delete_image']) && $validator['delete_image'] == 1)
+        {
+            $image = null;
+        }
+        else if (isset($validator['image']))
         {
             $image = $this->makeImage($validator['image']);
         }
