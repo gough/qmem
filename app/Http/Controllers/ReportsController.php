@@ -43,9 +43,6 @@ class ReportsController extends Controller
             $consumables = Consumable::whereIn('id', $values)->paginate(50);
             return view('pages.reports.create', compact('consumables','formats'));
         }
-
-
-
         return redirect()->back();  
     }
 
@@ -55,8 +52,15 @@ class ReportsController extends Controller
        
         $validator = $request->validate(['format' => 'required',
                                         'items' => 'required',
-                                        'items.*' => 'nullable']);
+                                        'items.*' => 'nullable',
+                                        'startdate' => 'required|before:enddate',
+                                        'enddate' => 'required|after:startdate' ]);
+
+
         $values = $validator['items'];
+        $start_date = $validator['startdate'];
+        $end_date = $validator['enddate'];
+
         $filename = "itemReport".date('m-d-Y-His');
 
         $costArray = array();
@@ -73,7 +77,8 @@ class ReportsController extends Controller
             $item =Consumable::where('id', $values[$count])->get()->toArray()[0];
             $cost_at_time = (float)$item['price'];
 
-            $revs= Revision::where('revisionable_type', 'App\Consumable')->where('revisionable_id', $values[$count])->whereIn('key',['price', 'quantity'])->get()->toArray();
+            $revs= Revision::where('revisionable_type', 'App\Consumable')->where('revisionable_id', $values[$count])->whereBetween('updated_at', [$start_date, $end_date])
+                            ->whereIn('key',['price', 'quantity'])->get()->toArray();
 
             foreach($revs as $rev){
                 if ($rev['key'] == 'price'){

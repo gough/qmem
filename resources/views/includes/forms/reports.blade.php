@@ -1,7 +1,19 @@
 @php ($label_classes = 'col-md-2 col-form-label')
 @php ($field_classes = 'form-control')
 
+<div class="form-group row">
+     <div class="col-md-10">
+        <label for="startdate">Report Date Range:  </label>
+        <input type="date" name="startdate" id="startdate">
+       <link href="{!! asset('css/calendarpick.css') !!}" media="all" rel="stylesheet" type="text/css" />
+        
+       <label for="enddate">to</label>
+        <input type="date" name="enddate" id="enddate">
+       <link href="{!! asset('css/calendarpick.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    </div>
 
+        
+</div>
 
 <div class="form-group row">
 
