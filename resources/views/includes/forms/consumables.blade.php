@@ -209,12 +209,24 @@
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
 	<div class="col-md-10">
 		@if (!empty($consumable->image_id))
-			<img class="img-fluid mb-2 p-2 border rounded" width="200" src="{{ env('APP_URL') . 'img/' . $consumable->image_id }}">
+			<img class="img-fluid mb-2 p-2 border rounded col-md-5" src="{{ config('app.url') . 'img/' . $consumable->image_id }}">
+			<div class="form-check form-control p-2 col-md-5">
+				{{ Form::checkbox(
+					'delete_image', true, false,
+					['class' => 'form-check-input ml-1',
+					'onclick' => 'document.getElementById(\'image_chooser\').disabled=this.checked;',
+					'id' => 'delete_image']
+				) }}
+				{{ Form::label('delete_image', 'Delete this image', ['class' => 'form-check-label ml-4']) }}
+			</div>
+			<hr>
 		@endif
+
 		{{ Form::file(
 			$field,
 			['placeholder' => $placeholder,
-			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes]
+			'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes,
+			'id' => 'image_chooser']
 		) }}
 
 		<small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
