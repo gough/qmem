@@ -32,7 +32,7 @@
 					{{ Form::close() }}
 				</div>
 			</div>
-			@if ($assets->count() > 0)
+			@if ($assets['nbHits'] > 0)
 				<div class="card">
 					<div class="card-header">
 						<span class="card-title">
@@ -40,7 +40,7 @@
 						</span>
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-hover table-responsive-md">
+						<table class="table table-bordered table-hover table-responsive-md table-no-margin">
 							<thead class="thead-default">
 								<tr>
 									<th width="13%">Type</th>
@@ -50,18 +50,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($assets as $asset)
+								@foreach ($assets['hits'] as $asset)
 									<tr>
 										<td>Asset</td>
 										<td class="text-center">
-											@if (!empty($asset->image_id))
-												<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $asset->image_id }}">
+											@if (!empty($asset['image_id']))
+												<a data-fancybox="gallery" href="{{ config('app.url') . 'img/' . $asset['image_id'] }}">
+													<img class="img-fluid mx-auto d-block" src="{{ config('app.url') . 'img/' . $asset['image_id'] }}">
+												</a>
 											@else
 												<small class="text-muted">(no image)</small>
 											@endif
 										</td>
-										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->name }}</a></td> 
-										<td><a href="{{ route('assets.view', $asset->id) }}">{{ $asset->id_hash }}</a></td>
+										<td><a href="{{ route('assets.view', $asset['id']) }}">{!! $asset['_highlightResult']['name']['value'] !!}</a></td> 
+										<td><a href="{{ route('assets.view', $asset['id']) }}">{{ $asset['id_hash'] }}</a></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -69,7 +71,7 @@
 					</div>
 				</div>
 			@endif
-			@if ($consumables->count() > 0)
+			@if ($consumables['nbHits'] > 0)
 				<div class="card">
 					<div class="card-header">
 						<span class="card-title">
@@ -77,7 +79,7 @@
 						</span>
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-hover table-responsive-md">
+						<table class="table table-bordered table-hover table-responsive-md table-no-margin">
 							<thead class="thead-default">
 								<tr>
 									<th width="13%">Type</th>
@@ -87,18 +89,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($consumables as $consumable)
+								@foreach ($consumables['hits'] as $consumable)
 									<tr>
 										<td>Consumable</td>
 										<td>
-											@if (!empty($consumable->image_id))
-												<img class="img-fluid mx-auto d-block" src="{{ env('APP_URL') . 'img/' . $consumable->image_id }}">
+											@if (!empty($consumable['image_id']))
+												<a data-fancybox="gallery" href="{{ config('app.url') . 'img/' . $consumable['image_id'] }}">
+													<img class="img-fluid mx-auto d-block" src="{{ config('app.url') . 'img/' . $consumable['image_id'] }}">
+												</a>
 											@else
 												<small class="text-muted">(no image)</small>
 											@endif
 										</td>
-										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->name }}</a></td>
-										<td><a href="{{ route('consumables.view', $consumable->id) }}">{{ $consumable->id_hash }}</a></td>
+										<td><a href="{{ route('consumables.view', $consumable['id']) }}">{!! $consumable['_highlightResult']['name']['value'] !!}</a></td>
+										<td><a href="{{ route('consumables.view', $consumable['id']) }}">{{ $consumable['id_hash'] }}</a></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -106,7 +110,7 @@
 					</div>
 				</div>
 			@endif
-			@if ($assets->count() + $consumables->count() == 0)
+			@if ($assets['nbHits'] + $consumables['nbHits'] == 0)
 			<div class="card">
 				<div class="card-body">
 					<h4>No results for '{{ Request::get('query') }}'.</h4>

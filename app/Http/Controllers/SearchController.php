@@ -16,18 +16,18 @@ class SearchController extends Controller
     {
     	$query = $request->get('query');
 
-    	$assets = Asset::search($query)->get();
-    	$consumables = Consumable::search($query)->get();
+    	$assets = Asset::search($query)->raw();
+    	$consumables = Consumable::search($query)->raw();
 
-    	if ($assets->count() + $consumables->count() == 1)
+    	if ($assets['nbHits'] + $consumables['nbHits'] == 1)
     	{
-            if ($assets->count() == 1)
+            if ($assets['nbHits'] == 1)
             {
-                return redirect()->route('assets.view', $assets->first()->id);
+                return redirect()->route('assets.view', $assets['hits'][0]['id']);
             }
-            elseif ($consumables->count() == 1)
+            elseif ($consumables['nbHits'] == 1)
             {
-                return redirect()->route('consumables.view', $consumables->first()->id);
+                return redirect()->route('consumables.view', $consumables['hits'][0]['id']);
             }    		
     	}
 

@@ -84,6 +84,12 @@ p,
 	padding-right: 0.5rem;
 }
 
+.card-body em {
+	background-color: #ccc;
+	font-style: normal;
+	font-weight: bold;
+}
+
 .card-header {
 	line-height: 31px;
 }
@@ -200,7 +206,7 @@ p,
 }
 
 .aa-suggestions-category {
-  border-top: 1px solid rgba(228, 228, 228, 0.6);
+  border-bottom: 1px solid rgba(228, 228, 228, 0.6);
   padding: 6px 12px;
   font-weight: bold;
 }
@@ -215,6 +221,21 @@ p,
 	background-color: #ccc;
 	font-style: normal;
 	font-weight: bold;
+}
+
+.aa-dataset-1,
+.aa-dataset-2 {
+	  border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+}
+
+.aa-dataset-2:after {
+	border-top: 1px solid rgba(228, 228, 228, 0.6);
+	content: "Search by Algolia";
+	font-size: 8pt;
+	padding: 0.25rem 0.75rem;
+	color: #999;
+	display: block;
+	border-radius: 0 0 5px 5px;
 }
 
 .aa-empty {
