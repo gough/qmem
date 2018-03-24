@@ -39,7 +39,7 @@
 							</tr>
 							<tr>
 								<td><strong>Email</strong></td>
-								<td>{!! isset($user->group->email) ? $user->group->email : '<span class="text-muted">(not set)</span>' !!}</td>
+								<td>{!! isset($user->email) ? $user->email : '<span class="text-muted">(not set)</span>' !!}</td>
 							</tr>
 						</tbody>
 					</table>
