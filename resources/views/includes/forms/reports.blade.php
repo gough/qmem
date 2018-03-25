@@ -2,21 +2,36 @@
 @php ($field_classes = 'form-control')
 
 <div class="form-group row">
-     <div class="col-md-10">
-        <label for="startdate">Report Date Range:  </label>
-        <input type="date" name="startdate" id="startdate">
-       <link href="{!! asset('css/calendarpick.css') !!}" media="all" rel="stylesheet" type="text/css" />
-        
-       <label for="enddate">to</label>
-        <input type="date" name="enddate" id="enddate">
-       <link href="{!! asset('css/calendarpick.css') !!}" media="all" rel="stylesheet" type="text/css" />
+    <label for="startdate" class="{{ $label_classes }}">Date Range</label>
+
+    @php ($field = 'startdate')
+    @php ($value = null)
+    @php ($helptext = 'Enter the start date.')
+
+    <div class="col">
+        <input type="date" name="{{ $field }}" id="{{ $field }}" class="{{ $field_classes }}">
+        <small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+            {{ $errors->first($field) ? $errors->first($field) : $helptext }}
+        </small>
     </div>
 
-        
+    <div class="col-md-1 text-center align-middle">
+        <span class="d-block pt-2">until</span>
+    </div>
+
+    @php ($field = 'enddate')
+    @php ($value = null)
+    @php ($helptext = 'Enter the end date.')
+    <div class="col">
+        <input type="date" name="{{ $field }}" id="{{ $field }}" class="{{ $field_classes }}">
+        <small class="form-text {{ $errors->first($field) ? 'text-danger' : 'text-muted' }}">
+            {{ $errors->first($field) ? $errors->first($field) : $helptext }}
+        </small>
+    </div>
+
 </div>
 
 <div class="form-group row">
-
     @php ($field = 'format')
     @php ($label = 'Format')
     @php ($placeholder = 'Pick a format...')

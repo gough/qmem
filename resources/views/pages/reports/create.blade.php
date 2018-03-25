@@ -11,8 +11,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <hr>
-
                     {{ Form::open(array('route' => array('reports.excelDownload'))) }}
                         @include('includes.forms.reports', ['button' => 'Download'])
                     {{ Form::close() }}
