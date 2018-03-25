@@ -31,7 +31,7 @@
 							</tr>
 							<tr>
 								<td><strong>Email</strong></td>
-								<td>{!! isset(Auth::user()->group->email) ? Auth::user()->group->email : '<span class="text-muted">(not set)</span>' !!}</td>
+								<td>{!! isset(Auth::user()->email) ? Auth::user()->email : '<span class="text-muted">(not set)</span>' !!}</td>
 							</tr>
 						</tbody>
 					</table>
