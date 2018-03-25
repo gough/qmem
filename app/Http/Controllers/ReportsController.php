@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App, Excel;
+use App, Excel, PDF;
 use Illuminate\Http\Request;
 use \Venturecraft\Revisionable\Revision;
 use \App\Asset,App\Consumable, App\Category, App\User, \App\Status;
@@ -100,16 +100,20 @@ class ReportsController extends Controller
         $output[count($values)+2] = array('Total Cost:',$totalCost,'','','');
 
 
+        if ($validator['format'] == 'csv'){
+            $excel = App::make('excel');
 
-        $excel = App::make('excel');
-
-        $excel->create($filename, function($excel) use ($output)
-        {
-            $excel->sheet('sheet', function($sheet) use ($output)
+            $excel->create($filename, function($excel) use ($output)
             {
-                $sheet->fromArray($output);
-            });
-        })->download('csv');
+                $excel->sheet('sheet', function($sheet) use ($output)
+                {
+                    $sheet->fromArray($output);
+                });
+            })->download('csv');
+        } else{
+            $pdf = PDF::loadview('pages.reports.pdflayout',compact('output'));
+            return $pdf->download($filename.'.pdf');
+        }
     }
     
 
