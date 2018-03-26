@@ -11,6 +11,7 @@ The following instructions will get you a copy of the project running on your ow
 For this project, a web stack consisting of at least Apache, MySQL, and PHP is required. Alternatives may also work but are not supported at this time.
 
 If you do not already have a stack set up, look into using one of the following installers to get up and running quickly:
+
 - [XAMPP](https://www.apachefriends.org/index.html) (for Windows)
 - [MAMP](https://www.mamp.info/en/) (for Mac)
 
@@ -45,7 +46,12 @@ ALGOLIA_SECRET=<algolia_secret>
 ALGOLIA_SEARCH_ONLY_SECRET=<algolia_search_only_secret>
 ```
 
-Initialize the database by running all migrations and seeding the database:
+Update all packages using [Composer](https://getcomposer.org/):
+```
+composer update
+```
+
+Lastly, initialize the database by running all migrations and seeding the database:
 ```
 php artisan migrate:refresh && php artisan db:seed
 ```
@@ -56,7 +62,9 @@ If errors were encountered, consult the Troubleshooting section for further info
 
 ### Usage
 
-TODO: Write usage
+After successfully completing the instructions above for Installing, you can access the application by navigating to the web server IP address and port (usually 80) specific to your environment.
+
+If you encouter any issues, please refer to the Troubleshooting section below.
 
 ### Troubleshooting
 
@@ -78,7 +86,29 @@ If your problem does not have a solution listed above, [create an issue](https:/
 
 ## Deployment
 
-TODO: Write deployment instructions
+For deployement to a production environment, follow the instructions above for Installing, but replace modify the configuration variables in the `.env` file to match your environment. A list of variables that commonly will need to be change is provided below.
+
+- `APP_ENV`
+- `APP_DEBUG`
+- `APP_URL`
+- All `DB` variables
+- All `ALGOLIA` variables
+
+## Built With
+
+- [PHP 7](http://www.php.net/)
+- [Laravel](https://laravel.com/) and the following packages:
+	- [laravel/scout](https://github.com/laravel/scout) & [algolia/algoliasearch-client-php](https://github.com/algolia/algoliasearch-client-php) (searching and indexing)
+	- [barryvdh/laravel-dompdf](https://github.com/barryvdh/laravel-dompdf) (exporting to PDF)
+	- [codeitnowin/barcode](https://github.com/codeitnowin/barcode-generator) (generating barcodes)
+	- [graham-campbell/markdown](https://github.com/GrahamCampbell/Laravel-Markdown) (Markdown editing and displaying on item pages)
+	- [intervention/image](https://github.com/Intervention/image) (image editing and compression)
+	- [kyslik/column-sortable](https://github.com/Kyslik/column-sortable) (sorting table columns on listing pages)
+	- [laracasts/flash](https://github.com/laracasts/flash) (displaying status messages)
+	- [laravelcollective/html](https://github.com/LaravelCollective/html) (creating forms)
+	- [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) & [phpoffice/phpspreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) (exporting to CSV)
+	- [venturecraft/revisionable](https://github.com/VentureCraft/revisionable) (keeping track of changes to items)
+- [Bootstrap 4](https://getbootstrap.com/)
 
 ## History
 
