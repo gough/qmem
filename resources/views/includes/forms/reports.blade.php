@@ -52,11 +52,9 @@
     </div>
 </div>
 
-<div class="form-group row">
-    @foreach($consumables as $consumable) 
-        <input type="hidden" name="items[]" value = "{{$consumable->id}}">
-    @endforeach   
-</div>
+@foreach($consumables as $consumable) 
+    <input type="hidden" name="items[]" value = "{{$consumable->id}}">
+@endforeach   
 
 <hr>
 
