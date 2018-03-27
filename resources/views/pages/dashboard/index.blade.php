@@ -61,8 +61,8 @@
 						<span class="card-desc">Total Items</span>
 					</div>
 				</div>
-				<a class="card-button-bottom text-dark" href="{{ route('users.index') }}">
-					<span>View details</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
+				<a class="card-button-bottom text-dark" href="{{ route('reports.index') }}">
+					<span>Run a report</i></span><i class="pull-right fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
 		</div>
