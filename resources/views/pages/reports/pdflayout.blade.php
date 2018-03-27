@@ -6,6 +6,10 @@
   </head>
   <body>
     <table class="table table-bordered">
+      <tr><td> Report {{$start_date}} to {{$end_date}}<td></tr>
+    </table>
+
+    <table class="table table-bordered">
       @for ($count = 0; $count < count($output); $count++)
         <tr>
           <td>

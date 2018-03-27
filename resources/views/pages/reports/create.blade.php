@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    {{ Form::open(array('route' => array('reports.excelDownload'))) }}
+                    {{ Form::open(array('route' => array('reports.download'))) }}
                         @include('includes.forms.reports', ['button' => 'Download'])
                     {{ Form::close() }}
                 </div>

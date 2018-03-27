@@ -25,7 +25,10 @@
 						<table class="table table-bordered table-hover table-responsive-md">
 							<thead class="thead-default">
 								<tr>
-									<th></th>
+									<th>
+									<input type="checkbox" name="select_all" id="select_all" value="yes"/>
+									<a> Select All </a>	
+									</th>
 									<th>@sortablelink('id', 'ID')</th>
 									<th>@sortablelink('name', 'Name')</th>
 									<th>@sortablelink('category', 'Category')</th>
@@ -34,7 +37,7 @@
 								</tr>
 							</thead>
 							<tbody>
-
+								
 								@if ($consumables->count() > 0)
 									@foreach ($consumables as $consumable)
 										<tr>

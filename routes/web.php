@@ -105,8 +105,7 @@ Route::prefix('reports')
 
 	Route::post('create', 'ReportsController@create')->name('create');
 	
-	Route::post('excelDownload', 'ReportsController@excelDownload')->name('excelDownload');
-	Route::post('pdfDownload', 'ReportsController@pdfDownload')->name('pdfDownload');
+	Route::post('download', 'ReportsController@download')->name('download');
 
 });
 
