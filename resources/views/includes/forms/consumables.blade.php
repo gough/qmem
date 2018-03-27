@@ -175,7 +175,7 @@
 	@php ($field = 'price')
 	@php ($label = 'Price')
 	@php ($placeholder = 'Price')
-	@php ($value = isset($consumable->price) ? $consumable->price : null)
+	@php ($value = isset($consumable->price) ? $consumable->price : 0.00)
 	@php ($helptext = 'Enter the price of this consumable.')
 
 	{{ Form::label($field, $label, ['class' => $label_classes]) }}
@@ -188,7 +188,8 @@
 				$field, $value,
 				['placeholder' => $placeholder,
 				'class' => $errors->first($field) ? $field_classes . ' border-danger' : $field_classes,
-				'step' => '0.01']
+				'step' => '0.01',
+				'min' => '0']
 			) }}
 		</div>
 
