@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 
 use Session;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -62,6 +63,11 @@ class CategoryController extends Controller
         $category->name = $validator['name'];
 
         $category->save();
+
+        DB::table('revisions')
+            ->where('revisionable_type', 'App\Category')
+            ->where('revisionable_id', $category->id)
+            ->update(['new_value' => $category->name]);
 
         Session::flash('message', '<strong>Success!</strong> Category #' . $category->id . ' was created.');
         Session::flash('alert-class', 'alert-success');

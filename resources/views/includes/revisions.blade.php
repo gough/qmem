@@ -79,7 +79,7 @@
 
 					<!-- New value/Old value -->
 					@if ($revision->key == 'created_at')
-						<td class="text-muted">(n/a)</td>
+						<td>{{ $revision->new_value }}</td>
 						<td class="text-muted">(n/a)</td>
 					@elseif ($revision->key == 'category_id')
 						<?php

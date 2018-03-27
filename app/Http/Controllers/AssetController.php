@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Asset, App\Category, App\Status;
 
-use App;
 use Session;
+use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
 
 class AssetController extends Controller
 {
@@ -94,6 +92,11 @@ class AssetController extends Controller
         }
 
         $asset->save();
+
+        DB::table('revisions')
+            ->where('revisionable_type', 'App\Asset')
+            ->where('revisionable_id', $asset->id)
+            ->update(['new_value' => $asset->name]);
 
         Session::flash('message', '<strong>Success!</strong> Asset #' . $asset->id . ' was created.');
         Session::flash('alert-class', 'alert-success');

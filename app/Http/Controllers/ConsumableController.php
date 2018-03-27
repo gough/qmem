@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Consumable, App\Category, App\User;
+use App\Consumable, App\Category;
 
 use Session;
+use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ConsumableController extends Controller
@@ -93,6 +93,11 @@ class ConsumableController extends Controller
         }
 
         $consumable->save();
+
+        DB::table('revisions')
+            ->where('revisionable_type', 'App\Consumable')
+            ->where('revisionable_id', $consumable->id)
+            ->update(['new_value' => $consumable->name]);
 
         Session::flash('message', '<strong>Success!</strong> Consumable #' . $consumable->id . ' was created.');
         Session::flash('alert-class', 'alert-success');
