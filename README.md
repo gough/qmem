@@ -107,6 +107,7 @@ For deployement to a production environment, follow the instructions above for I
 	- [laracasts/flash](https://github.com/laracasts/flash) (displaying status messages)
 	- [laravelcollective/html](https://github.com/LaravelCollective/html) (creating forms)
 	- [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) & [phpoffice/phpspreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) (exporting to CSV)
+	- [pragmarx/version](https://github.com/antonioribeiro/version) (versioning)
 	- [venturecraft/revisionable](https://github.com/VentureCraft/revisionable) (keeping track of changes to items)
 - [Bootstrap 4](https://getbootstrap.com/)
 
