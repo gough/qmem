@@ -30,10 +30,6 @@ class ReportsController extends Controller
     public function create(Request $request){
         
         $validator = $request->validate($this->rules);
-        //$values = $validator['report_check'];
-
-        //$category = Input::get('select_all');
-        //$thing = Input::get('report_check');
 
         $formats = [
             'csv' => 'Comma-seperated values (.csv)',
@@ -64,8 +60,8 @@ class ReportsController extends Controller
         $validator = $request->validate(['format' => 'nullable',
                                         'items' => 'nullable',
                                         'items.*' => 'nullable',
-                                        'startdate' => 'nullable|before:enddate',
-                                        'enddate' => 'nullable|after:startdate'
+                                        'startdate' => 'nullable',
+                                        'enddate' => 'nullable'
                                          ]);
 
 
@@ -74,10 +70,10 @@ class ReportsController extends Controller
             'pdf' => 'Portable Document File (.pdf)',
         ];
 
-        if ($validator['startdate']== null or $validator['enddate']== null or $validator['format']== null){
+        if ($validator['startdate']== null or $validator['enddate']== null or $validator['format']== null or ($validator['startdate'] > $validator['enddate'])){
             $consumables = Consumable::whereIn('id', $validator['items'])->paginate(50);
-            //$f = $s;
             return view('pages.reports.create', compact('consumables','formats'));
+
         } else {
             $values = $validator['items'];
             $start_date = $validator['startdate'];
@@ -177,6 +173,7 @@ class ReportsController extends Controller
 
             $output[count($values)+1] = array('','','','','');
             $output[count($values)+2] = array('Total Cost:',$totalCost,'','','');
+
 
 
             if ($validator['format'] == 'csv'){
