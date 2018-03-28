@@ -28,11 +28,12 @@ class ReportsController extends Controller
 
 
     public function create(Request $request){
-
+        
         $validator = $request->validate($this->rules);
         //$values = $validator['report_check'];
 
-
+        //$category = Input::get('select_all');
+        //$thing = Input::get('report_check');
 
         $formats = [
             'csv' => 'Comma-seperated values (.csv)',
@@ -44,7 +45,7 @@ class ReportsController extends Controller
 
         }elseif ($request->input('report_check') == null){
 
-            redirect()->back();
+            return redirect()->back();
 
         }else {
 
@@ -68,8 +69,15 @@ class ReportsController extends Controller
                                          ]);
 
 
+        $formats = [
+            'csv' => 'Comma-seperated values (.csv)',
+            'pdf' => 'Portable Document File (.pdf)',
+        ];
+
         if ($validator['startdate']== null or $validator['enddate']== null or $validator['format']== null){
-            return redirect()->back();
+            $consumables = Consumable::whereIn('id', $validator['items'])->paginate(50);
+            //$f = $s;
+            return view('pages.reports.create', compact('consumables','formats'));
         } else {
             $values = $validator['items'];
             $start_date = $validator['startdate'];
