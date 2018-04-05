@@ -53,7 +53,7 @@
 </div>
 
 @foreach($consumables as $consumable) 
-    <input type="hidden" name="items[]" value = "{{$consumable->id}}">
+    <input type="hidden" name="items[]" value = "{{$consumable['id']}}">
 @endforeach   
 
 <hr>

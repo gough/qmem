@@ -37,7 +37,7 @@ class ReportsController extends Controller
         ];
 
         if ($request->input('select_all') == "yes") {
-            $consumables = Consumable::sortable(['created_at' => 'desc'])->paginate(50);
+            $consumables = Consumable::sortable(['created_at' => 'desc'])->get()->toArray();
 
         }elseif ($request->input('report_check') == null){
 
@@ -46,7 +46,7 @@ class ReportsController extends Controller
         }else {
 
             $values = $request->input('report_check');
-            $consumables = Consumable::whereIn('id', $values)->paginate(50);
+            $consumables = Consumable::whereIn('id', $values)->get()->toArray();
             
         }
         return view('pages.reports.create', compact('consumables','formats'));
@@ -71,7 +71,7 @@ class ReportsController extends Controller
         ];
 
         if ($validator['startdate']== null or $validator['enddate']== null or $validator['format']== null or ($validator['startdate'] > $validator['enddate'])){
-            $consumables = Consumable::whereIn('id', $validator['items'])->paginate(50);
+            $consumables = Consumable::whereIn('id', $validator['items'])->get()->toArray();
             return view('pages.reports.create', compact('consumables','formats'));
 
         } else {
