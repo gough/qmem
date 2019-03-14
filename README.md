@@ -111,17 +111,9 @@ For deployement to a production environment, follow the instructions above for I
 	- [venturecraft/revisionable](https://github.com/VentureCraft/revisionable) (keeping track of changes to items)
 - [Bootstrap 4](https://getbootstrap.com/)
 
-## History
-
-TODO: Write history
-
 ## Contributors
 
-- [Adam Gough](https://github.com/gough)
-- [Annika Nicol](https://github.com/getitdon)
-- [Joshua Horner](https://github.com/WalkingInCircles)
-- [Lucy Rowland](https://github.com/lucyrowland)
-- [Sasha Sreckovic](https://github.com/ssreckovic)
+Check [here](https://github.com/gough/qmem/graphs/contributors) for contributor information.
 
 ## License
 
