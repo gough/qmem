@@ -117,4 +117,4 @@ Check [here](https://github.com/gough/qmem/graphs/contributors) for contributor 
 
 ## License
 
-All work copyright their respective authors.
+See [here](https://github.com/gough/qmem/blob/master/LICENSE.md) for license information.
